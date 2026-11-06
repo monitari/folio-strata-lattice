@@ -160,6 +160,8 @@ tr.group td { font: 600 11px var(--sans); letter-spacing: 0.06em; color: var(--m
 }
 .picker button:hover { color: var(--ink); }
 .picker button[aria-pressed="true"] { color: var(--ink); font-weight: 600; text-decoration-color: var(--ink); }
+.wip { font: 14px/1.6 var(--sans); color: var(--ink-2); margin: 0 0 28px; padding: 10px 14px; border-left: 3px solid var(--bad); background: var(--wash); }
+.wip b { color: var(--ink); font-weight: 600; }
 #status { font: 13px var(--sans); color: var(--muted); }
 #status.error { color: var(--bad); }
 

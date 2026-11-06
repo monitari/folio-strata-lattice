@@ -9,7 +9,7 @@
 ## 1. 실행 방법
 
 ```bash
-py main.py                                     # 검증 → 빠진 학습(계획 A–E) → 추가 시험 → 자원 측정 → 보고서 → 웹 화면
+py main.py                                     # 검증 → 빠진 학습(계획 A–H) → 추가 시험 → 자원 측정 → 보고서 → 웹 화면
 py main.py --check                             # 준비 상태만
 py main.py --view                              # 계산 없이 화면만
 py compare_candidates.py check                 # 구현 검증만 (CPU, float64)
@@ -17,7 +17,7 @@ py compare_candidates.py run --models folio,gru --steps 3000 --seeds 0,1,2   # �
 py compare_candidates.py report                # results/candidates/report.md, summary.json
 ```
 
-계획(묶음 A–E)은 `candidates/plan.py` 에 있다. `run` 은 `--models --mode --tasks --memory --seeds --steps --batch --chunk --lr --n_train --n_val --n_test --eval_every --workers` 로 조절한다. 실행마다 설정 전체(모델 구성 · 데이터 지문 · 코드 버전 포함)의 해시가 실행 이름에 들어가고, 같은 설정의 완료 결과만 재사용한다. 중단되면 체크포인트에서 이어 가며 배치 순서도 그대로 재현한다(이번에도 한 번 중단됐다가 이어 갔다).
+계획(묶음 A–H)은 `candidates/plan.py` 에 있다. `run` 은 `--models --mode --tasks --memory --seeds --steps --batch --chunk --lr --n_train --n_val --n_test --eval_every --workers` 로 조절한다. 실행마다 설정 전체(모델 구성 · 데이터 지문 · 코드 버전 포함)의 해시가 실행 이름에 들어가고, 같은 설정의 완료 결과만 재사용한다. 중단되면 체크포인트에서 이어 가며 배치 순서도 그대로 재현한다(이번에도 한 번 중단됐다가 이어 갔다).
 
 ## 2. 파일
 
@@ -28,7 +28,7 @@ py compare_candidates.py report                # results/candidates/report.md, s
 | `candidates/models.py` | 공통 인터페이스(`initial_state` · `step` · `forward`), Transformer · GRU 기준선, Folio · Strata · Lattice, 대조군 6개, 크기 맞추기 |
 | `candidates/tasks.py` | 요리 · 키-값 · 긴 지연 키-값 · 혼합 시간척도 · 관계 사슬 생성기와 정답 검증 함수 |
 | `candidates/benchmark.py` | 학습 · 평가 · 실행 관리(재사용 · 이어 하기 · 병렬) · 자원 측정 |
-| `candidates/plan.py` | 실험 계획 A–E |
+| `candidates/plan.py` | 실험 계획 A–H |
 | `candidates/checks.py` | 구현 검증 7종 → `checks.json` |
 | `candidates/posthoc.py` | 관계 사슬 단계 수 추가 시험 (학습 뒤 발견한 지름길 보완) |
 | `candidates/site.py` | 화면용 자료 묶기 + 과제별 단순 규칙 기준선 |
@@ -51,7 +51,10 @@ py compare_candidates.py report                # results/candidates/report.md, s
 | B | 공동 · 창, 기본 5개 × 난수 3 | 800 | 13.1M | 15 |
 | C | 공동 · 지속, 대조군 6개 × 난수 3 | 800 | 13.1M | 18 |
 | D | 과제별 · 지속, 3과제 × 기본 5개 × 난수 3 | 400 | 6.6M | 45 |
-| E | 공동 · 지속, 기본 5개 × 난수 0 (진단) | 3000 | 49.2M | 5 |
+| E | 공동 · 지속, 기본 5개 + 개선판 2개 × 난수 3 | 3000 | 49.2M | 21 |
+| F | 지연 사다리 키-값 · 지속, 청크 64/256 (§5.7) | 2000 | 32.8M | 27 |
+| G | F 와 같되 학습만 모든 질의 채점 (§5.7) | 2000 | 32.8M | 15 |
+| H | 새 과제 묶음 · 공동 · 지속 (§5.9) | 3000 | 49.2M | 27 |
 
 ## 4. 구현 검증 (`py compare_candidates.py check`, CPU · GPU 모두 통과)
 
