@@ -1,0 +1,104 @@
+{
+ "run_id": "folio-chain-persistent-s2-03630b31",
+ "config_key": {
+  "variant": "folio",
+  "tasks": [
+   "chain"
+  ],
+  "memory": "persistent",
+  "seed": 2,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d_embed": 64,
+   "d_ctrl": 76,
+   "slots": 32,
+   "d_slot": 64,
+   "d_key": 32,
+   "reads": 2,
+   "memory": true
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "chain",
+   "chain_long"
+  ]
+ },
+ "variant": "folio",
+ "mode": "separate",
+ "tasks": [
+  "chain"
+ ],
+ "memory": "persistent",
+ "seed": 2,
+ "params": 99752,
+ "train_tokens": 6553600,
+ "wall_seconds": 741.0,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 218.1,
+   "val": {
+    "chain": {
+     "accuracy": 0.3363,
+     "bits": 2.7095
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 444.1,
+   "val": {
+    "chain": {
+     "accuracy": 0.435,
+     "bits": 1.8166
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 616.7,
+   "val": {
+    "chain": {
+     "accuracy": 0.5257,
+     "bits": 1.2718
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 740.6,
+   "val": {
+    "chain": {
+     "accuracy": 0.5493,
+     "bits": 1.2097
+    }
+   }
+  }
+ ],
+ "test": {
+  "chain": {
+   "accuracy": 0.5543322163714696,
+   "bits": 1.1945011760681274,
+   "scored": 4178,
+   "oracle_accuracy": 1.0
+  },
+  "chain_long": {
+   "accuracy": 0.9712933753943218,
+   "bits": 0.5729378147421312,
+   "scored": 3170,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

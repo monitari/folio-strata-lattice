@@ -1,0 +1,85 @@
+{
+ "key": "cand-data-v2|cand-extra-v1|suite-v1|posthoc-v1|switch_fast,phrase,cycle,kv,mixed,chain,kv_long,chain_long,mixed_long,kvd,kvd_long,kvd_all,cyc,count,copy,paren,slowp,cyc_far,count_long,copy_long,paren_deep,slowp_long",
+ "rules": {
+  "kv": {
+   "name": "가장 최근 저장값",
+   "accuracy": 0.28394039735099336
+  },
+  "chain": {
+   "name": "끝 개체 찍기",
+   "accuracy": 0.5
+  },
+  "kv_long": {
+   "name": "가장 최근 저장값",
+   "accuracy": 0.11877394636015326
+  },
+  "chain_long": {
+   "name": "끝 개체 찍기",
+   "accuracy": 1.0
+  },
+  "kvd": {
+   "name": "가장 최근 저장값",
+   "accuracy": 0.13237774030354132
+  },
+  "kvd_long": {
+   "name": "가장 최근 저장값",
+   "accuracy": 0.10740740740740741
+  },
+  "kvd_all": {
+   "name": "가장 최근 저장값",
+   "accuracy": 0.26742948376796166
+  },
+  "cyc": {
+   "name": "한 걸음 답",
+   "accuracy": 0.33645833333333336
+  },
+  "count": {
+   "name": "같은 m 직전 답",
+   "accuracy": 0.28407908428720086
+  },
+  "copy": {
+   "name": "늘 그대로 베끼기",
+   "accuracy": 0.5486473329160582
+  },
+  "paren": {
+   "name": "가장 최근에 연 괄호",
+   "accuracy": 0.4978947368421053
+  },
+  "slowp": {
+   "name": "빠른 무늬만 (3칸 전)",
+   "accuracy": 0.6645833333333333
+  },
+  "cyc_far": {
+   "name": "한 걸음 답",
+   "accuracy": 0.0
+  },
+  "count_long": {
+   "name": "같은 m 직전 답",
+   "accuracy": 0.33231162196679437
+  },
+  "copy_long": {
+   "name": "늘 그대로 베끼기",
+   "accuracy": 0.5544490149382983
+  },
+  "paren_deep": {
+   "name": "가장 최근에 연 괄호",
+   "accuracy": 0.5057803468208093
+  },
+  "slowp_long": {
+   "name": "빠른 무늬만 (3칸 전)",
+   "accuracy": 0.6821389296187683
+  },
+  "chain_hop3": {
+   "name": "끝 개체 찍기",
+   "accuracy": 0.5
+  },
+  "chain_hop4": {
+   "name": "끝 개체 찍기",
+   "accuracy": 0.5
+  },
+  "chain_hop5": {
+   "name": "끝 개체 찍기",
+   "accuracy": 0.5
+  }
+ }
+}

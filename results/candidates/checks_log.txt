@@ -1,0 +1,88 @@
+[통과] 과제 생성기 정답 검증: switch_fast, phrase, cycle, kv, mixed, chain, kv_long, chain_long, mixed_long, kvd, kvd_long, kvd_all, cyc, count, copy, paren, slowp, cyc_far, count_long, copy_long, paren_deep, slowp_long
+[통과] transformer        forward = step 누적: 최대 차이 1.1e-15
+[통과] transformer        인과성: 과거 예측 변화 0.0e+00
+[통과] transformer        상태 누출 없음: 차이 6.7e-16
+[통과] transformer        청크 분할 일치: 최대 차이 7.8e-16
+[통과] transformer        유한 손실·gradient: 손실 3.660
+[통과] transformer        작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] gru                forward = step 누적: 최대 차이 1.8e-15
+[통과] gru                인과성: 과거 예측 변화 0.0e+00
+[통과] gru                상태 누출 없음: 차이 9.4e-16
+[통과] gru                청크 분할 일치: 최대 차이 1.3e-15
+[통과] gru                유한 손실·gradient: 손실 3.661
+[통과] gru                작은 결정적 문제 학습: 정답률 1.000, 손실 0.000
+[통과] folio              forward = step 누적: 최대 차이 0.0e+00
+[통과] folio              인과성: 과거 예측 변화 0.0e+00
+[통과] folio              상태 누출 없음: 차이 1.1e-15
+[통과] folio              청크 분할 일치: 최대 차이 0.0e+00
+[통과] folio              유한 손실·gradient: 손실 3.645
+[통과] folio              작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] strata             forward = step 누적: 최대 차이 0.0e+00
+[통과] strata             인과성: 과거 예측 변화 0.0e+00
+[통과] strata             상태 누출 없음: 차이 2.0e-15
+[통과] strata             청크 분할 일치: 최대 차이 0.0e+00, 시계 150
+[통과] strata             유한 손실·gradient: 손실 3.611
+[통과] strata             작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] lattice            forward = step 누적: 최대 차이 0.0e+00
+[통과] lattice            인과성: 과거 예측 변화 0.0e+00
+[통과] lattice            상태 누출 없음: 차이 1.1e-15
+[통과] lattice            청크 분할 일치: 최대 차이 0.0e+00
+[통과] lattice            유한 손실·gradient: 손실 3.688
+[통과] lattice            작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] folio_nomem        forward = step 누적: 최대 차이 0.0e+00
+[통과] folio_nomem        인과성: 과거 예측 변화 0.0e+00
+[통과] folio_nomem        상태 누출 없음: 차이 1.6e-15
+[통과] folio_nomem        청크 분할 일치: 최대 차이 0.0e+00
+[통과] folio_nomem        유한 손실·gradient: 손실 3.646
+[통과] folio_nomem        작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] folio_r1           forward = step 누적: 최대 차이 0.0e+00
+[통과] folio_r1           인과성: 과거 예측 변화 0.0e+00
+[통과] folio_r1           상태 누출 없음: 차이 1.3e-15
+[통과] folio_r1           청크 분할 일치: 최대 차이 0.0e+00
+[통과] folio_r1           유한 손실·gradient: 손실 3.647
+[통과] folio_r1           작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] strata_sameperiod  forward = step 누적: 최대 차이 0.0e+00
+[통과] strata_sameperiod  인과성: 과거 예측 변화 0.0e+00
+[통과] strata_sameperiod  상태 누출 없음: 차이 1.6e-15
+[통과] strata_sameperiod  청크 분할 일치: 최대 차이 0.0e+00, 시계 150
+[통과] strata_sameperiod  유한 손실·gradient: 손실 3.640
+[통과] strata_sameperiod  작은 결정적 문제 학습: 정답률 1.000, 손실 0.000
+[통과] strata_noaux       forward = step 누적: 최대 차이 0.0e+00
+[통과] strata_noaux       인과성: 과거 예측 변화 0.0e+00
+[통과] strata_noaux       상태 누출 없음: 차이 2.0e-15
+[통과] strata_noaux       청크 분할 일치: 최대 차이 0.0e+00, 시계 150
+[통과] strata_noaux       유한 손실·gradient: 손실 3.595
+[통과] strata_noaux       작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] lattice_k1         forward = step 누적: 최대 차이 0.0e+00
+[통과] lattice_k1         인과성: 과거 예측 변화 0.0e+00
+[통과] lattice_k1         상태 누출 없음: 차이 1.6e-15
+[통과] lattice_k1         청크 분할 일치: 최대 차이 0.0e+00
+[통과] lattice_k1         유한 손실·gradient: 손실 3.677
+[통과] lattice_k1         작은 결정적 문제 학습: 정답률 1.000, 손실 0.000
+[통과] lattice_nonbr      forward = step 누적: 최대 차이 0.0e+00
+[통과] lattice_nonbr      인과성: 과거 예측 변화 0.0e+00
+[통과] lattice_nonbr      상태 누출 없음: 차이 1.1e-15
+[통과] lattice_nonbr      청크 분할 일치: 최대 차이 0.0e+00
+[통과] lattice_nonbr      유한 손실·gradient: 손실 3.599
+[통과] lattice_nonbr      작은 결정적 문제 학습: 정답률 1.000, 손실 0.000
+[통과] folio2             forward = step 누적: 최대 차이 0.0e+00
+[통과] folio2             인과성: 과거 예측 변화 0.0e+00
+[통과] folio2             상태 누출 없음: 차이 1.0e-15
+[통과] folio2             청크 분할 일치: 최대 차이 0.0e+00
+[통과] folio2             유한 손실·gradient: 손실 3.654
+[통과] folio2             작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+[통과] lattice2           forward = step 누적: 최대 차이 0.0e+00
+[통과] lattice2           인과성: 과거 예측 변화 0.0e+00
+[통과] lattice2           상태 누출 없음: 차이 2.4e-14
+[통과] lattice2           청크 분할 일치: 최대 차이 0.0e+00
+[통과] lattice2           유한 손실·gradient: 손실 3.686
+[통과] lattice2           작은 결정적 문제 학습: 정답률 1.000, 손실 0.000
+[통과] transformer256     forward = step 누적: 최대 차이 1.1e-15
+[통과] transformer256     인과성: 과거 예측 변화 0.0e+00
+[통과] transformer256     상태 누출 없음: 차이 5.6e-16
+[통과] transformer256     청크 분할 일치: 최대 차이 1.1e-15
+[통과] transformer256     유한 손실·gradient: 손실 3.644
+[통과] transformer256     작은 결정적 문제 학습: 정답률 1.000, 손실 0.001
+
+실패 0개
+fail 0

@@ -1,0 +1,518 @@
+{
+ "checked_at": "2026-11-04 16:36",
+ "device": "cpu",
+ "dtype": "float64",
+ "learn": true,
+ "rows": [
+  {
+   "variant": "",
+   "check": "과제 생성기 정답 검증",
+   "ok": true,
+   "msg": "switch_fast, phrase, cycle, kv, mixed, chain, kv_long, chain_long, mixed_long, kvd, kvd_long, kvd_all, cyc, count, copy, paren, slowp, cyc_far, count_long, copy_long, paren_deep, slowp_long"
+  },
+  {
+   "variant": "transformer",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 1.1e-15"
+  },
+  {
+   "variant": "transformer",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "transformer",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 6.7e-16"
+  },
+  {
+   "variant": "transformer",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 7.8e-16"
+  },
+  {
+   "variant": "transformer",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.660"
+  },
+  {
+   "variant": "transformer",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "gru",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 1.8e-15"
+  },
+  {
+   "variant": "gru",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "gru",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 9.4e-16"
+  },
+  {
+   "variant": "gru",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 1.3e-15"
+  },
+  {
+   "variant": "gru",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.661"
+  },
+  {
+   "variant": "gru",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.000"
+  },
+  {
+   "variant": "folio",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "folio",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.1e-15"
+  },
+  {
+   "variant": "folio",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.645"
+  },
+  {
+   "variant": "folio",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "strata",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "strata",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "strata",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 2.0e-15"
+  },
+  {
+   "variant": "strata",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00, 시계 150"
+  },
+  {
+   "variant": "strata",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.611"
+  },
+  {
+   "variant": "strata",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "lattice",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "lattice",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.1e-15"
+  },
+  {
+   "variant": "lattice",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.688"
+  },
+  {
+   "variant": "lattice",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.6e-15"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.646"
+  },
+  {
+   "variant": "folio_nomem",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.3e-15"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.647"
+  },
+  {
+   "variant": "folio_r1",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.6e-15"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00, 시계 150"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.640"
+  },
+  {
+   "variant": "strata_sameperiod",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.000"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 2.0e-15"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00, 시계 150"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.595"
+  },
+  {
+   "variant": "strata_noaux",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.6e-15"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.677"
+  },
+  {
+   "variant": "lattice_k1",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.000"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.1e-15"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.599"
+  },
+  {
+   "variant": "lattice_nonbr",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.000"
+  },
+  {
+   "variant": "folio2",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio2",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "folio2",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 1.0e-15"
+  },
+  {
+   "variant": "folio2",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "folio2",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.654"
+  },
+  {
+   "variant": "folio2",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  },
+  {
+   "variant": "lattice2",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice2",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "lattice2",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 2.4e-14"
+  },
+  {
+   "variant": "lattice2",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 0.0e+00"
+  },
+  {
+   "variant": "lattice2",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.686"
+  },
+  {
+   "variant": "lattice2",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.000"
+  },
+  {
+   "variant": "transformer256",
+   "check": "forward = step 누적",
+   "ok": true,
+   "msg": "최대 차이 1.1e-15"
+  },
+  {
+   "variant": "transformer256",
+   "check": "인과성",
+   "ok": true,
+   "msg": "과거 예측 변화 0.0e+00"
+  },
+  {
+   "variant": "transformer256",
+   "check": "상태 누출 없음",
+   "ok": true,
+   "msg": "차이 5.6e-16"
+  },
+  {
+   "variant": "transformer256",
+   "check": "청크 분할 일치",
+   "ok": true,
+   "msg": "최대 차이 1.1e-15"
+  },
+  {
+   "variant": "transformer256",
+   "check": "유한 손실·gradient",
+   "ok": true,
+   "msg": "손실 3.644"
+  },
+  {
+   "variant": "transformer256",
+   "check": "작은 결정적 문제 학습",
+   "ok": true,
+   "msg": "정답률 1.000, 손실 0.001"
+  }
+ ]
+}

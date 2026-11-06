@@ -1,0 +1,30 @@
+{
+ "variant": "gru",
+ "tasks": [
+  "kv"
+ ],
+ "memory": "persistent",
+ "seed": 1,
+ "steps": 400,
+ "batch": 64,
+ "chunk": 64,
+ "lr": 0.002,
+ "warmup": 100,
+ "n_train": 2048,
+ "n_val": 128,
+ "n_test": 128,
+ "eval_every": 100,
+ "data_seed": 12345,
+ "eval_tasks": [],
+ "model": {
+  "vocab": 32,
+  "d_embed": 64,
+  "d_hidden": 150
+ },
+ "data": "66bb89d7b6",
+ "code": "cand-train-v1",
+ "eval": [
+  "kv",
+  "kv_long"
+ ]
+}

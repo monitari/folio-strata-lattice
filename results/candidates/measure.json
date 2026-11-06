@@ -1,0 +1,355 @@
+{
+ "rows": [
+  {
+   "variant": "transformer",
+   "params": 108320,
+   "train_sec_per_step": 0.0242779199994402,
+   "train_tokens_per_sec": 674851.88189012,
+   "train_peak_bytes": 41800704,
+   "state_bytes_batch1": 520,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.7831308593940776,
+     "p90_ms": 3.4850499941967428
+    },
+    "cpu": {
+     "mean_ms": 0.5611250004449175,
+     "p90_ms": 0.6758500094292685
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "gru",
+   "params": 104380,
+   "train_sec_per_step": 0.020979530000477097,
+   "train_tokens_per_sec": 780951.7181570517,
+   "train_peak_bytes": 76078592,
+   "state_bytes_batch1": 600,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.3841304680918256,
+     "p90_ms": 0.33745000837370753
+    },
+    "cpu": {
+     "mean_ms": 0.1378914056431313,
+     "p90_ms": 0.18029999046120793
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "folio",
+   "params": 99752,
+   "train_sec_per_step": 1.0236099300003842,
+   "train_tokens_per_sec": 16006.097166323747,
+   "train_peak_bytes": 126230528,
+   "state_bytes_batch1": 8496,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.3943695324769578,
+     "p90_ms": 3.1439000013051555
+    },
+    "cpu": {
+     "mean_ms": 0.3607175785873551,
+     "p90_ms": 0.4933500022161752
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "strata",
+   "params": 97472,
+   "train_sec_per_step": 0.6178489199999604,
+   "train_tokens_per_sec": 26517.809564190953,
+   "train_peak_bytes": 23353344,
+   "state_bytes_batch1": 1140,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.8019800785396,
+     "p90_ms": 3.2738500012783334
+    },
+    "cpu": {
+     "mean_ms": 0.4030242196222389,
+     "p90_ms": 0.4999000084353611
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "lattice",
+   "params": 98624,
+   "train_sec_per_step": 0.8340362750008353,
+   "train_tokens_per_sec": 19644.229503067585,
+   "train_peak_bytes": 1288409088,
+   "state_bytes_batch1": 5888,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.177807810563536,
+     "p90_ms": 2.7722499944502488
+    },
+    "cpu": {
+     "mean_ms": 0.518263281946929,
+     "p90_ms": 0.6006000039633363
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "folio_nomem",
+   "params": 99752,
+   "train_sec_per_step": 0.44101296499866294,
+   "train_tokens_per_sec": 37150.8352368953,
+   "train_peak_bytes": 54171136,
+   "state_bytes_batch1": 8496,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.6305500004373243,
+     "p90_ms": 0.7616999937454239
+    },
+    "cpu": {
+     "mean_ms": 0.14727617190146702,
+     "p90_ms": 0.189049998880364
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "folio_r1",
+   "params": 99752,
+   "train_sec_per_step": 0.7682492750012898,
+   "train_tokens_per_sec": 21326.41127448183,
+   "train_peak_bytes": 108284928,
+   "state_bytes_batch1": 8496,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.907240233345874,
+     "p90_ms": 2.662200015038252
+    },
+    "cpu": {
+     "mean_ms": 0.23768593723616505,
+     "p90_ms": 0.3092499973718077
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "strata_sameperiod",
+   "params": 97472,
+   "train_sec_per_step": 1.4966264650007362,
+   "train_tokens_per_sec": 10947.287371396269,
+   "train_peak_bytes": 55047168,
+   "state_bytes_batch1": 1140,
+   "latency": {
+    "cuda": {
+     "mean_ms": 2.2290476557600414,
+     "p90_ms": 3.9721500070299953
+    },
+    "cpu": {
+     "mean_ms": 0.44885351564971643,
+     "p90_ms": 0.6057999999029562
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "strata_noaux",
+   "params": 97472,
+   "train_sec_per_step": 0.5121293250005692,
+   "train_tokens_per_sec": 31991.919228569444,
+   "train_peak_bytes": 22480384,
+   "state_bytes_batch1": 1140,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.952227734363987,
+     "p90_ms": 3.327250000438653
+    },
+    "cpu": {
+     "mean_ms": 0.42530234350124374,
+     "p90_ms": 0.5800499930046499
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "lattice_k1",
+   "params": 98624,
+   "train_sec_per_step": 0.4317394099998637,
+   "train_tokens_per_sec": 37948.8173201635,
+   "train_peak_bytes": 442683392,
+   "state_bytes_batch1": 5888,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.5706960937459371,
+     "p90_ms": 0.6461500161094591
+    },
+    "cpu": {
+     "mean_ms": 0.2499722667153037,
+     "p90_ms": 0.3164999943692237
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "lattice_nonbr",
+   "params": 98624,
+   "train_sec_per_step": 0.5465667899989057,
+   "train_tokens_per_sec": 29976.2083972076,
+   "train_peak_bytes": 969035776,
+   "state_bytes_batch1": 5888,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.9439894532761173,
+     "p90_ms": 2.4052999942796305
+    },
+    "cpu": {
+     "mean_ms": 0.4022296869834463,
+     "p90_ms": 0.5169999931240454
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "folio2",
+   "params": 102507,
+   "train_sec_per_step": 1.4524818449999657,
+   "train_tokens_per_sec": 11280.003296702402,
+   "train_peak_bytes": 134362624,
+   "state_bytes_batch1": 8480,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.5346199219123946,
+     "p90_ms": 1.8352000006416347
+    },
+    "cpu": {
+     "mean_ms": 0.5049839843707105,
+     "p90_ms": 0.5745500002376502
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "lattice2",
+   "params": 98824,
+   "train_sec_per_step": 0.7059471700000358,
+   "train_tokens_per_sec": 23208.535562227935,
+   "train_peak_bytes": 1364496384,
+   "state_bytes_batch1": 5888,
+   "latency": {
+    "cuda": {
+     "mean_ms": 0.6675402343745418,
+     "p90_ms": 0.7382999992842088
+    },
+    "cpu": {
+     "mean_ms": 0.5202988281354237,
+     "p90_ms": 0.5577000010816846
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 64,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  },
+  {
+   "variant": "transformer256",
+   "params": 120608,
+   "train_sec_per_step": 0.00740287000007811,
+   "train_tokens_per_sec": 2213195.6929984083,
+   "train_peak_bytes": 160354304,
+   "state_bytes_batch1": 2056,
+   "latency": {
+    "cuda": {
+     "mean_ms": 1.0115035157554075,
+     "p90_ms": 1.2176000000181375
+    },
+    "cpu": {
+     "mean_ms": 0.8897628904804833,
+     "p90_ms": 0.9313499995187158
+    }
+   },
+   "setup": {
+    "batch": 64,
+    "length": 256,
+    "chunk": 256,
+    "memory": "persistent",
+    "device": "cuda"
+   }
+  }
+ ],
+ "measured_at": "2026-11-03 00:58 (개선판 · 창 256: 2026-11-04 21:26)"
+}

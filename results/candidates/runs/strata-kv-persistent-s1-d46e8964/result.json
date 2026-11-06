@@ -1,0 +1,105 @@
+{
+ "run_id": "strata-kv-persistent-s1-d46e8964",
+ "config_key": {
+  "variant": "strata",
+  "tasks": [
+   "kv"
+  ],
+  "memory": "persistent",
+  "seed": 1,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d": 40,
+   "periods": [
+    1,
+    4,
+    16,
+    64
+   ],
+   "aux_weight": 0.05
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "kv",
+   "kv_long"
+  ]
+ },
+ "variant": "strata",
+ "mode": "separate",
+ "tasks": [
+  "kv"
+ ],
+ "memory": "persistent",
+ "seed": 1,
+ "params": 97472,
+ "train_tokens": 6553600,
+ "wall_seconds": 616.7,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 153.8,
+   "val": {
+    "kv": {
+     "accuracy": 0.3208,
+     "bits": 2.5093
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 305.9,
+   "val": {
+    "kv": {
+     "accuracy": 0.327,
+     "bits": 2.4155
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 461.3,
+   "val": {
+    "kv": {
+     "accuracy": 0.3245,
+     "bits": 2.3977
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 616.1,
+   "val": {
+    "kv": {
+     "accuracy": 0.3241,
+     "bits": 2.3945
+    }
+   }
+  }
+ ],
+ "test": {
+  "kv": {
+   "accuracy": 0.33153973509933776,
+   "bits": 2.386434507124582,
+   "scored": 4832,
+   "oracle_accuracy": 1.0
+  },
+  "kv_long": {
+   "accuracy": 0.12643678160919541,
+   "bits": 3.491410364454387,
+   "scored": 522,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

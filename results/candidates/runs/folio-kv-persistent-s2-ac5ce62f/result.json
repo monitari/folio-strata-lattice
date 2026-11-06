@@ -1,0 +1,104 @@
+{
+ "run_id": "folio-kv-persistent-s2-ac5ce62f",
+ "config_key": {
+  "variant": "folio",
+  "tasks": [
+   "kv"
+  ],
+  "memory": "persistent",
+  "seed": 2,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d_embed": 64,
+   "d_ctrl": 76,
+   "slots": 32,
+   "d_slot": 64,
+   "d_key": 32,
+   "reads": 2,
+   "memory": true
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "kv",
+   "kv_long"
+  ]
+ },
+ "variant": "folio",
+ "mode": "separate",
+ "tasks": [
+  "kv"
+ ],
+ "memory": "persistent",
+ "seed": 2,
+ "params": 99752,
+ "train_tokens": 6553600,
+ "wall_seconds": 962.1,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 226.3,
+   "val": {
+    "kv": {
+     "accuracy": 0.3129,
+     "bits": 2.6207
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 471.7,
+   "val": {
+    "kv": {
+     "accuracy": 0.3208,
+     "bits": 2.4318
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 716.1,
+   "val": {
+    "kv": {
+     "accuracy": 0.326,
+     "bits": 2.4046
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 961.5,
+   "val": {
+    "kv": {
+     "accuracy": 0.3301,
+     "bits": 2.3964
+    }
+   }
+  }
+ ],
+ "test": {
+  "kv": {
+   "accuracy": 0.32388245033112584,
+   "bits": 2.39823797486028,
+   "scored": 4832,
+   "oracle_accuracy": 1.0
+  },
+  "kv_long": {
+   "accuracy": 0.13984674329501914,
+   "bits": 3.4923934779089563,
+   "scored": 522,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

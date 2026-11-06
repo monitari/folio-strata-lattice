@@ -1,0 +1,139 @@
+{
+ "run_id": "gru-kvd-persistent-s1-8b7c2e88",
+ "config_key": {
+  "variant": "gru",
+  "tasks": [
+   "kvd"
+  ],
+  "memory": "persistent",
+  "seed": 1,
+  "steps": 2000,
+  "batch": 64,
+  "chunk": 256,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 256,
+  "eval_every": 250,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d_embed": 64,
+   "d_hidden": 150
+  },
+  "data": "a613517d99",
+  "code": "cand-train-v1",
+  "eval": [
+   "kvd",
+   "kvd_long"
+  ]
+ },
+ "variant": "gru",
+ "mode": "separate",
+ "tasks": [
+  "kvd"
+ ],
+ "memory": "persistent",
+ "seed": 1,
+ "params": 104380,
+ "train_tokens": 32768000,
+ "wall_seconds": 100.8,
+ "history": [
+  {
+   "step": 250,
+   "seconds": 11.9,
+   "val": {
+    "kvd": {
+     "accuracy": 0.6568,
+     "bits": 1.2502
+    }
+   }
+  },
+  {
+   "step": 500,
+   "seconds": 24.5,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7604,
+     "bits": 0.7426
+    }
+   }
+  },
+  {
+   "step": 750,
+   "seconds": 37.2,
+   "val": {
+    "kvd": {
+     "accuracy": 0.764,
+     "bits": 0.7663
+    }
+   }
+  },
+  {
+   "step": 1000,
+   "seconds": 49.8,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7495,
+     "bits": 0.861
+    }
+   }
+  },
+  {
+   "step": 1250,
+   "seconds": 62.5,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7667,
+     "bits": 0.9792
+    }
+   }
+  },
+  {
+   "step": 1500,
+   "seconds": 75.2,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7459,
+     "bits": 1.1505
+    }
+   }
+  },
+  {
+   "step": 1750,
+   "seconds": 88.1,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7423,
+     "bits": 1.2291
+    }
+   }
+  },
+  {
+   "step": 2000,
+   "seconds": 100.8,
+   "val": {
+    "kvd": {
+     "accuracy": 0.745,
+     "bits": 1.2464
+    }
+   }
+  }
+ ],
+ "test": {
+  "kvd": {
+   "accuracy": 0.75,
+   "bits": 1.2023081895224124,
+   "scored": 2336,
+   "oracle_accuracy": 1.0
+  },
+  "kvd_long": {
+   "accuracy": 0.47543859649122805,
+   "bits": 4.260502047770532,
+   "scored": 570,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

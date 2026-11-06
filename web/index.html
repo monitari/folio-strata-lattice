@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>기록장, 지층, 격자</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <button class="theme-toggle" id="theme" type="button">테마: 시스템</button>
+
+  <header class="masthead">
+    <p class="kicker">실험 노트 · 트랜스포머가 아닌 구조 세 가지</p>
+    <h1>기록장, 지층, 격자</h1>
+    <p class="dek">다음 기호를 예측하는 구조를 트랜스포머와 다른 원리로 세 가지 만들었습니다. 같은 크기(약 10만 파라미터)의 트랜스포머, 그리고 가장 단순한 순환 신경망(GRU)과 같은 자료·같은 순서·같은 양으로 학습시켜 비교했습니다.</p>
+    <dl class="byline">
+      <div><dt>후보</dt><dd>Folio · Strata · Lattice</dd></div>
+      <div><dt>기준 모델</dt><dd>Transformer(창 64 · 256) · GRU</dd></div>
+      <div><dt>과제</dt><dd id="by-tasks">–</dd></div>
+      <div><dt>실행</dt><dd id="by-runs">–</dd></div>
+    </dl>
+  </header>
+
+  <p id="status">결과를 불러오는 중…</p>
+
+  <div class="with-notes">
+    <div class="abstract">
+      <span class="label">요약</span>
+      <ol class="findings" id="findings"></ol>
+    </div>
+    <aside class="note">
+      <b>읽는 법.</b> 정확도는 시험 문제에서 다음 기호를 맞힌 비율입니다. 시험 문제는 학습에 쓰지 않은 새 문제입니다. 점 하나가 초기화 난수 하나(같은 모델을 처음부터 다시 학습한 것)이고, 굵은 점은 그 평균입니다. 점들이 넓게 퍼져 있으면 결과가 운에 많이 좌우된다는 뜻입니다.
+    </aside>
+  </div>
+
+  <!-- ============================================================ 1 -->
+  <section>
+    <h2><span class="num">1</span>세 후보</h2>
+    <div class="with-notes">
+      <p>세 후보 모두 트랜스포머처럼 지나간 기호를 통째로 다시 읽지 않습니다. 기호가 하나 들어올 때마다 <b>정해진 크기의 상태</b>를 고쳐 쓰고, 그 상태만 보고 다음 기호를 예측합니다. 그래서 기록이 아무리 길어져도 들고 다니는 기억의 크기는 같습니다. 다른 점은 상태를 어떻게 나누고 고치는가입니다.</p>
+      <aside class="note"><b>GRU</b>는 상태 하나를 통째로 고치는 가장 단순한 순환 신경망입니다. 새 구조가 이것보다 나아야 '구조 덕분'이라고 말할 수 있어서 꼭 함께 비교합니다.</aside>
+    </div>
+    <div class="three">
+      <div class="cand" style="--c: var(--folio)">
+        <h3 class="m-folio">Folio</h3>
+        <p class="what">기록장 · 주소가 있는 기억</p>
+        <svg viewBox="0 0 300 92" aria-label="Folio 구조: 제어 상태가 기억 슬롯 32칸에 주소로 읽고 쓴다">
+          <rect x="6" y="30" width="62" height="32" rx="3" fill="none" stroke="var(--folio)" stroke-width="1.5"/>
+          <text x="37" y="50" text-anchor="middle" class="t-ink2">제어</text>
+          <g id="folio-slots"></g>
+          <path d="M70 40 C 100 22, 110 22, 132 24" fill="none" stroke="var(--ink-2)" stroke-width="1" marker-end="url(#arr)"/>
+          <path d="M132 70 C 110 72, 100 70, 70 54" fill="none" stroke="var(--ink-2)" stroke-width="1" marker-end="url(#arr)"/>
+          <text x="96" y="16" class="t-num">쓰기</text><text x="96" y="86" class="t-num">읽기 ×2</text>
+        </svg>
+        <p>작은 제어 상태와 별도의 <b>기억 칸 32개</b>를 둡니다. 기호가 들어오면 제어 상태가 '어느 칸을 읽을지'를 주소로 정해 두 번 읽고, 생각한 뒤, 한 칸을 골라 지우고 씁니다.</p>
+        <p>노리는 것: 키-값처럼 정확히 적어 두었다가 나중에 꺼내 쓰는 일.</p>
+        <dl><dt>파라미터</dt><dd id="p-folio">–</dd><dt>상태</dt><dd id="s-folio">–</dd><dt>대조군</dt><dd style="font-family:var(--sans)">기억 제거 · 읽기 1회</dd></dl>
+        <p class="v2"><b>개선판 Folio2</b> (파라미터 <span id="p-folio2">–</span>): 원래는 기호마다 반드시 어딘가에 썼습니다. 쓰기 세기를 두어 '쓰지 않기'를 고를 수 있게 하고, 칸의 <b>내용</b>으로도 칸을 찾게 했습니다.</p>
+      </div>
+      <div class="cand" style="--c: var(--strata)">
+        <h3 class="m-strata">Strata</h3>
+        <p class="what">지층 · 서로 다른 속도로 바뀌는 상태</p>
+        <svg viewBox="0 0 300 92" aria-label="Strata 구조: 네 수준이 1, 4, 16, 64 기호마다 갱신된다" id="strata-svg"></svg>
+        <p>상태를 <b>네 층</b>으로 나눕니다. 맨 아래 층은 기호마다, 그 위는 4개마다, 16개마다, 64개마다 고쳐집니다. 위층은 아래층의 평균을 받아 '천천히 바뀌는 흐름'을 맡고, 층마다 다음 값을 예측해 틀린 만큼을 신호로 씁니다.</p>
+        <p>노리는 것: 빠른 변화와 느린 흐름이 섞인 신호.</p>
+        <dl><dt>파라미터</dt><dd id="p-strata">–</dd><dt>상태</dt><dd id="s-strata">–</dd><dt>대조군</dt><dd style="font-family:var(--sans)">모든 층 매번 갱신 · 보조 손실 제거</dd></dl>
+        <p class="v2">개선판은 만들지 않았습니다. 핵심 가설(층마다 다른 속도)을 느린 주기 과제(7절)에서 먼저 시험합니다.</p>
+      </div>
+      <div class="cand" style="--c: var(--lattice)">
+        <h3 class="m-lattice">Lattice</h3>
+        <p class="what">격자 · 이웃끼리 주고받는 계산</p>
+        <svg viewBox="0 0 300 92" aria-label="Lattice 구조: 4×4 원환 격자의 칸들이 이웃과 메시지를 주고받는다" id="lattice-svg"></svg>
+        <p>상태를 <b>4×4 격자의 칸 16개</b>로 나눕니다. 새 기호는 한 칸에만 들어오고, 모든 칸이 동시에 상하좌우 이웃과 메시지를 주고받기를 세 번 반복합니다. 칸들은 같은 규칙(가중치)을 함께 씁니다.</p>
+        <p>노리는 것: 여러 번 따라가야 하는 관계 사슬 같은 반복 계산.</p>
+        <dl><dt>파라미터</dt><dd id="p-lattice">–</dd><dt>상태</dt><dd id="s-lattice">–</dd><dt>대조군</dt><dd style="font-family:var(--sans)">반복 1회 · 이웃 메시지 제거</dd></dl>
+        <p class="v2"><b>개선판 Lattice2</b> (파라미터 <span id="p-lattice2">–</span>): 원래는 입력이 한 칸에만 들어가 반대편 칸까지 세 번 반복으로 닿지 못했습니다. 입력을 모든 칸에 칸별 세기로 넣고, 이웃 메시지를 정규화해 학습을 안정시켰습니다.</p>
+      </div>
+    </div>
+    <svg width="0" height="0" style="position:absolute"><defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--ink-2)"/></marker></defs></svg>
+  </section>
+
+  <!-- ============================================================ 2 -->
+  <section>
+    <h2><span class="num">2</span>시험 문제</h2>
+    <div class="with-notes">
+      <p>모든 문제는 기호 32가지로 된 긴 기록에서 다음 기호를 맞히는 것입니다. 흐름 문제는 모든 자리를, 질의 문제는 질문의 답 자리만 채점합니다. <b>이론적 최대</b>는 문제를 만든 규칙을 다 아는 사람의 점수입니다. 흐름 문제에는 일부러 넣은 잡음이 있어서 100%가 되지 않습니다.</p>
+      <aside class="note"><b>단순 규칙</b>은 머리를 쓰지 않는 요령입니다. 모델 점수가 이 선 근처라면 문제를 푼 것이 아니라 요령을 배운 것일 수 있습니다. 예를 들어 '긴 사슬' 시험은 사슬이 하나뿐이라 끝 개체만 찾으면 다 맞힐 수 있어서, 결과 해석에서 뺍니다.</aside>
+    </div>
+    <div class="table-wrap"><table id="task-table"></table></div>
+  </section>
+
+  <!-- ============================================================ 3 -->
+  <section>
+    <h2><span class="num">3</span>정확도</h2>
+    <div class="with-notes">
+      <p>학습 조건을 바꿔 가며 볼 수 있습니다. <b>공동 학습</b>은 여섯 문제를 섞어 한 모델에게 가르친 것이고, <b>과제별</b>은 문제 하나만 가르친 것입니다. <b>지속 기억</b>은 기록 하나를 읽는 동안 상태를 계속 이어 가고, <b>창 초기화</b>는 64기호마다 모든 모델의 기억을 지웁니다.</p>
+      <aside class="note">트랜스포머의 기억은 언제나 최근 64기호(문맥 창)까지입니다. 지속 기억 조건에서 64기호보다 오래된 일은 순환형 모델만 기억할 수 있습니다.</aside>
+    </div>
+    <div class="picker" id="cond-picker"></div>
+    <div class="picker" id="metric-picker"></div>
+    <div class="key" id="acc-key"></div>
+    <div class="multiples" id="acc-charts"></div>
+    <figcaption id="acc-cap"></figcaption>
+  </section>
+
+  <!-- ============================================================ 4 -->
+  <section>
+    <h2><span class="num">4</span>덜 배운 것인가, 못 하는 것인가</h2>
+    <div class="with-notes">
+      <p>800걸음 학습에서는 모든 모델이 이론적 최대에 한참 못 미쳤습니다. 더 가르치면 나아지는지 보려고, 같은 조건으로 3000걸음(학습 기호 약 4,900만 개)까지 한 번 더 학습했습니다. 실선이 3000걸음, 옅은 선이 800걸음 학습의 검증 정확도입니다(둘 다 난수 평균).</p>
+      <aside class="note">학습률은 코사인 곡선으로 줄어서 학습 끝에는 0이 됩니다. 그래서 800걸음 곡선이 끝에서 평평해지는 것은 '다 배웠다'는 뜻이 아닙니다. 3000걸음도 처음에는 난수 하나로 진단만 했다가, 학습이 빨라진 뒤 난수 3개로 채웠습니다.</aside>
+    </div>
+    <div class="key" id="curve-key"></div>
+    <div class="multiples tight" id="curve-charts"></div>
+    <figcaption id="curve-cap"></figcaption>
+  </section>
+
+  <!-- ============================================================ 5 -->
+  <section>
+    <h2><span class="num">5</span>관계 사슬: 학습보다 긴 사슬</h2>
+    <div class="with-notes">
+      <p>'가 → 나', '나 → 다' 같은 사실을 뒤섞어 보여 준 뒤, '가에서 끝까지 따라가면?'을 묻습니다. 학습에서는 1–3단계 사슬만 봤습니다. 여기서는 사슬을 둘 두고, 3단계(학습 범위)·4단계·5단계 사슬의 머리를 물어봤습니다. 학습이 끝난 모델을 다시 학습하지 않고 시험만 봤습니다.</p>
+      <aside class="note">끝 개체(화살표 오른쪽에만 나오는 개체)는 둘이라, 사슬을 따라가지 않고 둘 중 하나를 찍으면 <b>50%</b>입니다(점선). 5단계 문제는 짧은 사슬이 사실 하나뿐이라 찍기 대신 소거하기가 쉽습니다.</aside>
+    </div>
+    <div class="key" id="hop-key"></div>
+    <div class="multiples tight" id="hop-charts"></div>
+    <figcaption id="hop-cap"></figcaption>
+  </section>
+
+  <!-- ============================================================ 6 -->
+  <section id="delay-sec" hidden>
+    <h2><span class="num">6</span>창 밖 기억: 지연 사다리</h2>
+    <div class="with-notes">
+      <p>키 두 개를 저장하고, 다른 키만 쓰는 방해 구간을 지난 뒤 그 둘을 묻습니다. 학습에도 64기호를 넘는 지연(최대 약 200)이 들어 있습니다. 같은 모델을 두 방식으로 학습했습니다. <b>청크 64</b>는 지금까지처럼 64기호마다 되돌아보는 신호를 끊고, <b>청크 256</b>은 에피소드 전체에 신호가 닿게 합니다. Strata · Lattice 와 개선판은 청크 256 으로만 학습했습니다.</p>
+      <aside class="note">청크 256으로 배운 순환형만 64기호 밖을 맞혔습니다. GRU · Folio 는 학습 최대 지연(약 200)을 넘어 1000기호 가까이에서도 우연의 세 배를 지켰습니다. Lattice 는 난수에 따라 크게 갈렸고, Lattice2 에서 덜 갈립니다. 실패의 원인은 학습 방식이었습니다. 숨긴 키만 채점하면 트랜스포머(창 64)는 창 안조차 30% 아래였습니다(F). 신호가 너무 성겼던 것입니다. 방해 구간 질의까지 채점하면(G) 창 안 97·87%로 거의 완벽해집니다. 반대로 GRU · Folio 는 최근 키만 좇게 되어 32기호만 지나도 잊습니다. 모델마다 맞는 학습 신호가 다릅니다.</aside>
+    </div>
+    <div class="picker" id="delay-picker"></div>
+    <div class="key" id="delay-key"></div>
+    <figure>
+      <div class="chart" id="delay-chart"></div>
+      <figcaption id="delay-cap"></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================================================ 7 -->
+  <section id="suite-sec" hidden>
+    <h2><span class="num">7</span>새 과제 다섯: 어디서 무너지나</h2>
+    <div class="with-notes">
+      <p>예비 비교에서 해석이 막힌 곳을 메우려고 과제 다섯 개를 새로 만들었습니다. 과제마다 <b>난이도 손잡이</b>(걸음 수, 원문 길이, 괄호 깊이, 주기 길이)가 있어서, 평균 하나 대신 '어느 난이도에서 무너지는지'를 곡선으로 봅니다. 다섯 과제를 섞어 한 모델에게 3000걸음 가르치고, 학습 범위 너머까지 시험했습니다.</p>
+      <aside class="note">순환형은 에피소드 전체에 학습 신호가 닿게(청크 256), 트랜스포머는 창 64 와 <b>창 256</b>(학습 기록 전체를 한 번에 봄) 두 가지로 학습했습니다. 셈 · 느린 주기처럼 창 밖을 기억해야 하는 과제와, 베끼기처럼 앞을 그대로 다시 보는 과제를 함께 두어 어느 한쪽에 유리하지 않게 했습니다. 따로 확인한 것 두 가지(난수 0, 과제 하나만 2000걸음): 순환 사슬만 가르쳐도 GRU 19% · Transformer 13% 로 거의 못 배웁니다. 베끼기만 가르치면 Transformer 는 창 64 · 256 모두 약 60% 까지 오릅니다. 공동 학습에서 트랜스포머의 베끼기가 낮은 것은 다른 과제와 섞여 늦게 배운 탓입니다.</aside>
+    </div>
+    <div class="key" id="suite-key"></div>
+    <div class="multiples" id="suite-charts"></div>
+    <figcaption id="suite-cap"></figcaption>
+    <h3 class="sub-h">과제별 전체 정확도</h3>
+    <div class="multiples" id="suite-acc"></div>
+  </section>
+
+  <!-- ============================================================ 8 -->
+  <section id="v2-sec" hidden>
+    <h2><span class="num">8</span>고쳐 보면: 개선판</h2>
+    <div class="with-notes">
+      <p>예비 비교에서 본 약점을 하나씩 고친 개선판을 원래 모델과 같은 조건으로 학습했습니다. Folio 는 기호마다 반드시 어딘가에 쓰던 것을 '쓰지 않기'도 고르게 하고 칸을 내용으로도 찾게 했습니다. Lattice 는 입력을 모든 칸에 넣고 메시지를 정규화했습니다. 빈 원에서 찬 원으로 가는 선이 오른쪽으로 길수록 나아진 것입니다.</p>
+      <aside class="note">개선판도 파라미터를 약 10만으로 맞췄습니다(Folio2 는 제어 상태를 76 → 72 로 줄임). 고친 점이 실제로 도움이 됐는지는 이 그림 하나로 판단합니다. 나아지지 않은 과제가 많으면 그 고침은 접습니다.</aside>
+    </div>
+    <div class="multiples" id="v2-charts"></div>
+    <figcaption id="v2-cap"></figcaption>
+  </section>
+
+  <!-- ============================================================ 9 -->
+  <section>
+    <h2><span class="num">9</span>핵심 장치를 빼 보면</h2>
+    <div class="with-notes">
+      <p>각 후보에서 '이것 때문에 잘할 것'이라고 생각한 장치를 하나씩 빼고, 나머지는 똑같이 학습했습니다(공동 학습 · 지속 기억 · 800걸음 · 난수 3개). 빼서 점수가 떨어지면 그 장치가 실제로 일을 한 것입니다. 세로선은 원래 모델의 평균입니다.</p>
+      <aside class="note">빈 원이 대조군입니다. 대조군은 쓰지 않는 가중치를 그대로 남겨 두었으므로 파라미터 수가 같습니다.</aside>
+    </div>
+    <div class="picker" id="abl-picker"></div>
+    <div class="multiples" id="abl-charts"></div>
+    <figcaption id="abl-cap"></figcaption>
+  </section>
+
+  <!-- ============================================================ 10 -->
+  <section>
+    <h2><span class="num">10</span>비용</h2>
+    <div class="with-notes">
+      <p>파라미터 수가 같아도 계산 비용은 크게 다릅니다. 다른 학습을 모두 멈춘 상태에서 모델마다 따로 쟀습니다. 학습은 기록 64개 × 256기호를 한 걸음으로, 지연은 기호 하나를 넣고 다음 예측을 받기까지의 시간(배치 1)입니다.</p>
+      <aside class="note">후보들은 기호마다 작은 GPU 계산을 여러 번 부르는 방식이라 느립니다. 아래 표는 한 모델씩 보통 방식으로 잰 값입니다. 실제 실험에서는 난수 3개를 한 모델처럼 묶어 계산하고 청크 전체를 CUDA graph 로 재생해, 후보의 학습이 5–30배 빨라졌습니다(결과는 같음). 트랜스포머 지연은 KV 캐시 없이 창을 매번 다시 계산한 값입니다.</aside>
+    </div>
+    <figure>
+      <div class="chart" id="cost-chart"></div>
+      <figcaption id="cost-cap"></figcaption>
+    </figure>
+    <div class="table-wrap"><table id="cost-table"></table></div>
+  </section>
+
+  <!-- ============================================================ 11 -->
+  <section>
+    <h2><span class="num">11</span>구현 검증</h2>
+    <div class="with-notes">
+      <p>비교가 공정하려면 먼저 구현이 설계대로여야 합니다. 모든 모델과 대조군에 같은 검사를 64비트 정밀도로 했습니다.</p>
+      <aside class="note"><b>한 번에 = 한 개씩</b>: 기록을 통째로 넣은 결과와 기호를 하나씩 넣은 결과가 같은지. <b>인과성</b>: 미래 기호를 바꿔도 과거 예측이 그대로인지. <b>누출 없음</b>: 배치의 다른 기록이나 앞 기록이 새어 들지 않는지. <b>청크 분할</b>: 기록을 잘라서 넣어도 같은지(Strata 의 시계 포함).</aside>
+    </div>
+    <div class="table-wrap"><table id="check-table"></table></div>
+    <p class="note" id="check-cap"></p>
+  </section>
+
+  <!-- ============================================================ 12 -->
+  <section>
+    <h2><span class="num">12</span>한계</h2>
+    <ul class="plain">
+      <li><b>학습이 짧습니다.</b> 3000걸음에서 트랜스포머가 크게 올랐으므로 400·800걸음의 순위는 학습 초반의 순위입니다. 결론은 3000걸음(난수 3개) 결과로 내립니다. 3000걸음도 곡선이 아직 오르는 과제가 있습니다.</li>
+      <li><b>학습률을 모델마다 찾지 않았습니다.</b> 모두 같은 값(2e-3)을 썼습니다. Lattice 가 난수에 따라 배우거나 못 배우는 것은 학습률 탓일 수 있습니다.</li>
+      <li>같은 학습량(기호 수) 비교만 했습니다. 같은 계산 시간으로 맞추면 후보들은 훨씬 적게 배웁니다.</li>
+      <li>관계 사슬 시험은 개체 8개 안에서 만들어 두 사슬을 모두 길게 할 수 없었고, 학습에 없던 새 개체 이름은 시험하지 않았습니다.</li>
+      <li>긴 지연 키-값(120–300기호 전에 저장한 값)은 청크 64로 배운 모든 모델이 우연 수준입니다. 6절처럼 청크 256으로 배우면 순환형이 맞히기 시작합니다.</li>
+      <li>개선판은 한 번 고친 것뿐입니다. 고친 두 가지(예: Folio 의 쓰기 세기와 내용 주소)를 따로 떼어 어느 쪽이 효과인지는 아직 가르지 않았습니다.</li>
+      <li>창 256 트랜스포머는 위치 임베딩이 늘어 파라미터가 약 12만으로 다른 모델(약 10만)보다 많습니다.</li>
+      <li><b>64기호를 넘는 기억은 어느 모델도 직접 배울 기회가 없었습니다.</b> 학습은 64기호마다 '되돌아보는 신호'를 끊는 방식(truncated BPTT)이라, 저장과 질문이 64기호 넘게 떨어지면 저장할 때 무엇을 해야 했는지가 전달되지 않습니다. 긴 지연 시험은 짧은 지연에서 배운 방식이 그대로 버티는지를 본 것입니다. 6절에서 신호를 에피소드 전체에 흘리자 GRU 와 Folio 모두 긴 지연을 맞히기 시작했습니다. 다만 거기서도 짧은 지연이 약 80%에서 멈춰, 2000걸음은 이 과제에 넉넉하지 않습니다.</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ 13 -->
+  <section>
+    <h2><span class="num">13</span>다시 해 보기</h2>
+    <pre>py main.py                 # 빠진 실험만 채우고 이 화면을 연다 (Windows: start.bat)
+py main.py --check         # 준비 상태만 보기
+py main.py --view          # 계산 없이 화면만
+py compare_candidates.py run --models folio,gru --steps 3000 --seeds 0,1,2   # 직접 실험</pre>
+    <p class="note">설계와 결정 기록: <code>ARCHITECTURE_CANDIDATES.md</code> · 결과 해설: <code>CANDIDATES.md</code> · 표: <code>results/candidates/report.md</code></p>
+  </section>
+
+  <footer id="foot">–</footer>
+</div>
+<div class="tooltip" id="tip" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

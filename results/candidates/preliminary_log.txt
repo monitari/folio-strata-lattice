@@ -1,0 +1,236 @@
+[18:46:43] 실행 15개 (프로세스 5개). 이미 끝난 같은 설정은 재사용합니다.
+[18:46:46] 완료: 15개, 3초
+[18:46:49] 실행 15개 (프로세스 5개). 이미 끝난 같은 설정은 재사용합니다.
+[18:46:52] 완료: 15개, 3초
+[18:46:54] 실행 18개 (프로세스 5개). 이미 끝난 같은 설정은 재사용합니다.
+  folio_r1-joint-persistent-s1-861bd1e0: 400걸음부터 이어서
+  strata_sameperiod-joint-persistent-s0-7c8830ab: 400걸음부터 이어서
+  lattice_k1-joint-persistent-s1-3f763ba3 200/800  val acc switch_fast:0.138 phrase:0.184 cycle:0.202 kv:0.271 mixed:0.221 chain:0.132
+  strata_noaux-joint-persistent-s1-a0f86541 200/800  val acc switch_fast:0.175 phrase:0.179 cycle:0.177 kv:0.319 mixed:0.341 chain:0.340
+  lattice_k1-joint-persistent-s1-3f763ba3 400/800  val acc switch_fast:0.141 phrase:0.186 cycle:0.202 kv:0.286 mixed:0.222 chain:0.132
+  folio_r1-joint-persistent-s1-861bd1e0 600/800  val acc switch_fast:0.188 phrase:0.189 cycle:0.199 kv:0.321 mixed:0.442 chain:0.460
+  lattice_k1-joint-persistent-s1-3f763ba3 600/800  val acc switch_fast:0.140 phrase:0.185 cycle:0.202 kv:0.288 mixed:0.221 chain:0.126
+  strata_noaux-joint-persistent-s1-a0f86541 400/800  val acc switch_fast:0.182 phrase:0.186 cycle:0.184 kv:0.320 mixed:0.365 chain:0.520
+  lattice_k1-joint-persistent-s1-3f763ba3 800/800  val acc switch_fast:0.140 phrase:0.185 cycle:0.202 kv:0.288 mixed:0.221 chain:0.133
+  folio_r1-joint-persistent-s1-861bd1e0 800/800  val acc switch_fast:0.194 phrase:0.191 cycle:0.204 kv:0.319 mixed:0.449 chain:0.495
+  strata_sameperiod-joint-persistent-s1-9dada4d8 200/800  val acc switch_fast:0.179 phrase:0.185 cycle:0.181 kv:0.318 mixed:0.347 chain:0.401
+  strata_sameperiod-joint-persistent-s0-7c8830ab 600/800  val acc switch_fast:0.190 phrase:0.187 cycle:0.186 kv:0.323 mixed:0.390 chain:0.590
+  strata_noaux-joint-persistent-s1-a0f86541 600/800  val acc switch_fast:0.190 phrase:0.183 cycle:0.183 kv:0.319 mixed:0.376 chain:0.556
+  lattice_nonbr-joint-persistent-s1-ffc38325 200/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.202 kv:0.265 mixed:0.217 chain:0.129
+  folio_nomem-joint-persistent-s2-c6b6505f 200/800  val acc switch_fast:0.173 phrase:0.177 cycle:0.170 kv:0.309 mixed:0.326 chain:0.326
+  strata_noaux-joint-persistent-s1-a0f86541 800/800  val acc switch_fast:0.192 phrase:0.187 cycle:0.187 kv:0.323 mixed:0.382 chain:0.559
+  lattice_nonbr-joint-persistent-s1-ffc38325 400/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.202 kv:0.277 mixed:0.219 chain:0.121
+  folio_nomem-joint-persistent-s2-c6b6505f 400/800  val acc switch_fast:0.177 phrase:0.184 cycle:0.181 kv:0.319 mixed:0.385 chain:0.338
+  lattice_nonbr-joint-persistent-s1-ffc38325 600/800  val acc switch_fast:0.141 phrase:0.186 cycle:0.202 kv:0.280 mixed:0.220 chain:0.127
+  folio_nomem-joint-persistent-s2-c6b6505f 600/800  val acc switch_fast:0.186 phrase:0.187 cycle:0.185 kv:0.328 mixed:0.407 chain:0.350
+  folio_r1-joint-persistent-s2-15b4b79a 200/800  val acc switch_fast:0.169 phrase:0.182 cycle:0.179 kv:0.318 mixed:0.357 chain:0.339
+  lattice_nonbr-joint-persistent-s1-ffc38325 800/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.203 kv:0.281 mixed:0.220 chain:0.123
+  strata_sameperiod-joint-persistent-s1-9dada4d8 400/800  val acc switch_fast:0.183 phrase:0.184 cycle:0.184 kv:0.321 mixed:0.371 chain:0.568
+  strata_sameperiod-joint-persistent-s0-7c8830ab 800/800  val acc switch_fast:0.192 phrase:0.187 cycle:0.186 kv:0.326 mixed:0.393 chain:0.601
+  folio_nomem-joint-persistent-s2-c6b6505f 800/800  val acc switch_fast:0.190 phrase:0.189 cycle:0.188 kv:0.327 mixed:0.414 chain:0.354
+  lattice_k1-joint-persistent-s2-5465da84 200/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.203 kv:0.277 mixed:0.218 chain:0.251
+  folio_r1-joint-persistent-s2-15b4b79a 400/800  val acc switch_fast:0.179 phrase:0.187 cycle:0.195 kv:0.328 mixed:0.409 chain:0.368
+  strata_noaux-joint-persistent-s2-cf173e64 200/800  val acc switch_fast:0.174 phrase:0.178 cycle:0.174 kv:0.318 mixed:0.336 chain:0.339
+  lattice_k1-joint-persistent-s2-5465da84 400/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.202 kv:0.284 mixed:0.222 chain:0.451
+  lattice_k1-joint-persistent-s2-5465da84 600/800  val acc switch_fast:0.139 phrase:0.186 cycle:0.203 kv:0.286 mixed:0.223 chain:0.541
+  strata_noaux-joint-persistent-s2-cf173e64 400/800  val acc switch_fast:0.177 phrase:0.183 cycle:0.181 kv:0.318 mixed:0.368 chain:0.512
+  folio_r1-joint-persistent-s2-15b4b79a 600/800  val acc switch_fast:0.192 phrase:0.185 cycle:0.197 kv:0.323 mixed:0.437 chain:0.479
+  lattice_k1-joint-persistent-s2-5465da84 800/800  val acc switch_fast:0.140 phrase:0.186 cycle:0.202 kv:0.288 mixed:0.223 chain:0.550
+  strata_sameperiod-joint-persistent-s2-50692cee 200/800  val acc switch_fast:0.169 phrase:0.176 cycle:0.171 kv:0.321 mixed:0.340 chain:0.426
+  strata_sameperiod-joint-persistent-s1-9dada4d8 600/800  val acc switch_fast:0.196 phrase:0.186 cycle:0.184 kv:0.319 mixed:0.390 chain:0.573
+  strata_noaux-joint-persistent-s2-cf173e64 600/800  val acc switch_fast:0.183 phrase:0.189 cycle:0.188 kv:0.313 mixed:0.390 chain:0.556
+  lattice_nonbr-joint-persistent-s2-7333bfa0 200/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.204 kv:0.265 mixed:0.218 chain:0.129
+  folio_r1-joint-persistent-s2-15b4b79a 800/800  val acc switch_fast:0.195 phrase:0.188 cycle:0.198 kv:0.326 mixed:0.442 chain:0.503
+  strata_noaux-joint-persistent-s2-cf173e64 800/800  val acc switch_fast:0.185 phrase:0.190 cycle:0.188 kv:0.319 mixed:0.394 chain:0.556
+  lattice_nonbr-joint-persistent-s2-7333bfa0 400/800  val acc switch_fast:0.139 phrase:0.185 cycle:0.202 kv:0.275 mixed:0.220 chain:0.134
+  lattice_nonbr-joint-persistent-s2-7333bfa0 600/800  val acc switch_fast:0.138 phrase:0.186 cycle:0.202 kv:0.279 mixed:0.220 chain:0.119
+  strata_sameperiod-joint-persistent-s1-9dada4d8 800/800  val acc switch_fast:0.196 phrase:0.187 cycle:0.186 kv:0.319 mixed:0.395 chain:0.592
+  strata_sameperiod-joint-persistent-s2-50692cee 400/800  val acc switch_fast:0.186 phrase:0.183 cycle:0.182 kv:0.319 mixed:0.372 chain:0.558
+  lattice_nonbr-joint-persistent-s2-7333bfa0 800/800  val acc switch_fast:0.140 phrase:0.184 cycle:0.203 kv:0.283 mixed:0.220 chain:0.123
+  strata_sameperiod-joint-persistent-s2-50692cee 600/800  val acc switch_fast:0.196 phrase:0.184 cycle:0.185 kv:0.317 mixed:0.391 chain:0.595
+  strata_sameperiod-joint-persistent-s2-50692cee 800/800  val acc switch_fast:0.194 phrase:0.185 cycle:0.187 kv:0.318 mixed:0.398 chain:0.594
+[20:36:06] 완료: 18개, 6552초
+[20:36:10] 실행 45개 (프로세스 5개). 이미 끝난 같은 설정은 재사용합니다.
+  transformer-kv-persistent-s0-3d7c6bc5 100/400  val acc kv:0.190
+  gru-kv-persistent-s0-223c0cfb 100/400  val acc kv:0.324
+  transformer-kv-persistent-s0-3d7c6bc5 200/400  val acc kv:0.295
+  transformer-kv-persistent-s0-3d7c6bc5 300/400  val acc kv:0.302
+  gru-kv-persistent-s0-223c0cfb 200/400  val acc kv:0.326
+  transformer-kv-persistent-s0-3d7c6bc5 400/400  val acc kv:0.304
+  gru-kv-persistent-s0-223c0cfb 300/400  val acc kv:0.331
+  transformer-kv-persistent-s1-bab37ea5 100/400  val acc kv:0.207
+  transformer-kv-persistent-s1-bab37ea5 200/400  val acc kv:0.290
+  gru-kv-persistent-s0-223c0cfb 400/400  val acc kv:0.329
+  transformer-kv-persistent-s1-bab37ea5 300/400  val acc kv:0.299
+  gru-kv-persistent-s1-87da322f 100/400  val acc kv:0.327
+  transformer-kv-persistent-s1-bab37ea5 400/400  val acc kv:0.300
+  gru-kv-persistent-s1-87da322f 200/400  val acc kv:0.327
+  gru-kv-persistent-s1-87da322f 300/400  val acc kv:0.335
+  gru-kv-persistent-s1-87da322f 400/400  val acc kv:0.331
+  lattice-kv-persistent-s0-4e0100b5 100/400  val acc kv:0.276
+  strata-kv-persistent-s0-ba64dea5 100/400  val acc kv:0.316
+  strata-kv-persistent-s1-d46e8964 100/400  val acc kv:0.321
+  folio-kv-persistent-s0-8ccb0b98 100/400  val acc kv:0.316
+  folio-kv-persistent-s1-bc10b0f6 100/400  val acc kv:0.308
+  lattice-kv-persistent-s0-4e0100b5 200/400  val acc kv:0.303
+  strata-kv-persistent-s0-ba64dea5 200/400  val acc kv:0.321
+  strata-kv-persistent-s1-d46e8964 200/400  val acc kv:0.327
+  lattice-kv-persistent-s0-4e0100b5 300/400  val acc kv:0.300
+  folio-kv-persistent-s0-8ccb0b98 200/400  val acc kv:0.327
+  strata-kv-persistent-s0-ba64dea5 300/400  val acc kv:0.322
+  folio-kv-persistent-s1-bc10b0f6 200/400  val acc kv:0.316
+  strata-kv-persistent-s1-d46e8964 300/400  val acc kv:0.325
+  lattice-kv-persistent-s0-4e0100b5 400/400  val acc kv:0.305
+  strata-kv-persistent-s0-ba64dea5 400/400  val acc kv:0.319
+  transformer-kv-persistent-s2-634735a6 100/400  val acc kv:0.180
+  transformer-kv-persistent-s2-634735a6 200/400  val acc kv:0.284
+  transformer-kv-persistent-s2-634735a6 300/400  val acc kv:0.292
+  transformer-kv-persistent-s2-634735a6 400/400  val acc kv:0.289
+  gru-kv-persistent-s2-92dc9194 100/400  val acc kv:0.329
+  gru-kv-persistent-s2-92dc9194 200/400  val acc kv:0.323
+  gru-kv-persistent-s2-92dc9194 300/400  val acc kv:0.326
+  gru-kv-persistent-s2-92dc9194 400/400  val acc kv:0.327
+  strata-kv-persistent-s1-d46e8964 400/400  val acc kv:0.324
+  folio-kv-persistent-s0-8ccb0b98 300/400  val acc kv:0.326
+  lattice-kv-persistent-s1-60c24efc 100/400  val acc kv:0.265
+  folio-kv-persistent-s1-bc10b0f6 300/400  val acc kv:0.323
+  strata-kv-persistent-s2-9668404c 100/400  val acc kv:0.321
+  lattice-kv-persistent-s1-60c24efc 200/400  val acc kv:0.284
+  folio-kv-persistent-s2-ac5ce62f 100/400  val acc kv:0.313
+  folio-kv-persistent-s0-8ccb0b98 400/400  val acc kv:0.329
+  folio-kv-persistent-s1-bc10b0f6 400/400  val acc kv:0.318
+  transformer-mixed-persistent-s0-94371272 100/400  val acc mixed:0.301
+  transformer-mixed-persistent-s0-94371272 200/400  val acc mixed:0.639
+  transformer-mixed-persistent-s0-94371272 300/400  val acc mixed:0.695
+  transformer-mixed-persistent-s0-94371272 400/400  val acc mixed:0.697
+  strata-kv-persistent-s2-9668404c 200/400  val acc kv:0.324
+  gru-mixed-persistent-s0-01a0dc11 100/400  val acc mixed:0.479
+  gru-mixed-persistent-s0-01a0dc11 200/400  val acc mixed:0.545
+  gru-mixed-persistent-s0-01a0dc11 300/400  val acc mixed:0.588
+  gru-mixed-persistent-s0-01a0dc11 400/400  val acc mixed:0.597
+  lattice-kv-persistent-s1-60c24efc 300/400  val acc kv:0.289
+  lattice-kv-persistent-s2-6c3ef8cd 100/400  val acc kv:0.264
+  folio-kv-persistent-s2-ac5ce62f 200/400  val acc kv:0.321
+  strata-kv-persistent-s2-9668404c 300/400  val acc kv:0.326
+  lattice-kv-persistent-s1-60c24efc 400/400  val acc kv:0.292
+  lattice-kv-persistent-s2-6c3ef8cd 200/400  val acc kv:0.289
+  folio-mixed-persistent-s0-01c77121 100/400  val acc mixed:0.461
+  strata-kv-persistent-s2-9668404c 400/400  val acc kv:0.326
+  strata-mixed-persistent-s0-58e3c9f5 100/400  val acc mixed:0.464
+  folio-kv-persistent-s2-ac5ce62f 300/400  val acc kv:0.326
+  lattice-kv-persistent-s2-6c3ef8cd 300/400  val acc kv:0.297
+  lattice-mixed-persistent-s0-b178b922 100/400  val acc mixed:0.416
+  folio-mixed-persistent-s0-01c77121 200/400  val acc mixed:0.533
+  strata-mixed-persistent-s0-58e3c9f5 200/400  val acc mixed:0.519
+  lattice-kv-persistent-s2-6c3ef8cd 400/400  val acc kv:0.295
+  transformer-mixed-persistent-s1-b5842513 100/400  val acc mixed:0.311
+  transformer-mixed-persistent-s1-b5842513 200/400  val acc mixed:0.645
+  transformer-mixed-persistent-s1-b5842513 300/400  val acc mixed:0.698
+  transformer-mixed-persistent-s1-b5842513 400/400  val acc mixed:0.703
+  gru-mixed-persistent-s1-c03220ae 100/400  val acc mixed:0.479
+  gru-mixed-persistent-s1-c03220ae 200/400  val acc mixed:0.549
+  gru-mixed-persistent-s1-c03220ae 300/400  val acc mixed:0.596
+  gru-mixed-persistent-s1-c03220ae 400/400  val acc mixed:0.609
+  folio-kv-persistent-s2-ac5ce62f 400/400  val acc kv:0.330
+  lattice-mixed-persistent-s0-b178b922 200/400  val acc mixed:0.557
+  strata-mixed-persistent-s0-58e3c9f5 300/400  val acc mixed:0.534
+  folio-mixed-persistent-s0-01c77121 300/400  val acc mixed:0.584
+  lattice-mixed-persistent-s0-b178b922 300/400  val acc mixed:0.608
+  strata-mixed-persistent-s1-16da0014 100/400  val acc mixed:0.459
+  strata-mixed-persistent-s0-58e3c9f5 400/400  val acc mixed:0.537
+  folio-mixed-persistent-s1-6a5724c9 100/400  val acc mixed:0.443
+  lattice-mixed-persistent-s0-b178b922 400/400  val acc mixed:0.624
+  transformer-mixed-persistent-s2-329c3134 100/400  val acc mixed:0.295
+  transformer-mixed-persistent-s2-329c3134 200/400  val acc mixed:0.653
+  transformer-mixed-persistent-s2-329c3134 300/400  val acc mixed:0.682
+  strata-mixed-persistent-s1-16da0014 200/400  val acc mixed:0.519
+  transformer-mixed-persistent-s2-329c3134 400/400  val acc mixed:0.686
+  gru-mixed-persistent-s2-e03b4522 100/400  val acc mixed:0.477
+  gru-mixed-persistent-s2-e03b4522 200/400  val acc mixed:0.546
+  gru-mixed-persistent-s2-e03b4522 300/400  val acc mixed:0.594
+  folio-mixed-persistent-s0-01c77121 400/400  val acc mixed:0.593
+  lattice-mixed-persistent-s1-7ff4fe32 100/400  val acc mixed:0.221
+  gru-mixed-persistent-s2-e03b4522 400/400  val acc mixed:0.607
+  folio-mixed-persistent-s1-6a5724c9 200/400  val acc mixed:0.530
+  strata-mixed-persistent-s1-16da0014 300/400  val acc mixed:0.542
+  lattice-mixed-persistent-s1-7ff4fe32 200/400  val acc mixed:0.219
+  strata-mixed-persistent-s2-fcfe4c8d 100/400  val acc mixed:0.457
+  folio-mixed-persistent-s2-9dd9dbcb 100/400  val acc mixed:0.455
+  strata-mixed-persistent-s1-16da0014 400/400  val acc mixed:0.547
+  lattice-mixed-persistent-s1-7ff4fe32 300/400  val acc mixed:0.217
+  strata-mixed-persistent-s2-fcfe4c8d 200/400  val acc mixed:0.527
+  folio-mixed-persistent-s1-6a5724c9 300/400  val acc mixed:0.575
+  lattice-mixed-persistent-s2-54380ca8 100/400  val acc mixed:0.221
+  lattice-mixed-persistent-s1-7ff4fe32 400/400  val acc mixed:0.218
+  transformer-chain-persistent-s0-8cec3d0e 100/400  val acc chain:0.152
+  transformer-chain-persistent-s0-8cec3d0e 200/400  val acc chain:0.181
+  folio-mixed-persistent-s2-9dd9dbcb 200/400  val acc mixed:0.538
+  transformer-chain-persistent-s0-8cec3d0e 300/400  val acc chain:0.271
+  strata-mixed-persistent-s2-fcfe4c8d 300/400  val acc mixed:0.550
+  transformer-chain-persistent-s0-8cec3d0e 400/400  val acc chain:0.294
+  gru-chain-persistent-s0-32eed70f 100/400  val acc chain:0.416
+  gru-chain-persistent-s0-32eed70f 200/400  val acc chain:0.587
+  gru-chain-persistent-s0-32eed70f 300/400  val acc chain:0.618
+  gru-chain-persistent-s0-32eed70f 400/400  val acc chain:0.618
+  folio-mixed-persistent-s1-6a5724c9 400/400  val acc mixed:0.581
+  lattice-mixed-persistent-s2-54380ca8 200/400  val acc mixed:0.219
+  strata-mixed-persistent-s2-fcfe4c8d 400/400  val acc mixed:0.557
+  folio-mixed-persistent-s2-9dd9dbcb 300/400  val acc mixed:0.589
+  strata-chain-persistent-s0-a12b989c 100/400  val acc chain:0.353
+  folio-chain-persistent-s0-757791dd 100/400  val acc chain:0.313
+  lattice-mixed-persistent-s2-54380ca8 300/400  val acc mixed:0.221
+  lattice-chain-persistent-s0-afe3127a 100/400  val acc chain:0.356
+  strata-chain-persistent-s0-a12b989c 200/400  val acc chain:0.543
+  lattice-mixed-persistent-s2-54380ca8 400/400  val acc mixed:0.222
+  transformer-chain-persistent-s1-8da04dae 100/400  val acc chain:0.135
+  transformer-chain-persistent-s1-8da04dae 200/400  val acc chain:0.187
+  transformer-chain-persistent-s1-8da04dae 300/400  val acc chain:0.274
+  folio-mixed-persistent-s2-9dd9dbcb 400/400  val acc mixed:0.597
+  transformer-chain-persistent-s1-8da04dae 400/400  val acc chain:0.295
+  gru-chain-persistent-s1-abfcc6d5 100/400  val acc chain:0.392
+  lattice-chain-persistent-s0-afe3127a 200/400  val acc chain:0.464
+  gru-chain-persistent-s1-abfcc6d5 200/400  val acc chain:0.596
+  gru-chain-persistent-s1-abfcc6d5 300/400  val acc chain:0.612
+  gru-chain-persistent-s1-abfcc6d5 400/400  val acc chain:0.624
+  folio-chain-persistent-s0-757791dd 200/400  val acc chain:0.476
+  strata-chain-persistent-s0-a12b989c 300/400  val acc chain:0.569
+  lattice-chain-persistent-s0-afe3127a 300/400  val acc chain:0.525
+  strata-chain-persistent-s1-6c24a6e3 100/400  val acc chain:0.371
+  folio-chain-persistent-s1-25ef43ae 100/400  val acc chain:0.300
+  strata-chain-persistent-s0-a12b989c 400/400  val acc chain:0.581
+  folio-chain-persistent-s0-757791dd 300/400  val acc chain:0.552
+  lattice-chain-persistent-s0-afe3127a 400/400  val acc chain:0.562
+  strata-chain-persistent-s1-6c24a6e3 200/400  val acc chain:0.547
+  transformer-chain-persistent-s2-52aa043d 100/400  val acc chain:0.146
+  transformer-chain-persistent-s2-52aa043d 200/400  val acc chain:0.183
+  transformer-chain-persistent-s2-52aa043d 300/400  val acc chain:0.186
+  transformer-chain-persistent-s2-52aa043d 400/400  val acc chain:0.194
+  gru-chain-persistent-s2-6c4537d8 100/400  val acc chain:0.371
+  gru-chain-persistent-s2-6c4537d8 200/400  val acc chain:0.585
+  gru-chain-persistent-s2-6c4537d8 300/400  val acc chain:0.611
+  gru-chain-persistent-s2-6c4537d8 400/400  val acc chain:0.617
+  lattice-chain-persistent-s1-e8d0f7ef 100/400  val acc chain:0.365
+  folio-chain-persistent-s1-25ef43ae 200/400  val acc chain:0.448
+  strata-chain-persistent-s1-6c24a6e3 300/400  val acc chain:0.566
+  folio-chain-persistent-s0-757791dd 400/400  val acc chain:0.570
+  lattice-chain-persistent-s1-e8d0f7ef 200/400  val acc chain:0.467
+  folio-chain-persistent-s2-03630b31 100/400  val acc chain:0.336
+  strata-chain-persistent-s1-6c24a6e3 400/400  val acc chain:0.569
+  strata-chain-persistent-s2-3e4932cc 100/400  val acc chain:0.378
+  folio-chain-persistent-s1-25ef43ae 300/400  val acc chain:0.551
+  lattice-chain-persistent-s1-e8d0f7ef 300/400  val acc chain:0.514
+  lattice-chain-persistent-s2-83ec6aed 100/400  val acc chain:0.333
+  folio-chain-persistent-s2-03630b31 200/400  val acc chain:0.435
+  strata-chain-persistent-s2-3e4932cc 200/400  val acc chain:0.545
+  lattice-chain-persistent-s1-e8d0f7ef 400/400  val acc chain:0.547
+  folio-chain-persistent-s1-25ef43ae 400/400  val acc chain:0.571
+  lattice-chain-persistent-s2-83ec6aed 200/400  val acc chain:0.467
+  strata-chain-persistent-s2-3e4932cc 300/400  val acc chain:0.564
+  folio-chain-persistent-s2-03630b31 300/400  val acc chain:0.526
+  lattice-chain-persistent-s2-83ec6aed 300/400  val acc chain:0.536
+  strata-chain-persistent-s2-3e4932cc 400/400  val acc chain:0.566
+  folio-chain-persistent-s2-03630b31 400/400  val acc chain:0.549
+  lattice-chain-persistent-s2-83ec6aed 400/400  val acc chain:0.552
+[21:43:34] 완료: 45개, 4044초
+예비 비교 완료
+exit 0

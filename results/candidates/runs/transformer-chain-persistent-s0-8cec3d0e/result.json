@@ -1,0 +1,101 @@
+{
+ "run_id": "transformer-chain-persistent-s0-8cec3d0e",
+ "config_key": {
+  "variant": "transformer",
+  "tasks": [
+   "chain"
+  ],
+  "memory": "persistent",
+  "seed": 0,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "context": 64,
+   "d_model": 64,
+   "n_heads": 4,
+   "n_layers": 2
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "chain",
+   "chain_long"
+  ]
+ },
+ "variant": "transformer",
+ "mode": "separate",
+ "tasks": [
+  "chain"
+ ],
+ "memory": "persistent",
+ "seed": 0,
+ "params": 108320,
+ "train_tokens": 6553600,
+ "wall_seconds": 17.9,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 4.0,
+   "val": {
+    "chain": {
+     "accuracy": 0.1521,
+     "bits": 2.8857
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 8.3,
+   "val": {
+    "chain": {
+     "accuracy": 0.1811,
+     "bits": 2.7947
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 12.9,
+   "val": {
+    "chain": {
+     "accuracy": 0.2711,
+     "bits": 2.5397
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 17.4,
+   "val": {
+    "chain": {
+     "accuracy": 0.2937,
+     "bits": 2.4495
+    }
+   }
+  }
+ ],
+ "test": {
+  "chain": {
+   "accuracy": 0.30229775011967447,
+   "bits": 2.454884777768865,
+   "scored": 4178,
+   "oracle_accuracy": 1.0
+  },
+  "chain_long": {
+   "accuracy": 0.16340694006309148,
+   "bits": 2.9020511099550896,
+   "scored": 3170,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

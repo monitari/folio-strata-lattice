@@ -1,0 +1,99 @@
+{
+ "run_id": "gru-chain-persistent-s2-6c4537d8",
+ "config_key": {
+  "variant": "gru",
+  "tasks": [
+   "chain"
+  ],
+  "memory": "persistent",
+  "seed": 2,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d_embed": 64,
+   "d_hidden": 150
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "chain",
+   "chain_long"
+  ]
+ },
+ "variant": "gru",
+ "mode": "separate",
+ "tasks": [
+  "chain"
+ ],
+ "memory": "persistent",
+ "seed": 2,
+ "params": 104380,
+ "train_tokens": 6553600,
+ "wall_seconds": 24.6,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 6.1,
+   "val": {
+    "chain": {
+     "accuracy": 0.3708,
+     "bits": 2.149
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 12.3,
+   "val": {
+    "chain": {
+     "accuracy": 0.5852,
+     "bits": 1.0893
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 18.4,
+   "val": {
+    "chain": {
+     "accuracy": 0.6111,
+     "bits": 0.9949
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 24.6,
+   "val": {
+    "chain": {
+     "accuracy": 0.6168,
+     "bits": 0.9736
+    }
+   }
+  }
+ ],
+ "test": {
+  "chain": {
+   "accuracy": 0.6203925323121111,
+   "bits": 0.975433870162139,
+   "scored": 4178,
+   "oracle_accuracy": 1.0
+  },
+  "chain_long": {
+   "accuracy": 1.0,
+   "bits": 0.15116123367267884,
+   "scored": 3170,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

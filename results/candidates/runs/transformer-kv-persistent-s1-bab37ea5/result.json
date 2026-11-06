@@ -1,0 +1,101 @@
+{
+ "run_id": "transformer-kv-persistent-s1-bab37ea5",
+ "config_key": {
+  "variant": "transformer",
+  "tasks": [
+   "kv"
+  ],
+  "memory": "persistent",
+  "seed": 1,
+  "steps": 400,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 100,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "context": 64,
+   "d_model": 64,
+   "n_heads": 4,
+   "n_layers": 2
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "kv",
+   "kv_long"
+  ]
+ },
+ "variant": "transformer",
+ "mode": "separate",
+ "tasks": [
+  "kv"
+ ],
+ "memory": "persistent",
+ "seed": 1,
+ "params": 108320,
+ "train_tokens": 6553600,
+ "wall_seconds": 17.2,
+ "history": [
+  {
+   "step": 100,
+   "seconds": 3.8,
+   "val": {
+    "kv": {
+     "accuracy": 0.207,
+     "bits": 2.9568
+    }
+   }
+  },
+  {
+   "step": 200,
+   "seconds": 8.1,
+   "val": {
+    "kv": {
+     "accuracy": 0.2895,
+     "bits": 2.5232
+    }
+   }
+  },
+  {
+   "step": 300,
+   "seconds": 12.4,
+   "val": {
+    "kv": {
+     "accuracy": 0.2991,
+     "bits": 2.4916
+    }
+   }
+  },
+  {
+   "step": 400,
+   "seconds": 16.7,
+   "val": {
+    "kv": {
+     "accuracy": 0.2998,
+     "bits": 2.4887
+    }
+   }
+  }
+ ],
+ "test": {
+  "kv": {
+   "accuracy": 0.3122930463576159,
+   "bits": 2.466843116254866,
+   "scored": 4832,
+   "oracle_accuracy": 1.0
+  },
+  "kv_long": {
+   "accuracy": 0.13984674329501914,
+   "bits": 3.4540338348806503,
+   "scored": 522,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

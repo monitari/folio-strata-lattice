@@ -1,0 +1,298 @@
+{
+ "run_id": "strata-suite-persistent-s2-1b0ea916",
+ "config_key": {
+  "variant": "strata",
+  "tasks": [
+   "cyc",
+   "count",
+   "copy",
+   "paren",
+   "slowp"
+  ],
+  "memory": "persistent",
+  "seed": 2,
+  "steps": 3000,
+  "batch": 64,
+  "chunk": 256,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 500,
+  "data_seed": 12345,
+  "eval_tasks": [
+   "cyc",
+   "count",
+   "copy",
+   "paren",
+   "slowp",
+   "cyc_far",
+   "count_long",
+   "copy_long",
+   "paren_deep",
+   "slowp_long"
+  ],
+  "model": {
+   "vocab": 32,
+   "d": 40,
+   "periods": [
+    1,
+    4,
+    16,
+    64
+   ],
+   "aux_weight": 0.05
+  },
+  "data": "3bbb06a6ea",
+  "code": "cand-train-v1",
+  "eval": [
+   "cyc",
+   "count",
+   "copy",
+   "paren",
+   "slowp",
+   "cyc_far",
+   "count_long",
+   "copy_long",
+   "paren_deep",
+   "slowp_long"
+  ]
+ },
+ "variant": "strata",
+ "mode": "joint",
+ "tasks": [
+  "cyc",
+  "count",
+  "copy",
+  "paren",
+  "slowp"
+ ],
+ "memory": "persistent",
+ "seed": 2,
+ "params": 97472,
+ "train_tokens": 49152000,
+ "wall_seconds": 1485.2,
+ "trainer": "grouped-graph-v1",
+ "group_size": 3,
+ "history": [
+  {
+   "step": 500,
+   "seconds": 264.2,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1443,
+     "bits": 2.8403
+    },
+    "count": {
+     "accuracy": 0.3492,
+     "bits": 1.665
+    },
+    "copy": {
+     "accuracy": 0.1541,
+     "bits": 3.6309
+    },
+    "paren": {
+     "accuracy": 0.9483,
+     "bits": 0.2158
+    },
+    "slowp": {
+     "accuracy": 0.6529,
+     "bits": 1.9601
+    }
+   }
+  },
+  {
+   "step": 1000,
+   "seconds": 500.1,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1372,
+     "bits": 2.8423
+    },
+    "count": {
+     "accuracy": 0.3574,
+     "bits": 1.6455
+    },
+    "copy": {
+     "accuracy": 0.2603,
+     "bits": 3.0801
+    },
+    "paren": {
+     "accuracy": 0.9902,
+     "bits": 0.0469
+    },
+    "slowp": {
+     "accuracy": 0.6629,
+     "bits": 1.8581
+    }
+   }
+  },
+  {
+   "step": 1500,
+   "seconds": 720.3,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1443,
+     "bits": 2.8276
+    },
+    "count": {
+     "accuracy": 0.3962,
+     "bits": 1.5939
+    },
+    "copy": {
+     "accuracy": 0.335,
+     "bits": 2.7531
+    },
+    "paren": {
+     "accuracy": 0.9912,
+     "bits": 0.0332
+    },
+    "slowp": {
+     "accuracy": 0.6682,
+     "bits": 1.7639
+    }
+   }
+  },
+  {
+   "step": 2000,
+   "seconds": 984.5,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1354,
+     "bits": 2.8281
+    },
+    "count": {
+     "accuracy": 0.4995,
+     "bits": 1.3539
+    },
+    "copy": {
+     "accuracy": 0.3699,
+     "bits": 2.5897
+    },
+    "paren": {
+     "accuracy": 0.9928,
+     "bits": 0.0322
+    },
+    "slowp": {
+     "accuracy": 0.67,
+     "bits": 1.7265
+    }
+   }
+  },
+  {
+   "step": 2500,
+   "seconds": 1200.6,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1357,
+     "bits": 2.8229
+    },
+    "count": {
+     "accuracy": 0.563,
+     "bits": 1.148
+    },
+    "copy": {
+     "accuracy": 0.3812,
+     "bits": 2.5331
+    },
+    "paren": {
+     "accuracy": 0.9933,
+     "bits": 0.0292
+    },
+    "slowp": {
+     "accuracy": 0.6702,
+     "bits": 1.7188
+    }
+   }
+  },
+  {
+   "step": 3000,
+   "seconds": 1450.3,
+   "val": {
+    "cyc": {
+     "accuracy": 0.1328,
+     "bits": 2.8211
+    },
+    "count": {
+     "accuracy": 0.5801,
+     "bits": 1.1126
+    },
+    "copy": {
+     "accuracy": 0.3833,
+     "bits": 2.5237
+    },
+    "paren": {
+     "accuracy": 0.9948,
+     "bits": 0.0187
+    },
+    "slowp": {
+     "accuracy": 0.6711,
+     "bits": 1.7137
+    }
+   }
+  }
+ ],
+ "test": {
+  "cyc": {
+   "accuracy": 0.14270833333333333,
+   "bits": 2.8201430743833935,
+   "scored": 3840,
+   "oracle_accuracy": 1.0
+  },
+  "count": {
+   "accuracy": 0.5561914672216441,
+   "bits": 1.1392259531383166,
+   "scored": 1922,
+   "oracle_accuracy": 1.0
+  },
+  "copy": {
+   "accuracy": 0.3799290632171917,
+   "bits": 2.533689112894757,
+   "scored": 14379,
+   "oracle_accuracy": 1.0
+  },
+  "paren": {
+   "accuracy": 0.9973684210526316,
+   "bits": 0.012830986167481682,
+   "scored": 1900,
+   "oracle_accuracy": 1.0
+  },
+  "slowp": {
+   "accuracy": 0.6738357843137255,
+   "bits": 1.7034310774404027,
+   "scored": 32640,
+   "oracle_accuracy": 0.9154105392156863
+  },
+  "cyc_far": {
+   "accuracy": 0.14427083333333332,
+   "bits": 2.8664332826210637,
+   "scored": 3840,
+   "oracle_accuracy": 1.0
+  },
+  "count_long": {
+   "accuracy": 0.5185185185185185,
+   "bits": 1.2305486489024395,
+   "scored": 3915,
+   "oracle_accuracy": 1.0
+  },
+  "copy_long": {
+   "accuracy": 0.1958576892545284,
+   "bits": 3.5615781442218966,
+   "scored": 13857,
+   "oracle_accuracy": 1.0
+  },
+  "paren_deep": {
+   "accuracy": 0.930635838150289,
+   "bits": 0.5111797213324489,
+   "scored": 2076,
+   "oracle_accuracy": 1.0
+  },
+  "slowp_long": {
+   "accuracy": 0.6352792033235581,
+   "bits": 1.8601813085826724,
+   "scored": 65472,
+   "oracle_accuracy": 0.9130009775171065
+  }
+ }
+}

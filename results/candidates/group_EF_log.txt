@@ -1,0 +1,4 @@
+todo 28
+  묶음 09d3f65a9f (2개 동시): lattice-joint-persistent-s1-cfbd0b59, lattice-joint-persistent-s2-426387c8
+  묶음 73f5080a80 (2개 동시): strata-joint-persistent-s1-2f9c0477, strata-joint-persistent-s2-a471848f
+  묶음 834c4ac462 (3개 동시): lattice-kvd-persistent-s0-3d0038be, lattice-kvd-persistent-s1-22fd4f30, lattice-kvd-persistent-s2-6ec8b00d

@@ -1,0 +1,38 @@
+{
+ "variant": "folio",
+ "tasks": [
+  "kvd_all"
+ ],
+ "memory": "persistent",
+ "seed": 0,
+ "steps": 2000,
+ "batch": 64,
+ "chunk": 256,
+ "lr": 0.002,
+ "warmup": 100,
+ "n_train": 2048,
+ "n_val": 128,
+ "n_test": 256,
+ "eval_every": 250,
+ "data_seed": 12345,
+ "eval_tasks": [
+  "kvd",
+  "kvd_long"
+ ],
+ "model": {
+  "vocab": 32,
+  "d_embed": 64,
+  "d_ctrl": 76,
+  "slots": 32,
+  "d_slot": 64,
+  "d_key": 32,
+  "reads": 2,
+  "memory": true
+ },
+ "data": "e2926a70de",
+ "code": "cand-train-v1",
+ "eval": [
+  "kvd",
+  "kvd_long"
+ ]
+}

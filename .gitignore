@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+results/candidates/data/
+results/candidates/smoke/
+*.tmp.npz
+# 학습된 가중치 · 체크포인트 (로컬에만 둔다. 결과 수치는 runs/*/*.json 에 있다)
+*.pt

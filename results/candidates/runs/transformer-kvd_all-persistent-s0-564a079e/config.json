@@ -1,0 +1,35 @@
+{
+ "variant": "transformer",
+ "tasks": [
+  "kvd_all"
+ ],
+ "memory": "persistent",
+ "seed": 0,
+ "steps": 2000,
+ "batch": 64,
+ "chunk": 64,
+ "lr": 0.002,
+ "warmup": 100,
+ "n_train": 2048,
+ "n_val": 128,
+ "n_test": 256,
+ "eval_every": 250,
+ "data_seed": 12345,
+ "eval_tasks": [
+  "kvd",
+  "kvd_long"
+ ],
+ "model": {
+  "vocab": 32,
+  "context": 64,
+  "d_model": 64,
+  "n_heads": 4,
+  "n_layers": 2
+ },
+ "data": "e2926a70de",
+ "code": "cand-train-v1",
+ "eval": [
+  "kvd",
+  "kvd_long"
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "variant": "lattice2",
+ "tasks": [
+  "cyc",
+  "count",
+  "copy",
+  "paren",
+  "slowp"
+ ],
+ "memory": "persistent",
+ "seed": 2,
+ "steps": 3000,
+ "batch": 64,
+ "chunk": 256,
+ "lr": 0.002,
+ "warmup": 100,
+ "n_train": 2048,
+ "n_val": 128,
+ "n_test": 128,
+ "eval_every": 500,
+ "data_seed": 12345,
+ "eval_tasks": [
+  "cyc",
+  "count",
+  "copy",
+  "paren",
+  "slowp",
+  "cyc_far",
+  "count_long",
+  "copy_long",
+  "paren_deep",
+  "slowp_long"
+ ],
+ "model": {
+  "vocab": 32,
+  "d_embed": 64,
+  "side": 4,
+  "d_cell": 92,
+  "d_pos": 8,
+  "iters": 3,
+  "neighbors": true,
+  "inject_all": true,
+  "norm": true
+ },
+ "data": "3bbb06a6ea",
+ "code": "cand-train-v1",
+ "eval": [
+  "cyc",
+  "count",
+  "copy",
+  "paren",
+  "slowp",
+  "cyc_far",
+  "count_long",
+  "copy_long",
+  "paren_deep",
+  "slowp_long"
+ ]
+}

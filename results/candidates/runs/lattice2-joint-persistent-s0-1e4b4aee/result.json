@@ -1,0 +1,306 @@
+{
+ "run_id": "lattice2-joint-persistent-s0-1e4b4aee",
+ "config_key": {
+  "variant": "lattice2",
+  "tasks": [
+   "switch_fast",
+   "phrase",
+   "cycle",
+   "kv",
+   "mixed",
+   "chain"
+  ],
+  "memory": "persistent",
+  "seed": 0,
+  "steps": 3000,
+  "batch": 64,
+  "chunk": 64,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 128,
+  "eval_every": 500,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d_embed": 64,
+   "side": 4,
+   "d_cell": 92,
+   "d_pos": 8,
+   "iters": 3,
+   "neighbors": true,
+   "inject_all": true,
+   "norm": true
+  },
+  "data": "66bb89d7b6",
+  "code": "cand-train-v1",
+  "eval": [
+   "switch_fast",
+   "phrase",
+   "cycle",
+   "kv",
+   "mixed",
+   "chain",
+   "kv_long",
+   "chain_long",
+   "mixed_long"
+  ]
+ },
+ "variant": "lattice2",
+ "mode": "joint",
+ "tasks": [
+  "switch_fast",
+  "phrase",
+  "cycle",
+  "kv",
+  "mixed",
+  "chain"
+ ],
+ "memory": "persistent",
+ "seed": 0,
+ "params": 98824,
+ "train_tokens": 49152000,
+ "wall_seconds": 6613.9,
+ "trainer": "grouped-graph-v1",
+ "group_size": 3,
+ "history": [
+  {
+   "step": 500,
+   "seconds": 1096.8,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.171,
+     "bits": 2.9994
+    },
+    "phrase": {
+     "accuracy": 0.1873,
+     "bits": 2.9466
+    },
+    "cycle": {
+     "accuracy": 0.1902,
+     "bits": 2.927
+    },
+    "kv": {
+     "accuracy": 0.3217,
+     "bits": 2.4944
+    },
+    "mixed": {
+     "accuracy": 0.4456,
+     "bits": 2.2573
+    },
+    "chain": {
+     "accuracy": 0.367,
+     "bits": 2.1891
+    }
+   }
+  },
+  {
+   "step": 1000,
+   "seconds": 2223.0,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.19,
+     "bits": 2.9552
+    },
+    "phrase": {
+     "accuracy": 0.186,
+     "bits": 2.946
+    },
+    "cycle": {
+     "accuracy": 0.1968,
+     "bits": 2.9092
+    },
+    "kv": {
+     "accuracy": 0.3127,
+     "bits": 2.4548
+    },
+    "mixed": {
+     "accuracy": 0.474,
+     "bits": 2.16
+    },
+    "chain": {
+     "accuracy": 0.4902,
+     "bits": 1.4727
+    }
+   }
+  },
+  {
+   "step": 1500,
+   "seconds": 3340.2,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.2153,
+     "bits": 2.8986
+    },
+    "phrase": {
+     "accuracy": 0.1809,
+     "bits": 2.9452
+    },
+    "cycle": {
+     "accuracy": 0.2005,
+     "bits": 2.9008
+    },
+    "kv": {
+     "accuracy": 0.3208,
+     "bits": 2.4375
+    },
+    "mixed": {
+     "accuracy": 0.5415,
+     "bits": 1.9395
+    },
+    "chain": {
+     "accuracy": 0.5643,
+     "bits": 1.1721
+    }
+   }
+  },
+  {
+   "step": 2000,
+   "seconds": 4465.8,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.2177,
+     "bits": 2.8841
+    },
+    "phrase": {
+     "accuracy": 0.183,
+     "bits": 2.937
+    },
+    "cycle": {
+     "accuracy": 0.2072,
+     "bits": 2.8863
+    },
+    "kv": {
+     "accuracy": 0.3116,
+     "bits": 2.4172
+    },
+    "mixed": {
+     "accuracy": 0.5672,
+     "bits": 1.8891
+    },
+    "chain": {
+     "accuracy": 0.5762,
+     "bits": 1.0991
+    }
+   }
+  },
+  {
+   "step": 2500,
+   "seconds": 5540.1,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.2181,
+     "bits": 2.8854
+    },
+    "phrase": {
+     "accuracy": 0.1848,
+     "bits": 2.9404
+    },
+    "cycle": {
+     "accuracy": 0.2146,
+     "bits": 2.868
+    },
+    "kv": {
+     "accuracy": 0.3167,
+     "bits": 2.4107
+    },
+    "mixed": {
+     "accuracy": 0.5989,
+     "bits": 1.7984
+    },
+    "chain": {
+     "accuracy": 0.5954,
+     "bits": 1.0431
+    }
+   }
+  },
+  {
+   "step": 3000,
+   "seconds": 6583.2,
+   "val": {
+    "switch_fast": {
+     "accuracy": 0.221,
+     "bits": 2.8798
+    },
+    "phrase": {
+     "accuracy": 0.1858,
+     "bits": 2.9375
+    },
+    "cycle": {
+     "accuracy": 0.2141,
+     "bits": 2.8675
+    },
+    "kv": {
+     "accuracy": 0.3165,
+     "bits": 2.4099
+    },
+    "mixed": {
+     "accuracy": 0.6008,
+     "bits": 1.7923
+    },
+    "chain": {
+     "accuracy": 0.5995,
+     "bits": 1.0205
+    }
+   }
+  }
+ ],
+ "test": {
+  "switch_fast": {
+   "accuracy": 0.21776960784313726,
+   "bits": 2.8836541873686157,
+   "scored": 32640,
+   "oracle_accuracy": 0.8011335784313726
+  },
+  "phrase": {
+   "accuracy": 0.17717524509803922,
+   "bits": 2.953713255845455,
+   "scored": 32640,
+   "oracle_accuracy": 0.8157169117647058
+  },
+  "cycle": {
+   "accuracy": 0.20912990196078432,
+   "bits": 2.868566374671972,
+   "scored": 32640,
+   "oracle_accuracy": 0.9116421568627451
+  },
+  "kv": {
+   "accuracy": 0.3081539735099338,
+   "bits": 2.4065619533853675,
+   "scored": 4832,
+   "oracle_accuracy": 1.0
+  },
+  "mixed": {
+   "accuracy": 0.5939950980392157,
+   "bits": 1.7900667807236421,
+   "scored": 32640,
+   "oracle_accuracy": 0.9147365196078432
+  },
+  "chain": {
+   "accuracy": 0.5966969842029679,
+   "bits": 1.0321629473891571,
+   "scored": 4178,
+   "oracle_accuracy": 1.0
+  },
+  "kv_long": {
+   "accuracy": 0.13026819923371646,
+   "bits": 3.49213842170729,
+   "scored": 522,
+   "oracle_accuracy": 1.0
+  },
+  "chain_long": {
+   "accuracy": 0.8801261829652997,
+   "bits": 0.4515050303117515,
+   "scored": 3170,
+   "oracle_accuracy": 1.0
+  },
+  "mixed_long": {
+   "accuracy": 0.5481579912023461,
+   "bits": 1.9531984995280012,
+   "scored": 65472,
+   "oracle_accuracy": 0.9120234604105572
+  }
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "version": "posthoc-v1",
+ "test": {
+  "chain_hop3": {
+   "accuracy": 0.110546875,
+   "bits": 3.085924054061893,
+   "scored": 2560,
+   "oracle_accuracy": 1.0
+  },
+  "chain_hop4": {
+   "accuracy": 0.109375,
+   "bits": 3.0880957133908677,
+   "scored": 1280,
+   "oracle_accuracy": 1.0
+  },
+  "chain_hop5": {
+   "accuracy": 0.115625,
+   "bits": 3.075629310167366,
+   "scored": 1280,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

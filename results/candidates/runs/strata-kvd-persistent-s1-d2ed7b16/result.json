@@ -1,0 +1,147 @@
+{
+ "run_id": "strata-kvd-persistent-s1-d2ed7b16",
+ "config_key": {
+  "variant": "strata",
+  "tasks": [
+   "kvd"
+  ],
+  "memory": "persistent",
+  "seed": 1,
+  "steps": 2000,
+  "batch": 64,
+  "chunk": 256,
+  "lr": 0.002,
+  "warmup": 100,
+  "n_train": 2048,
+  "n_val": 128,
+  "n_test": 256,
+  "eval_every": 250,
+  "data_seed": 12345,
+  "eval_tasks": [],
+  "model": {
+   "vocab": 32,
+   "d": 40,
+   "periods": [
+    1,
+    4,
+    16,
+    64
+   ],
+   "aux_weight": 0.05
+  },
+  "data": "a613517d99",
+  "code": "cand-train-v1",
+  "eval": [
+   "kvd",
+   "kvd_long"
+  ]
+ },
+ "variant": "strata",
+ "mode": "separate",
+ "tasks": [
+  "kvd"
+ ],
+ "memory": "persistent",
+ "seed": 1,
+ "params": 97472,
+ "train_tokens": 32768000,
+ "wall_seconds": 1216.3,
+ "trainer": "grouped-graph-v1",
+ "group_size": 3,
+ "history": [
+  {
+   "step": 250,
+   "seconds": 175.6,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7225,
+     "bits": 1.1017
+    }
+   }
+  },
+  {
+   "step": 500,
+   "seconds": 302.4,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7505,
+     "bits": 0.8353
+    }
+   }
+  },
+  {
+   "step": 750,
+   "seconds": 437.2,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7396,
+     "bits": 0.8249
+    }
+   }
+  },
+  {
+   "step": 1000,
+   "seconds": 610.0,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7378,
+     "bits": 0.9208
+    }
+   }
+  },
+  {
+   "step": 1250,
+   "seconds": 771.5,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7423,
+     "bits": 1.0737
+    }
+   }
+  },
+  {
+   "step": 1500,
+   "seconds": 853.7,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7369,
+     "bits": 1.2787
+    }
+   }
+  },
+  {
+   "step": 1750,
+   "seconds": 1037.7,
+   "val": {
+    "kvd": {
+     "accuracy": 0.7342,
+     "bits": 1.3941
+    }
+   }
+  },
+  {
+   "step": 2000,
+   "seconds": 1207.2,
+   "val": {
+    "kvd": {
+     "accuracy": 0.736,
+     "bits": 1.399
+    }
+   }
+  }
+ ],
+ "test": {
+  "kvd": {
+   "accuracy": 0.7457191780821918,
+   "bits": 1.2527926459398708,
+   "scored": 2336,
+   "oracle_accuracy": 1.0
+  },
+  "kvd_long": {
+   "accuracy": 0.4614035087719298,
+   "bits": 4.795610214560782,
+   "scored": 570,
+   "oracle_accuracy": 1.0
+  }
+ }
+}

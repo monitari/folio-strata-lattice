@@ -1,0 +1,103 @@
+[21:44:05] 실행 5개 (프로세스 5개). 이미 끝난 같은 설정은 재사용합니다.
+  transformer-joint-persistent-s0-78bd2a12 500/3000  val acc switch_fast:0.139 phrase:0.157 cycle:0.660 kv:0.289 mixed:0.360 chain:0.305
+  gru-joint-persistent-s0-7dd2e5d9 500/3000  val acc switch_fast:0.214 phrase:0.187 cycle:0.183 kv:0.319 mixed:0.442 chain:0.592
+  transformer-joint-persistent-s0-78bd2a12 1000/3000  val acc switch_fast:0.374 phrase:0.234 cycle:0.668 kv:0.861 mixed:0.619 chain:0.438
+  transformer-joint-persistent-s0-78bd2a12 1500/3000  val acc switch_fast:0.454 phrase:0.244 cycle:0.690 kv:0.942 mixed:0.631 chain:0.512
+  gru-joint-persistent-s0-7dd2e5d9 1000/3000  val acc switch_fast:0.249 phrase:0.184 cycle:0.196 kv:0.319 mixed:0.498 chain:0.623
+  transformer-joint-persistent-s0-78bd2a12 2000/3000  val acc switch_fast:0.481 phrase:0.247 cycle:0.698 kv:0.956 mixed:0.644 chain:0.534
+  gru-joint-persistent-s0-7dd2e5d9 1500/3000  val acc switch_fast:0.291 phrase:0.188 cycle:0.213 kv:0.334 mixed:0.535 chain:0.640
+  transformer-joint-persistent-s0-78bd2a12 2500/3000  val acc switch_fast:0.488 phrase:0.249 cycle:0.701 kv:0.957 mixed:0.645 chain:0.533
+  transformer-joint-persistent-s0-78bd2a12 3000/3000  val acc switch_fast:0.490 phrase:0.249 cycle:0.701 kv:0.957 mixed:0.645 chain:0.530
+  gru-joint-persistent-s0-7dd2e5d9 2000/3000  val acc switch_fast:0.332 phrase:0.200 cycle:0.225 kv:0.422 mixed:0.560 chain:0.648
+  gru-joint-persistent-s0-7dd2e5d9 2500/3000  val acc switch_fast:0.358 phrase:0.203 cycle:0.236 kv:0.448 mixed:0.573 chain:0.651
+  gru-joint-persistent-s0-7dd2e5d9 3000/3000  val acc switch_fast:0.363 phrase:0.204 cycle:0.237 kv:0.448 mixed:0.577 chain:0.654
+  strata-joint-persistent-s0-0c5eefb5 500/3000  val acc switch_fast:0.187 phrase:0.185 cycle:0.187 kv:0.320 mixed:0.388 chain:0.569
+  lattice-joint-persistent-s0-839a3304 500/3000  val acc switch_fast:0.141 phrase:0.185 cycle:0.200 kv:0.276 mixed:0.224 chain:0.124
+  folio-joint-persistent-s0-d67f9d61 500/3000  val acc switch_fast:0.204 phrase:0.181 cycle:0.191 kv:0.317 mixed:0.451 chain:0.503
+  strata-joint-persistent-s0-0c5eefb5 1000/3000  val acc switch_fast:0.195 phrase:0.186 cycle:0.193 kv:0.314 mixed:0.455 chain:0.589
+  lattice-joint-persistent-s0-839a3304 1000/3000  val acc switch_fast:0.140 phrase:0.185 cycle:0.203 kv:0.283 mixed:0.222 chain:0.122
+  folio-joint-persistent-s0-d67f9d61 1000/3000  val acc switch_fast:0.220 phrase:0.183 cycle:0.192 kv:0.320 mixed:0.504 chain:0.592
+  strata-joint-persistent-s0-0c5eefb5 1500/3000  val acc switch_fast:0.196 phrase:0.184 cycle:0.201 kv:0.326 mixed:0.478 chain:0.609
+  lattice-joint-persistent-s0-839a3304 1500/3000  val acc switch_fast:0.141 phrase:0.184 cycle:0.199 kv:0.287 mixed:0.221 chain:0.123
+  strata-joint-persistent-s0-0c5eefb5 2000/3000  val acc switch_fast:0.198 phrase:0.189 cycle:0.208 kv:0.327 mixed:0.500 chain:0.611
+  lattice-joint-persistent-s0-839a3304 2000/3000  val acc switch_fast:0.142 phrase:0.184 cycle:0.202 kv:0.287 mixed:0.223 chain:0.133
+  folio-joint-persistent-s0-d67f9d61 1500/3000  val acc switch_fast:0.247 phrase:0.183 cycle:0.204 kv:0.332 mixed:0.550 chain:0.607
+  strata-joint-persistent-s0-0c5eefb5 2500/3000  val acc switch_fast:0.204 phrase:0.188 cycle:0.211 kv:0.327 mixed:0.508 chain:0.614
+  lattice-joint-persistent-s0-839a3304 2500/3000  val acc switch_fast:0.141 phrase:0.185 cycle:0.201 kv:0.293 mixed:0.222 chain:0.130
+  folio-joint-persistent-s0-d67f9d61 2000/3000  val acc switch_fast:0.274 phrase:0.184 cycle:0.209 kv:0.378 mixed:0.576 chain:0.606
+  strata-joint-persistent-s0-0c5eefb5 3000/3000  val acc switch_fast:0.204 phrase:0.188 cycle:0.211 kv:0.327 mixed:0.510 chain:0.619
+  lattice-joint-persistent-s0-839a3304 3000/3000  val acc switch_fast:0.142 phrase:0.184 cycle:0.202 kv:0.291 mixed:0.224 chain:0.139
+  folio-joint-persistent-s0-d67f9d61 2500/3000  val acc switch_fast:0.276 phrase:0.186 cycle:0.222 kv:0.403 mixed:0.588 chain:0.631
+  folio-joint-persistent-s0-d67f9d61 3000/3000  val acc switch_fast:0.294 phrase:0.188 cycle:0.216 kv:0.401 mixed:0.591 chain:0.634
+[22:45:21] 완료: 5개, 3676초
+  folio-chain-persistent-s0-757791dd: chain_hop3 0.569 chain_hop4 0.565 chain_hop5 0.613
+  folio-chain-persistent-s1-25ef43ae: chain_hop3 0.568 chain_hop4 0.566 chain_hop5 0.598
+  folio-chain-persistent-s2-03630b31: chain_hop3 0.576 chain_hop4 0.566 chain_hop5 0.648
+  folio-joint-persistent-s0-6288bdf8: chain_hop3 0.439 chain_hop4 0.437 chain_hop5 0.449
+  folio-joint-persistent-s0-d67f9d61: chain_hop3 0.590 chain_hop4 0.589 chain_hop5 0.731
+  folio-joint-persistent-s1-a72a953d: chain_hop3 0.386 chain_hop4 0.374 chain_hop5 0.361
+  folio-joint-persistent-s2-305554f9: chain_hop3 0.365 chain_hop4 0.391 chain_hop5 0.380
+  folio-joint-window-s0-00ce130e: chain_hop3 0.191 chain_hop4 0.185 chain_hop5 0.198
+  folio-joint-window-s1-e39d8c34: chain_hop3 0.270 chain_hop4 0.284 chain_hop5 0.277
+  folio-joint-window-s2-3809e16b: chain_hop3 0.199 chain_hop4 0.217 chain_hop5 0.209
+  folio_nomem-joint-persistent-s0-5a4b6fc9: chain_hop3 0.193 chain_hop4 0.185 chain_hop5 0.204
+  folio_nomem-joint-persistent-s1-3a7d54eb: chain_hop3 0.194 chain_hop4 0.188 chain_hop5 0.188
+  folio_nomem-joint-persistent-s2-c6b6505f: chain_hop3 0.168 chain_hop4 0.167 chain_hop5 0.165
+  folio_r1-joint-persistent-s0-1cb27eee: chain_hop3 0.359 chain_hop4 0.370 chain_hop5 0.364
+  folio_r1-joint-persistent-s1-861bd1e0: chain_hop3 0.378 chain_hop4 0.380 chain_hop5 0.365
+  folio_r1-joint-persistent-s2-15b4b79a: chain_hop3 0.373 chain_hop4 0.351 chain_hop5 0.418
+  gru-chain-persistent-s0-32eed70f: chain_hop3 0.573 chain_hop4 0.576 chain_hop5 0.704
+  gru-chain-persistent-s1-abfcc6d5: chain_hop3 0.622 chain_hop4 0.627 chain_hop5 0.773
+  gru-chain-persistent-s2-6c4537d8: chain_hop3 0.599 chain_hop4 0.602 chain_hop5 0.738
+  gru-joint-persistent-s0-2d475ac4: chain_hop3 0.524 chain_hop4 0.480 chain_hop5 0.652
+  gru-joint-persistent-s0-7dd2e5d9: chain_hop3 0.627 chain_hop4 0.630 chain_hop5 0.805
+  gru-joint-persistent-s1-9318bfdb: chain_hop3 0.541 chain_hop4 0.564 chain_hop5 0.685
+  gru-joint-persistent-s2-b77314ac: chain_hop3 0.525 chain_hop4 0.526 chain_hop5 0.658
+  gru-joint-window-s0-a685fdbb: chain_hop3 0.436 chain_hop4 0.428 chain_hop5 0.477
+  gru-joint-window-s1-d3ae141e: chain_hop3 0.449 chain_hop4 0.450 chain_hop5 0.501
+  gru-joint-window-s2-71e09cc0: chain_hop3 0.460 chain_hop4 0.458 chain_hop5 0.505
+  lattice-chain-persistent-s0-afe3127a: chain_hop3 0.522 chain_hop4 0.517 chain_hop5 0.555
+  lattice-chain-persistent-s1-e8d0f7ef: chain_hop3 0.499 chain_hop4 0.533 chain_hop5 0.535
+  lattice-chain-persistent-s2-83ec6aed: chain_hop3 0.512 chain_hop4 0.502 chain_hop5 0.540
+  lattice-joint-persistent-s0-2c98528f: chain_hop3 0.504 chain_hop4 0.492 chain_hop5 0.520
+  lattice-joint-persistent-s0-839a3304: chain_hop3 0.113 chain_hop4 0.107 chain_hop5 0.126
+  lattice-joint-persistent-s1-d508aba9: chain_hop3 0.541 chain_hop4 0.523 chain_hop5 0.577
+  lattice-joint-persistent-s2-1c198342: chain_hop3 0.533 chain_hop4 0.526 chain_hop5 0.573
+  lattice-joint-window-s0-b3043997: chain_hop3 0.420 chain_hop4 0.430 chain_hop5 0.439
+  lattice-joint-window-s1-0846dfb8: chain_hop3 0.393 chain_hop4 0.391 chain_hop5 0.398
+  lattice-joint-window-s2-50f4319f: chain_hop3 0.432 chain_hop4 0.442 chain_hop5 0.445
+  lattice_k1-joint-persistent-s0-39b9cbb1: chain_hop3 0.130 chain_hop4 0.132 chain_hop5 0.124
+  lattice_k1-joint-persistent-s1-3f763ba3: chain_hop3 0.118 chain_hop4 0.131 chain_hop5 0.127
+  lattice_k1-joint-persistent-s2-5465da84: chain_hop3 0.536 chain_hop4 0.531 chain_hop5 0.577
+  lattice_nonbr-joint-persistent-s0-3bf5fedb: chain_hop3 0.097 chain_hop4 0.081 chain_hop5 0.099
+  lattice_nonbr-joint-persistent-s1-ffc38325: chain_hop3 0.119 chain_hop4 0.120 chain_hop5 0.116
+  lattice_nonbr-joint-persistent-s2-7333bfa0: chain_hop3 0.112 chain_hop4 0.120 chain_hop5 0.123
+  strata-chain-persistent-s0-a12b989c: chain_hop3 0.578 chain_hop4 0.576 chain_hop5 0.594
+  strata-chain-persistent-s1-6c24a6e3: chain_hop3 0.573 chain_hop4 0.570 chain_hop5 0.605
+  strata-chain-persistent-s2-3e4932cc: chain_hop3 0.553 chain_hop4 0.566 chain_hop5 0.587
+  strata-joint-persistent-s0-0c5eefb5: chain_hop3 0.615 chain_hop4 0.622 chain_hop5 0.724
+  strata-joint-persistent-s0-269f1e1f: chain_hop3 0.516 chain_hop4 0.514 chain_hop5 0.577
+  strata-joint-persistent-s1-0ee80381: chain_hop3 0.544 chain_hop4 0.530 chain_hop5 0.573
+  strata-joint-persistent-s2-92f3ca69: chain_hop3 0.535 chain_hop4 0.516 chain_hop5 0.538
+  strata-joint-window-s0-a6c4a2b8: chain_hop3 0.429 chain_hop4 0.438 chain_hop5 0.456
+  strata-joint-window-s1-023224b0: chain_hop3 0.438 chain_hop4 0.441 chain_hop5 0.446
+  strata-joint-window-s2-b50dfed1: chain_hop3 0.447 chain_hop4 0.445 chain_hop5 0.425
+  strata_noaux-joint-persistent-s0-7317d446: chain_hop3 0.490 chain_hop4 0.485 chain_hop5 0.540
+  strata_noaux-joint-persistent-s1-a0f86541: chain_hop3 0.517 chain_hop4 0.511 chain_hop5 0.559
+  strata_noaux-joint-persistent-s2-cf173e64: chain_hop3 0.523 chain_hop4 0.521 chain_hop5 0.547
+  strata_sameperiod-joint-persistent-s0-7c8830ab: chain_hop3 0.548 chain_hop4 0.548 chain_hop5 0.601
+  strata_sameperiod-joint-persistent-s1-9dada4d8: chain_hop3 0.555 chain_hop4 0.540 chain_hop5 0.600
+  strata_sameperiod-joint-persistent-s2-50692cee: chain_hop3 0.551 chain_hop4 0.559 chain_hop5 0.622
+  transformer-chain-persistent-s0-8cec3d0e: chain_hop3 0.127 chain_hop4 0.113 chain_hop5 0.128
+  transformer-chain-persistent-s1-8da04dae: chain_hop3 0.119 chain_hop4 0.107 chain_hop5 0.120
+  transformer-chain-persistent-s2-52aa043d: chain_hop3 0.111 chain_hop4 0.109 chain_hop5 0.116
+  transformer-joint-persistent-s0-78bd2a12: chain_hop3 0.466 chain_hop4 0.442 chain_hop5 0.464
+  transformer-joint-persistent-s0-eb79d834: chain_hop3 0.117 chain_hop4 0.108 chain_hop5 0.094
+  transformer-joint-persistent-s1-39f8a77f: chain_hop3 0.122 chain_hop4 0.138 chain_hop5 0.128
+  transformer-joint-persistent-s2-b6564614: chain_hop3 0.127 chain_hop4 0.117 chain_hop5 0.120
+  transformer-joint-window-s0-ce274055: chain_hop3 0.133 chain_hop4 0.134 chain_hop5 0.120
+  transformer-joint-window-s1-cb8ed864: chain_hop3 0.128 chain_hop4 0.147 chain_hop5 0.129
+  transformer-joint-window-s2-b9c8026b: chain_hop3 0.108 chain_hop4 0.111 chain_hop5 0.113
+�߰� �� 68��
+[22:46:04] 보고서: results\candidates\report.md
+exit 0

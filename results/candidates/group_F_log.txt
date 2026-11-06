@@ -1,0 +1,138 @@
+  folio-kvd-persistent-s2-86e4e272 250/2000  val acc kvd:0.243
+  folio-kvd-persistent-s0-55d036b2 250/2000  val acc kvd:0.227
+  folio-kvd-persistent-s1-53fc179f 250/2000  val acc kvd:0.341
+  folio-kvd-persistent-s0-fded775f 250/2000  val acc kvd:0.232
+  folio-kvd-persistent-s1-a5a4a566 250/2000  val acc kvd:0.206
+  folio-kvd-persistent-s2-86e4e272 500/2000  val acc kvd:0.693
+  folio-kvd-persistent-s0-55d036b2 500/2000  val acc kvd:0.707
+  folio-kvd-persistent-s1-53fc179f 500/2000  val acc kvd:0.638
+  folio-kvd-persistent-s0-fded775f 500/2000  val acc kvd:0.617
+  folio-kvd-persistent-s1-a5a4a566 500/2000  val acc kvd:0.619
+  folio-kvd-persistent-s2-86e4e272 750/2000  val acc kvd:0.754
+  folio-kvd-persistent-s0-55d036b2 750/2000  val acc kvd:0.727
+  folio-kvd-persistent-s1-53fc179f 750/2000  val acc kvd:0.714
+  folio-kvd-persistent-s0-fded775f 750/2000  val acc kvd:0.688
+  folio-kvd-persistent-s1-a5a4a566 750/2000  val acc kvd:0.745
+  folio-kvd-persistent-s2-86e4e272 1000/2000  val acc kvd:0.737
+  folio-kvd-persistent-s0-55d036b2 1000/2000  val acc kvd:0.752
+  folio-kvd-persistent-s1-53fc179f 1000/2000  val acc kvd:0.734
+  folio-kvd-persistent-s0-fded775f 1000/2000  val acc kvd:0.713
+  folio-kvd-persistent-s1-a5a4a566 1000/2000  val acc kvd:0.762
+  folio-kvd-persistent-s2-86e4e272 1250/2000  val acc kvd:0.763
+  folio-kvd-persistent-s0-55d036b2 1250/2000  val acc kvd:0.768
+  folio-kvd-persistent-s1-53fc179f 1250/2000  val acc kvd:0.746
+  folio-kvd-persistent-s0-fded775f 1250/2000  val acc kvd:0.723
+  folio-kvd-persistent-s1-a5a4a566 1250/2000  val acc kvd:0.810
+  folio-kvd-persistent-s2-86e4e272 1500/2000  val acc kvd:0.773
+  folio-kvd-persistent-s0-55d036b2 1500/2000  val acc kvd:0.764
+  folio-kvd-persistent-s1-53fc179f 1500/2000  val acc kvd:0.746
+  folio-kvd-persistent-s0-fded775f 1500/2000  val acc kvd:0.721
+  folio-kvd-persistent-s1-a5a4a566 1500/2000  val acc kvd:0.826
+  folio-kvd-persistent-s2-86e4e272 1750/2000  val acc kvd:0.762
+  folio-kvd-persistent-s0-55d036b2 1750/2000  val acc kvd:0.768
+  folio-kvd-persistent-s1-53fc179f 1750/2000  val acc kvd:0.750
+  folio-kvd-persistent-s0-fded775f 1750/2000  val acc kvd:0.724
+  folio-kvd-persistent-s1-a5a4a566 1750/2000  val acc kvd:0.814
+  folio-kvd-persistent-s2-86e4e272 2000/2000  val acc kvd:0.768
+  folio-kvd-persistent-s0-55d036b2 2000/2000  val acc kvd:0.767
+  folio-kvd-persistent-s1-53fc179f 2000/2000  val acc kvd:0.751
+  folio-kvd-persistent-s0-fded775f 2000/2000  val acc kvd:0.724
+  gru-kvd-persistent-s0-d372e542 250/2000  val acc kvd:0.634
+  folio-kvd-persistent-s1-a5a4a566 2000/2000  val acc kvd:0.812
+  gru-kvd-persistent-s1-8b7c2e88 250/2000  val acc kvd:0.657
+  gru-kvd-persistent-s2-80ea8ec0 250/2000  val acc kvd:0.614
+  gru-kvd-persistent-s0-d372e542 500/2000  val acc kvd:0.750
+  gru-kvd-persistent-s1-8b7c2e88 500/2000  val acc kvd:0.760
+  gru-kvd-persistent-s2-80ea8ec0 500/2000  val acc kvd:0.749
+  gru-kvd-persistent-s0-9d90e767 250/2000  val acc kvd:0.597
+  gru-kvd-persistent-s0-d372e542 750/2000  val acc kvd:0.748
+  gru-kvd-persistent-s1-8b7c2e88 750/2000  val acc kvd:0.764
+  gru-kvd-persistent-s2-80ea8ec0 750/2000  val acc kvd:0.766
+  gru-kvd-persistent-s0-d372e542 1000/2000  val acc kvd:0.739
+  gru-kvd-persistent-s0-9d90e767 500/2000  val acc kvd:0.720
+  gru-kvd-persistent-s1-8b7c2e88 1000/2000  val acc kvd:0.750
+  gru-kvd-persistent-s2-80ea8ec0 1000/2000  val acc kvd:0.771
+  gru-kvd-persistent-s0-d372e542 1250/2000  val acc kvd:0.751
+  gru-kvd-persistent-s1-8b7c2e88 1250/2000  val acc kvd:0.767
+  gru-kvd-persistent-s0-9d90e767 750/2000  val acc kvd:0.729
+  gru-kvd-persistent-s2-80ea8ec0 1250/2000  val acc kvd:0.767
+  gru-kvd-persistent-s0-d372e542 1500/2000  val acc kvd:0.741
+  gru-kvd-persistent-s1-8b7c2e88 1500/2000  val acc kvd:0.746
+  gru-kvd-persistent-s2-80ea8ec0 1500/2000  val acc kvd:0.762
+  gru-kvd-persistent-s0-d372e542 1750/2000  val acc kvd:0.740
+  gru-kvd-persistent-s0-9d90e767 1000/2000  val acc kvd:0.701
+  gru-kvd-persistent-s1-8b7c2e88 1750/2000  val acc kvd:0.742
+  gru-kvd-persistent-s2-80ea8ec0 1750/2000  val acc kvd:0.763
+  gru-kvd-persistent-s0-d372e542 2000/2000  val acc kvd:0.736
+  gru-kvd-persistent-s1-8b7c2e88 2000/2000  val acc kvd:0.745
+  gru-kvd-persistent-s0-9d90e767 1250/2000  val acc kvd:0.687
+  gru-kvd-persistent-s2-80ea8ec0 2000/2000  val acc kvd:0.763
+  gru-kvd-persistent-s1-5c430d0d 250/2000  val acc kvd:0.618
+  transformer-kvd-persistent-s0-12aadc4b 250/2000  val acc kvd:0.191
+  gru-kvd-persistent-s2-e3b85410 250/2000  val acc kvd:0.604
+  gru-kvd-persistent-s0-9d90e767 1500/2000  val acc kvd:0.685
+  transformer-kvd-persistent-s0-12aadc4b 500/2000  val acc kvd:0.222
+  gru-kvd-persistent-s1-5c430d0d 500/2000  val acc kvd:0.746
+  transformer-kvd-persistent-s0-12aadc4b 750/2000  val acc kvd:0.290
+  gru-kvd-persistent-s2-e3b85410 500/2000  val acc kvd:0.721
+  gru-kvd-persistent-s0-9d90e767 1750/2000  val acc kvd:0.689
+  transformer-kvd-persistent-s0-12aadc4b 1000/2000  val acc kvd:0.306
+  gru-kvd-persistent-s1-5c430d0d 750/2000  val acc kvd:0.730
+  transformer-kvd-persistent-s0-12aadc4b 1250/2000  val acc kvd:0.308
+  gru-kvd-persistent-s2-e3b85410 750/2000  val acc kvd:0.718
+  gru-kvd-persistent-s0-9d90e767 2000/2000  val acc kvd:0.686
+  transformer-kvd-persistent-s0-12aadc4b 1500/2000  val acc kvd:0.314
+  transformer-kvd-persistent-s1-154cdd4b 250/2000  val acc kvd:0.201
+  gru-kvd-persistent-s1-5c430d0d 1000/2000  val acc kvd:0.712
+  gru-kvd-persistent-s2-e3b85410 1000/2000  val acc kvd:0.709
+  transformer-kvd-persistent-s0-12aadc4b 1750/2000  val acc kvd:0.314
+  transformer-kvd-persistent-s1-154cdd4b 500/2000  val acc kvd:0.280
+  transformer-kvd-persistent-s0-12aadc4b 2000/2000  val acc kvd:0.313
+  transformer-kvd-persistent-s1-154cdd4b 750/2000  val acc kvd:0.241
+  gru-kvd-persistent-s1-5c430d0d 1250/2000  val acc kvd:0.699
+  gru-kvd-persistent-s2-e3b85410 1250/2000  val acc kvd:0.694
+  transformer-kvd-persistent-s2-dfa670b4 250/2000  val acc kvd:0.194
+  transformer-kvd-persistent-s1-154cdd4b 1000/2000  val acc kvd:0.250
+  transformer-kvd-persistent-s2-dfa670b4 500/2000  val acc kvd:0.229
+  transformer-kvd-persistent-s1-154cdd4b 1250/2000  val acc kvd:0.260
+  gru-kvd-persistent-s1-5c430d0d 1500/2000  val acc kvd:0.694
+  gru-kvd-persistent-s2-e3b85410 1500/2000  val acc kvd:0.698
+  transformer-kvd-persistent-s2-dfa670b4 750/2000  val acc kvd:0.238
+  transformer-kvd-persistent-s1-154cdd4b 1500/2000  val acc kvd:0.252
+  transformer-kvd-persistent-s2-dfa670b4 1000/2000  val acc kvd:0.219
+  gru-kvd-persistent-s1-5c430d0d 1750/2000  val acc kvd:0.691
+  transformer-kvd-persistent-s1-154cdd4b 1750/2000  val acc kvd:0.255
+  gru-kvd-persistent-s2-e3b85410 1750/2000  val acc kvd:0.698
+  transformer-kvd-persistent-s2-dfa670b4 1250/2000  val acc kvd:0.230
+  transformer-kvd-persistent-s1-154cdd4b 2000/2000  val acc kvd:0.257
+  gru-kvd-persistent-s1-5c430d0d 2000/2000  val acc kvd:0.692
+  transformer-kvd-persistent-s2-dfa670b4 1500/2000  val acc kvd:0.210
+  gru-kvd-persistent-s2-e3b85410 2000/2000  val acc kvd:0.699
+  transformer-kvd-persistent-s2-dfa670b4 1750/2000  val acc kvd:0.215
+  transformer-kvd-persistent-s2-dfa670b4 2000/2000  val acc kvd:0.214
+  folio-kvd-persistent-s2-d0c9af64 250/2000  val acc kvd:0.236
+  folio-kvd-persistent-s2-d0c9af64 500/2000  val acc kvd:0.683
+  folio-kvd-persistent-s2-d0c9af64 750/2000  val acc kvd:0.694
+  folio-kvd-persistent-s2-d0c9af64 1000/2000  val acc kvd:0.712
+  folio-kvd-persistent-s2-d0c9af64 1250/2000  val acc kvd:0.748
+  folio-kvd-persistent-s2-d0c9af64 1500/2000  val acc kvd:0.754
+  folio-kvd-persistent-s2-d0c9af64 1750/2000  val acc kvd:0.750
+  folio-kvd-persistent-s2-d0c9af64 2000/2000  val acc kvd:0.750
+[01:40:59] 학습 완료 6005초
+  folio-kvd-persistent-s0-55d036b2: 0-32 0.77 32-64 0.81 64-128 0.74 128-256 0.71 128-256 0.41 256-512 0.45 512-1024 0.36
+  folio-kvd-persistent-s0-fded775f: 0-32 0.75 32-64 0.79 64-128 0.61 128-256 0.41 128-256 0.25 256-512 0.15 512-1024 0.11
+  folio-kvd-persistent-s1-53fc179f: 0-32 0.77 32-64 0.81 64-128 0.71 128-256 0.66 128-256 0.46 256-512 0.43 512-1024 0.38
+  folio-kvd-persistent-s1-a5a4a566: 0-32 0.85 32-64 0.83 64-128 0.76 128-256 0.65 128-256 0.32 256-512 0.16 512-1024 0.12
+  folio-kvd-persistent-s2-86e4e272: 0-32 0.78 32-64 0.82 64-128 0.75 128-256 0.74 128-256 0.43 256-512 0.48 512-1024 0.43
+  folio-kvd-persistent-s2-d0c9af64: 0-32 0.78 32-64 0.79 64-128 0.61 128-256 0.54 128-256 0.30 256-512 0.17 512-1024 0.15
+  gru-kvd-persistent-s0-9d90e767: 0-32 0.72 32-64 0.75 64-128 0.60 128-256 0.46 128-256 0.20 256-512 0.14 512-1024 0.17
+  gru-kvd-persistent-s0-d372e542: 0-32 0.74 32-64 0.81 64-128 0.74 128-256 0.73 128-256 0.53 256-512 0.55 512-1024 0.43
+  gru-kvd-persistent-s1-5c430d0d: 0-32 0.73 32-64 0.76 64-128 0.60 128-256 0.48 128-256 0.29 256-512 0.18 512-1024 0.14
+  gru-kvd-persistent-s1-8b7c2e88: 0-32 0.75 32-64 0.80 64-128 0.72 128-256 0.68 128-256 0.49 256-512 0.49 512-1024 0.43
+  gru-kvd-persistent-s2-80ea8ec0: 0-32 0.74 32-64 0.79 64-128 0.77 128-256 0.71 128-256 0.56 256-512 0.51 512-1024 0.38
+  gru-kvd-persistent-s2-e3b85410: 0-32 0.73 32-64 0.76 64-128 0.61 128-256 0.46 128-256 0.27 256-512 0.18 512-1024 0.13
+  transformer-kvd-persistent-s0-12aadc4b: 0-32 0.35 32-64 0.34 64-128 0.12 128-256 0.17 128-256 0.11 256-512 0.10 512-1024 0.12
+  transformer-kvd-persistent-s1-154cdd4b: 0-32 0.29 32-64 0.20 64-128 0.10 128-256 0.10 128-256 0.09 256-512 0.12 512-1024 0.12
+  transformer-kvd-persistent-s2-dfa670b4: 0-32 0.24 32-64 0.18 64-128 0.11 128-256 0.12 128-256 0.11 256-512 0.12 512-1024 0.14
+지연 구간별 평가 15개
+exit 0

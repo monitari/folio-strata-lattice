@@ -1,0 +1,24 @@
+todo 3
+  transformer256-suite-persistent-s2-2c904df2 500/3000  val acc cyc:0.124 count:0.344 copy:0.072 paren:0.651 slowp:0.315
+  transformer256-suite-persistent-s1-fef808f4 500/3000  val acc cyc:0.123 count:0.351 copy:0.074 paren:0.571 slowp:0.378
+  transformer256-suite-persistent-s0-f12ab4a1 500/3000  val acc cyc:0.121 count:0.367 copy:0.075 paren:0.615 slowp:0.306
+  transformer256-suite-persistent-s2-2c904df2 1000/3000  val acc cyc:0.116 count:0.376 copy:0.079 paren:0.723 slowp:0.776
+  transformer256-suite-persistent-s1-fef808f4 1000/3000  val acc cyc:0.121 count:0.370 copy:0.076 paren:0.601 slowp:0.807
+  transformer256-suite-persistent-s0-f12ab4a1 1000/3000  val acc cyc:0.127 count:0.378 copy:0.078 paren:0.768 slowp:0.748
+  transformer256-suite-persistent-s2-2c904df2 1500/3000  val acc cyc:0.127 count:0.375 copy:0.085 paren:0.814 slowp:0.810
+  transformer256-suite-persistent-s1-fef808f4 1500/3000  val acc cyc:0.130 count:0.382 copy:0.082 paren:0.701 slowp:0.824
+  transformer256-suite-persistent-s0-f12ab4a1 1500/3000  val acc cyc:0.134 count:0.392 copy:0.085 paren:0.800 slowp:0.789
+  transformer256-suite-persistent-s2-2c904df2 2000/3000  val acc cyc:0.122 count:0.372 copy:0.087 paren:0.818 slowp:0.819
+  transformer256-suite-persistent-s1-fef808f4 2000/3000  val acc cyc:0.122 count:0.381 copy:0.086 paren:0.779 slowp:0.829
+  transformer256-suite-persistent-s0-f12ab4a1 2000/3000  val acc cyc:0.129 count:0.397 copy:0.088 paren:0.823 slowp:0.803
+  transformer256-suite-persistent-s1-fef808f4 2500/3000  val acc cyc:0.132 count:0.382 copy:0.088 paren:0.793 slowp:0.831
+  transformer256-suite-persistent-s2-2c904df2 2500/3000  val acc cyc:0.128 count:0.390 copy:0.086 paren:0.816 slowp:0.823
+  transformer256-suite-persistent-s0-f12ab4a1 2500/3000  val acc cyc:0.123 count:0.411 copy:0.087 paren:0.836 slowp:0.807
+  transformer256-suite-persistent-s1-fef808f4 3000/3000  val acc cyc:0.121 count:0.383 copy:0.088 paren:0.800 slowp:0.830
+  transformer256-suite-persistent-s2-2c904df2 3000/3000  val acc cyc:0.129 count:0.388 copy:0.088 paren:0.820 slowp:0.823
+  transformer256-suite-persistent-s0-f12ab4a1 3000/3000  val acc cyc:0.128 count:0.416 copy:0.088 paren:0.836 slowp:0.807
+TRAIN DONE
+  transformer256-suite-persistent-s0-f12ab4a1: cyc 0.13 count 0.38 copy 0.09 paren 0.83 slowp 0.81 cyc_far 0.13 count_long 0.36 copy_long 0.08 paren_deep 0.78 slowp_long 0.33
+  transformer256-suite-persistent-s1-fef808f4: cyc 0.13 count 0.39 copy 0.09 paren 0.78 slowp 0.83 cyc_far 0.12 count_long 0.37 copy_long 0.08 paren_deep 0.73 slowp_long 0.32
+  transformer256-suite-persistent-s2-2c904df2: cyc 0.13 count 0.38 copy 0.09 paren 0.82 slowp 0.83 cyc_far 0.13 count_long 0.36 copy_long 0.08 paren_deep 0.75 slowp_long 0.36
+EVAL DONE
