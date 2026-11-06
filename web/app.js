@@ -24,10 +24,10 @@ const CANDS = ['folio', 'strata', 'lattice'];
 const IMPROVED = ['folio2', 'lattice2'];
 const SUITE_ROSTER = ['transformer', 'transformer256', 'gru', 'folio', 'folio2', 'strata', 'lattice', 'lattice2'];
 const COND = {
-  A: { label: '공동 · 지속 기억 · 800걸음', f: (r) => r.mode === 'joint' && r.memory === 'persistent' && r.steps === 800 },
-  B: { label: '공동 · 창 초기화 · 800걸음', f: (r) => r.mode === 'joint' && r.memory === 'window' && r.steps === 800 },
-  D: { label: '과제별 · 지속 기억 · 400걸음', f: (r) => r.mode === 'separate' && r.memory === 'persistent' && r.steps === 400 },
-  E: { label: '공동 · 지속 기억 · 3000걸음', f: (r) => r.mode === 'joint' && r.memory === 'persistent' && r.steps === 3000 },
+  A: { label: '800걸음', f: (r) => r.mode === 'joint' && r.memory === 'persistent' && r.steps === 800 },
+  B: { label: '800걸음 · 64기호마다 기억 지움', f: (r) => r.mode === 'joint' && r.memory === 'window' && r.steps === 800 },
+  D: { label: '과제 하나씩 · 400걸음', f: (r) => r.mode === 'separate' && r.memory === 'persistent' && r.steps === 400 },
+  E: { label: '3000걸음', f: (r) => r.mode === 'joint' && r.memory === 'persistent' && r.steps === 3000 },
 };
 const DESC = {
   switch_fast: '요리사 4명이 각자 습관대로 요리하며 평균 45접시마다 몰래 교대합니다. 지금 누가 요리하는지 알아채야 합니다.',
@@ -69,7 +69,7 @@ const colorOf = (k) => MODELS[MODELS[k].base || k].color;
 const bytes = (b) => (b >= 2 ** 20 ? `${(b / 2 ** 20).toFixed(1)} MiB` : b >= 1024 ? `${(b / 1024).toFixed(1)} KiB` : `${num(b)} B`);
 
 let D = null, TASK = {};
-let cond = 'A', metric = 'accuracy', ablTask = 'chain', delayTrain = 'kvd';
+let cond = 'E', metric = 'accuracy', ablTask = 'chain', delayTrain = 'kvd';
 
 // ---------------------------------------------------------------- 자료 꺼내기
 function runsOf(variant, f) { return D.runs.filter((r) => r.variant === variant && f(r)); }
@@ -180,20 +180,22 @@ function dotRows(container, { rows, domain, refs = [], fmt = p1, unit = '%', tic
   }
   rows.forEach((row, i) => {
     const cy = top + i * rowH + rowH / 2;
-    text(svg, left - 10, cy + 4, row.label, { 'text-anchor': 'end', class: 't-ink' });
+    const mk = MODELS[row.key].base || row.key;
+    const rowG = el('g', { 'data-m': mk }, svg);
+    text(rowG, left - 10, cy + 4, row.label, { 'text-anchor': 'end', class: 't-ink' });
     const c = colorOf(row.key), ring = !!MODELS[row.key].base;
     if (!row.values.length) {
-      text(svg, left + 4, cy + 4, '실행 없음', { class: 't-ink2' });
+      text(rowG, left + 4, cy + 4, '실행 없음', { class: 't-ink2' });
       return;
     }
     const m = mean(row.values), s = sd(row.values);
     for (const v of row.values) {
-      el('circle', { cx: x(v), cy, r: 3, style: `fill:${c};fill-opacity:0.35` }, svg);
+      el('circle', { cx: x(v), cy, r: 3, style: `fill:${c};fill-opacity:0.35` }, rowG);
     }
     if (row.values.length > 1) {
-      el('line', { x1: x(Math.max(lo, m - s)), x2: x(Math.min(hi, m + s)), y1: cy, y2: cy, style: `stroke:${c};stroke-width:2` }, svg);
+      el('line', { x1: x(Math.max(lo, m - s)), x2: x(Math.min(hi, m + s)), y1: cy, y2: cy, style: `stroke:${c};stroke-width:2` }, rowG);
     }
-    el('circle', { cx: x(m), cy, r: 5.5, style: ring ? `fill:var(--page);stroke:${c};stroke-width:2` : `fill:${c};stroke:var(--page);stroke-width:2` }, svg);
+    el('circle', { cx: x(m), cy, r: 5.5, style: ring ? `fill:var(--page);stroke:${c};stroke-width:2` : `fill:${c};stroke:var(--page);stroke-width:2` }, rowG);
     const hit = el('rect', { x: 0, y: cy - rowH / 2, width, height: rowH, class: 'hit' }, svg);
     hit.addEventListener('mousemove', (ev) => showTip(ev, row.label, [
       ['평균', `${fmt(m)}${unit}`, c],
@@ -230,9 +232,10 @@ function lineChart(container, { series, xDomain, yDomain = [0, 1], refs = [], vl
     if (!s.points.length) continue;
     const c = colorOf(s.key);
     const d = s.points.map(([a, b], i) => `${i ? 'L' : 'M'}${x(a).toFixed(1)},${y(b).toFixed(1)}`).join('');
-    el('path', { d, fill: 'none', style: `stroke:${c};stroke-width:${s.thin ? 1.25 : 2};stroke-opacity:${s.thin ? 0.55 : 1};stroke-linejoin:round${s.dash ? ';stroke-dasharray:4 3' : ''}` }, svg);
-    if (s.dots) for (const [a, b] of s.points) el('circle', { cx: x(a), cy: y(b), r: 3.5, style: `fill:${c};stroke:var(--page);stroke-width:1.5` }, svg);
-    if (s.label) { const [a, b] = s.points[s.points.length - 1]; ends.push({ y: y(b), x: x(a), label: s.label }); }
+    const mk = MODELS[s.key].base || s.key;
+    el('path', { d, fill: 'none', 'data-m': mk, style: `stroke:${c};stroke-width:${s.thin ? 1.25 : 2};stroke-opacity:${s.thin ? 0.55 : 1};stroke-linejoin:round${s.dash ? ';stroke-dasharray:4 3' : ''}` }, svg);
+    if (s.dots) for (const [a, b] of s.points) el('circle', { cx: x(a), cy: y(b), r: 3.5, 'data-m': mk, style: `fill:${c};stroke:var(--page);stroke-width:1.5` }, svg);
+    if (s.label) { const [a, b] = s.points[s.points.length - 1]; ends.push({ y: y(b), x: x(a), label: s.label, mk }); }
   }
   // 끝 이름표: 겹치지 않게 아래로 밀고, 넘치면 위로 당긴다
   ends.sort((a, b) => a.y - b.y);
@@ -242,7 +245,7 @@ function lineChart(container, { series, xDomain, yDomain = [0, 1], refs = [], vl
     if (ends[i].y > maxY) ends[i].y = maxY;
     if (i < ends.length - 1 && ends[i].y > ends[i + 1].y - 12) ends[i].y = ends[i + 1].y - 12;
   }
-  for (const e of ends) text(svg, e.x + 6, e.y + 4, e.label, { class: 't-ink2' });
+  for (const e of ends) text(svg, e.x + 6, e.y + 4, e.label, { class: 't-ink2', 'data-m': e.mk });
   // 십자선 + 도움말: 가장 가까운 x 의 값
   const xs = [...new Set(series.flatMap((s) => s.points.map((p) => p[0])))].sort((a, b) => a - b);
   const cross = el('line', { y1: top, y2: height - bottom, class: 'axis', visibility: 'hidden' }, svg);
@@ -289,39 +292,327 @@ function refsFor(t) {
   return out;
 }
 
-// ---------------------------------------------------------------- 1. 후보 그림
-function drawSchematics() {
-  const g = $('#folio-slots');
-  g.innerHTML = '';
-  for (let i = 0; i < 32; i++) {
-    const cx = 140 + (i % 8) * 19, cy = 18 + Math.floor(i / 8) * 15;
-    el('rect', { x: cx, y: cy, width: 15, height: 11, rx: 1.5, style: `fill:${i === 9 || i === 22 ? 'var(--folio)' : 'none'};stroke:var(--folio);stroke-width:1;fill-opacity:0.6` }, g);
+// ---------------------------------------------------------------- 모델 강조 (고정 막대의 버튼 → 모든 그림)
+const FOCUS_ROSTER = ['transformer', 'transformer256', 'gru', 'folio', 'folio2', 'strata', 'lattice', 'lattice2'];
+const focus = new Set();
+function drawChips() {
+  const box = $('#chips');
+  box.innerHTML = '<span class="lab">강조</span>';
+  for (const v of FOCUS_ROSTER) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(focus.has(v)));
+    b.append(swatch(v), MODELS[v].name);
+    b.addEventListener('click', () => { if (focus.has(v)) focus.delete(v); else focus.add(v); applyFocus(); drawChips(); });
+    box.appendChild(b);
   }
+}
+function applyFocus() {
+  let st = $('#focus-style');
+  if (!st) { st = document.createElement('style'); st.id = 'focus-style'; document.head.appendChild(st); }
+  st.textContent = focus.size ? `[data-m]{opacity:.13}${[...focus].map((v) => `[data-m="${v}"]{opacity:1}`).join('')}` : '';
+}
+
+// ---------------------------------------------------------------- 결과: 큰 숫자
+function drawTiles() {
+  const E = COND.E.f, A = COND.A.f;
+  const m = (v, f, t) => mean(vals(v, f, t));
+  const core = D.tasks.filter((t) => t.train && t.core).map((t) => t.key);
+  const avg = (v) => mean(core.map((t) => m(v, E, t)));
+  const cands = CANDS.concat(IMPROVED).sort((a, b) => avg(b) - avg(a));
+  const F = D.runs.filter((r) => r.delay && r.tasks[0] === 'kvd');
+  const fd = (v, c, i) => mean(F.filter((r) => r.variant === v && r.chunk === c).map((r) => bucketAcc(r.delay, i)));
+  const r = (v) => D.measure.rows.find((x) => x.variant === v);
+  const ratios = CANDS.map((v) => r(v).train_sec_per_step / r('transformer').train_sec_per_step);
+  const tiles = [
+    ['#learn', pct(m('transformer', E, 'kv')), 'Transformer, 키-값', `800걸음 때는 ${pct(m('transformer', A, 'kv'))}였다`],
+    ['#delay-sec', pct(fd('gru', 256, 4)), 'GRU, 256–512기호 전 기억', `학습 신호를 64기호에서 끊으면 ${pct(fd('gru', 64, 4))}`],
+    ['#board', `${p1(avg('gru'))} : ${p1(avg(cands[0]))}`, `GRU 대 최고 후보 ${MODELS[cands[0]].name}`, `학습 과제 ${core.length}개 평균 정확도(%)`],
+    ['#cost', `${Math.min(...ratios).toFixed(0)}–${Math.max(...ratios).toFixed(0)}배`, '후보 학습 한 걸음이 더 걸린다', 'Transformer와 비교'],
+  ];
+  $('#tiles').innerHTML = tiles.map(([h, big, what, sub]) => `<a class="tile" href="${h}"><span class="big">${big}</span><span class="what">${what}</span><span class="sub">${sub}</span></a>`).join('');
+}
+
+// ---------------------------------------------------------------- 결과: 점수판 (열 하나 = 시험 하나)
+function boardColumns() {
+  const E = COND.E.f;
+  const fromTask = (t, f, label) => ({
+    label: label || TASK[t].name, values: (v) => vals(v, f, t), oracle: oracleOf(t), chance: TASK[t].chance,
+    rule: TASK[t].rule ? TASK[t].rule.accuracy : null, ruleName: TASK[t].rule ? TASK[t].rule.name : null,
+  });
+  const fromBucket = (i, label) => ({
+    label,
+    values: (v) => D.runs.filter((r) => r.delay && r.tasks[0] === 'kvd' && r.variant === v && r.chunk === (v === 'transformer' ? 64 : 256))
+      .map((r) => bucketAcc(r.delay, i)).filter((q) => !Number.isNaN(q)),
+    oracle: 1, chance: 0.125, rule: D.delay_baseline ? bucketAcc(D.delay_baseline, i) : null, ruleName: '가장 최근 저장값',
+  });
+  return [
+    { title: '함께 학습 · 3000걸음', href: '#learn', cols: [fromTask('switch_fast', E, '요리 교대'), fromTask('phrase', E, '코스'), fromTask('cycle', E, '24접시'), fromTask('kv', E, '키-값'), fromTask('mixed', E, '혼합'), fromTask('chain', E, '관계 사슬')], avg: true },
+    { title: '긴 사슬', href: '#hops', cols: [fromTask('chain_hop4', E, '4단계')] },
+    { title: '저장 후 지연', href: '#delay-sec', cols: [fromBucket(2, '64–128'), fromBucket(4, '256–512')] },
+    { title: '새 과제', href: '#suite-sec', cols: [fromTask('cyc', isSuite, '순환 사슬'), fromTask('count', isSuite, '셈'), fromTask('copy', isSuite, '베끼기'), fromTask('paren', isSuite, '괄호'), fromTask('slowp', isSuite, '느린 주기')] },
+  ];
+}
+function drawBoard() {
+  const groups = boardColumns();
+  const cols = groups.flatMap((g) => g.cols);
+  const table = $('#board-table');
+  const avgCols = groups.find((g) => g.avg).cols;
+  const avgOf = (v) => { const a = avgCols.map((c) => mean(c.values(v))); return a.some(Number.isNaN) ? NaN : mean(a); };
+  let html = '<thead><tr><th class="name"></th>' + groups.map((g) => `<th colspan="${g.cols.length + (g.avg ? 1 : 0)}"><a href="${g.href}">${g.title}</a></th>`).join('') + '</tr>';
+  html += '<tr><th class="name"></th>' + groups.map((g) => g.cols.map((c) => `<th>${c.label}</th>`).join('') + (g.avg ? '<th>평균</th>' : '')).join('') + '</tr></thead><tbody>';
+  for (const v of FOCUS_ROSTER) {
+    html += `<tr data-m="${v}"><th class="name"><span class="sw" style="background:${colorOf(v)}"></span>${MODELS[v].name}</th>`;
+    let i = 0;
+    for (const g of groups) {
+      for (const c of g.cols) {
+        const a = c.values(v), val = mean(a);
+        if (Number.isNaN(val)) html += '<td class="none">–</td>';
+        else {
+          const top = Math.max(...FOCUS_ROSTER.map((w) => mean(c.values(w))).filter((q) => !Number.isNaN(q)));
+          const near = c.rule != null && Math.abs(val - c.rule) <= 0.02;
+          const style = `background:color-mix(in oklab, var(--seq) ${Math.round(val * 100)}%, var(--page))`;
+          // 모두 우연 근처인 열에는 1등을 표시하지 않는다
+          const best = val >= top - 0.005 && top >= c.chance + 0.05;
+          const flip = val >= 0.8 ? 'flip' : val >= 0.7 ? 'flip-dark' : '';
+          html += `<td data-c="${i}" class="${best ? 'best ' : ''}${near ? 'near ' : ''}${flip}" style="${style}">${(val * 100).toFixed(0)}</td>`;
+        }
+        i++;
+      }
+      if (g.avg) { const q = avgOf(v); html += `<td class="avg">${Number.isNaN(q) ? '–' : (q * 100).toFixed(1)}</td>`; }
+    }
+    html += '</tr>';
+  }
+  table.innerHTML = html + '</tbody>';
+  table.querySelectorAll('td[data-c]').forEach((td) => {
+    const c = cols[+td.dataset.c], v = td.parentElement.dataset.m, a = c.values(v);
+    td.addEventListener('mousemove', (ev) => showTip(ev, `${MODELS[v].name} · ${c.label}`, [
+      ['평균', pct(mean(a)), colorOf(v)], ['난수별', a.map((q) => p1(q)).join(' · ')],
+      ...(c.oracle != null ? [['이론적 최대', pct(c.oracle)]] : []),
+      ...(c.rule != null ? [[`규칙: ${c.ruleName}`, pct(c.rule)]] : []),
+    ]));
+    td.addEventListener('mouseleave', hideTip);
+  });
+}
+
+// ---------------------------------------------------------------- 직접 풀기: 실제 시험 문제와 모델의 실제 답
+const VALUES = '12345678', KEYS = 'ABCDEFGH', ENTS = '가나다라마바사아';
+const valOf = (t) => VALUES[t], keyOf = (t) => KEYS[t - 8], entOf = (t) => ENTS[t - 16];
+const tokHtml = (s, cls = '') => `<span class="tok ${cls}">${s}</span>`;
+const GAMES = {
+  kv: {
+    name: '키-값 기억', ask: (q) => `${keyOf(q.prompt[q.prompt.length - 1])}에 지금 들어 있는 값은?`,
+    options: [...Array(8).keys()], glyph: (t) => (t >= 0 && t < 8 ? valOf(t) : '다른 기호'),
+    ops: (q) => { const p = q.prompt, o = []; for (let i = 0; i + 2 < p.length; i += 3) o.push({ store: p[i] === 24, k: p[i + 1], v: p[i + 2], i }); return o; },
+    tape(q, done) {
+      const ops = this.ops(q), k = q.prompt[q.prompt.length - 1];
+      const last = ops.filter((o) => o.k === k).pop();
+      return ops.map((o) => tokHtml(o.store ? `${keyOf(o.k)}=${valOf(o.v)}` : `${keyOf(o.k)}? ${valOf(o.v)}`, `${o.store ? '' : 'old'} ${done && o === last ? 'hit' : ''}`)).join('');
+    },
+    why(q) { return `${keyOf(q.prompt[q.prompt.length - 1])}에 마지막으로 나온 값은 ${valOf(q.answer)}이다.`; },
+    flash: true,
+  },
+  chain: {
+    name: '관계 사슬', ask: (q) => `${entOf(q.prompt[q.prompt.length - 1])}에서 화살표를 끝까지 따라가면?`,
+    options: [...Array(8).keys()].map((i) => i + 16), glyph: (t) => (t >= 16 && t < 24 ? entOf(t) : '다른 기호'),
+    tape(q) {
+      const p = q.prompt; let h = '';
+      for (let i = 1; i < p.length - 2;) {
+        if (p[i] === 25) { h += tokHtml(`${entOf(p[i + 1])} 끝? ${entOf(p[i + 2])}`, 'old'); i += 3; } else { h += tokHtml(`${entOf(p[i])}→${entOf(p[i + 2])}`); i += 3; }
+      }
+      return h;
+    },
+    why(q) {
+      const p = q.prompt, nx = {};
+      for (let i = 1; i + 2 < p.length; i++) if (p[i] === 26) nx[p[i - 1]] = p[i + 1];
+      const path = [p[p.length - 1]];
+      while (nx[path[path.length - 1]] != null) path.push(nx[path[path.length - 1]]);
+      return `${path.map(entOf).join(' → ')}`;
+    },
+  },
+  paren: {
+    name: '괄호 닫기', ask: () => '다음에 닫히는 괄호는?',
+    options: [8, 9], glyph: (t) => ({ 8: ')', 9: ']' })[t] || '다른 기호',
+    tape(q) {
+      const p = q.prompt; let h = '';
+      for (let i = 0; i < p.length - 1; i++) {
+        if (p[i] === 29) h += tokHtml('(', 'bare');
+        else if (p[i] === 30) h += tokHtml('[', 'bare');
+        else if (p[i] === 25) { h += tokHtml(p[i + 1] === 8 ? ')' : ']', 'bare'); i++; } else h += tokHtml('·', 'fill');
+      }
+      return h + tokHtml('?', 'q');
+    },
+    why(q) { return `가장 안쪽에 열려 있는 괄호는 ${q.answer === 8 ? '(' : '['} 이다. 점은 뜻 없는 기호다.`; },
+  },
+  copy: {
+    name: '베끼기 · 뒤집기', ask: () => '다음 기호는?',
+    options: [...Array(16).keys()], glyph: (t) => (t >= 0 && t < 8 ? valOf(t) : t >= 8 && t < 16 ? keyOf(t) : '다른 기호'),
+    tape(q) {
+      const p = q.prompt, g = (t) => this.glyph(t); let h = '';
+      for (let i = 1; i < p.length; i++) h += p[i] === 29 ? tokHtml('그대로', 'tag') : p[i] === 30 ? tokHtml('거꾸로', 'tag') : tokHtml(g(p[i]));
+      return h + tokHtml('?', 'q');
+    },
+    why(q) { const j = q.prompt.findIndex((t) => t === 29 || t === 30); return `${q.prompt[j] === 30 ? '원문을 거꾸로' : '원문을 그대로'} 내는 중이고, ${q.prompt.length - j}번째 기호는 ${this.glyph(q.answer)}이다.`; },
+  },
+};
+const play = { task: 'kv', memory: true, st: {}, timer: null };
+function playState(task) {
+  return play.st[task] || (play.st[task] = { i: 0, picked: null, me: 0, done: 0, models: {} });
+}
+function stopFlash() { clearTimeout(play.timer); play.timer = null; }
+function drawPlay() {
+  picker($('#play-picker'), '문제', Object.keys(GAMES).map((k) => [k, GAMES[k].name]), play.task, (k) => { play.task = k; stopFlash(); drawPlay(); });
+  stopFlash();
+  const stage = $('#stage'), g = GAMES[play.task], data = D.samples.tasks[play.task], st = playState(play.task);
+  if (st.i >= data.questions.length) { drawPlayEnd(stage, g, data, st); return; }
+  const q = data.questions[st.i], answered = st.picked != null;
+  const flash = g.flash && play.memory && !answered;
+  stage.innerHTML = `<div class="stage-top"><span>${st.i + 1} / ${data.questions.length}번 문제</span><span>${answered ? '' : g.flash ? `<button type="button" class="txt-btn" id="mode">${play.memory ? '보면서 풀기' : '기억하며 풀기'}</button>` : ''}</span></div>
+    <div class="tape" id="tape">${flash ? '' : g.tape(q, answered)}</div>
+    <p class="ask" id="ask"${flash ? ' hidden' : ''}>${g.ask(q)}</p>
+    <div class="opts" id="opts"${flash ? ' hidden' : ''}></div><div id="after"></div>`;
+  const mode = $('#mode');
+  if (mode) mode.addEventListener('click', () => { play.memory = !play.memory; drawPlay(); });
+  const opts = $('#opts');
+  for (const o of g.options) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = g.glyph(o);
+    if (answered) { b.disabled = true; if (o === q.answer) b.className = 'right'; else if (o === st.picked) b.className = 'wrong'; }
+    else b.addEventListener('click', () => answer(q, o));
+    opts.appendChild(b);
+  }
+  if (flash) runFlash(g, q);
+  if (answered) drawAfter(g, q, st, data);
+}
+function runFlash(g, q) {
+  const ops = g.ops(q), tape = $('#tape');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0;
+  const step = () => {
+    if (i >= ops.length) {
+      tape.innerHTML = '<div class="flash" style="width:100%"><small>이제 가렸다. 기억나는가?</small></div>';
+      $('#ask').hidden = false; $('#opts').hidden = false;
+      return;
+    }
+    const o = ops[i];
+    tape.innerHTML = `<div class="flash" style="width:100%">${tokHtml(o.store ? `${keyOf(o.k)}=${valOf(o.v)}` : `${keyOf(o.k)}? ${valOf(o.v)}`, o.store ? '' : 'old')}<small>${i + 1} / ${ops.length}</small></div>`;
+    i++;
+    play.timer = setTimeout(step, reduce ? 1400 : 850);
+  };
+  step();
+}
+function answer(q, o) {
+  const st = playState(play.task);
+  st.picked = o; st.done++;
+  if (o === q.answer) st.me++;
+  for (const [v, p] of Object.entries(q.preds)) st.models[v] = (st.models[v] || 0) + p.filter((x) => x === q.answer).length;
+  drawPlay();
+}
+function playFilter(task) { return D.samples.tasks[task].group === 'E' ? COND.E.f : isSuite; }
+function answerRows(q, st, task) {
+  const f = playFilter(task), g = GAMES[task];
+  const vs = FOCUS_ROSTER.filter((v) => (q ? q.preds[v] : st.models[v] != null));
+  return vs.map((v) => {
+    const c = colorOf(v), test = mean(vals(v, f, task)), so = (st.models[v] || 0) / (st.done * 3);
+    let dots = '', said = '';
+    if (q) {
+      dots = q.preds[v].map((x) => `<i class="${x === q.answer ? 'y' : ''}"></i>`).join('');
+      const tally = {}; q.preds[v].forEach((x) => { tally[x] = (tally[x] || 0) + 1; });
+      said = g.glyph(+Object.keys(tally).sort((a, b) => tally[b] - tally[a])[0]);
+    }
+    return `<div class="ans" data-m="${v}" style="--c:${c}"><span class="who"><span class="sw" style="background:${c}"></span>${MODELS[v].name}</span>
+      <span class="dots" aria-label="난수 3개 중 ${q ? q.preds[v].filter((x) => x === q.answer).length : ''}개 정답">${dots}</span><span class="said">${said}</span>
+      <span class="so" title="지금까지 ${(so * 100).toFixed(0)}%"><b style="width:${so * 100}%"></b></span><span class="test">${pct(test, 0)}</span></div>`;
+  }).join('');
+}
+const ansHead = (one = true) => `<div class="ans head"><span></span><span>${one ? '난수 3개' : ''}</span><span>${one ? '답' : ''}</span><span>${one ? '지금까지 푼 문제' : '이 8문제 정답률'}</span><span style="text-align:right">전체 시험</span></div>`;
+function drawAfter(g, q, st, data) {
+  const ok = st.picked === q.answer, n = Object.keys(q.preds).length;
+  const allRight = Object.values(q.preds).filter((p) => p.every((x) => x === q.answer)).length;
+  const last = st.i + 1 >= data.questions.length;
+  $('#after').innerHTML = `<p class="verdict">${ok ? '맞았다.' : `틀렸다. 답은 ${g.glyph(q.answer)}.`} ${allRight ? `모델 ${n}종 중 ${allRight}종은 난수 셋 다 맞혔다.` : '난수 셋 다 맞힌 모델은 없다.'}</p><p class="why">${g.why(q)}</p>
+    <div class="answers">${ansHead()}${answerRows(q, st, play.task)}</div>
+    <div class="foot-row"><button type="button" class="txt-btn primary" id="next">${last ? '결과 보기' : '다음 문제'}</button><span class="note" style="margin:0">내 점수 ${st.me} / ${st.done}</span></div>`;
+  $('#next').addEventListener('click', () => { st.i++; st.picked = null; drawPlay(); });
+}
+function drawPlayEnd(stage, g, data, st) {
+  const best = FOCUS_ROSTER.filter((v) => st.models[v] != null).sort((a, b) => st.models[b] - st.models[a])[0];
+  stage.innerHTML = `<div class="tile" style="border:0;padding:0"><span class="big">${st.me} / ${st.done}</span><span class="what">${g.name} 내 점수</span><span class="sub">같은 문제에서 ${MODELS[best].name}는 ${((st.models[best] / (st.done * 3)) * 100).toFixed(0)}%를 맞혔다</span></div>
+    <div class="answers">${ansHead(false)}${answerRows(null, st, play.task)}</div>
+    <div class="foot-row"><button type="button" class="txt-btn" id="again">다시 풀기</button>${Object.keys(GAMES).filter((k) => k !== play.task).map((k) => `<button type="button" class="txt-btn" data-go="${k}">${GAMES[k].name} 풀기</button>`).join('')}</div>`;
+  $('#again').addEventListener('click', () => { delete play.st[play.task]; drawPlay(); });
+  stage.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => { play.task = b.dataset.go; drawPlay(); }));
+}
+
+// ---------------------------------------------------------------- 구조: 기호를 넣으면 무엇이 바뀌나 (설명용 그림)
+const sch = { t: 0, timer: null };
+function drawSchematicsAt(t) {
+  $('#sch-label').textContent = `기호 ${t}`;
+  $('#sch-t').value = t;
+  // Folio: 기호마다 한 칸에 쓰고 두 칸을 읽는다 (칸 번호는 설명용 난수)
+  const f = $('#folio-svg');
+  f.innerHTML = '';
+  el('rect', { x: 6, y: 30, width: 62, height: 32, rx: 3, fill: 'none', stroke: 'var(--folio)', 'stroke-width': 1.5 }, f);
+  text(f, 37, 50, '제어', { 'text-anchor': 'middle', class: 't-ink2' });
+  const w = (t * 13 + 5) % 32, r1 = (t * 7 + 21) % 32, r2 = (t * 11 + 2) % 32;
+  const slot = (i) => [140 + (i % 8) * 19, 18 + Math.floor(i / 8) * 15];
+  for (let i = 0; i < 32; i++) {
+    const [x, y] = slot(i), written = i === w, read = i === r1 || i === r2;
+    el('rect', { x, y, width: 15, height: 11, rx: 1.5, style: `fill:${written ? 'var(--folio)' : read ? 'var(--ink-2)' : 'none'};stroke:${read ? 'var(--ink-2)' : 'var(--folio)'};stroke-width:1` }, f);
+  }
+  const [wx, wy] = slot(w), [rx, ry] = slot(r1);
+  el('path', { d: `M68 40 C 95 ${wy}, 110 ${wy + 5}, ${wx} ${wy + 5}`, fill: 'none', style: 'stroke:var(--folio);stroke-width:1.2' }, f);
+  el('path', { d: `M${rx} ${ry + 5} C 110 ${ry + 5}, 95 70, 68 54`, fill: 'none', style: 'stroke:var(--ink-2);stroke-width:1' }, f);
+  text(f, 76, 16, '파랑: 쓰기', { class: 't-num' });
+  text(f, 76, 88, '회색: 읽기 2번', { class: 't-num' });
+  // Strata: 지금 고쳐지는 층의 칸만 진하게
   const s = $('#strata-svg');
   s.innerHTML = '';
-  // 층마다 한 번 고쳐질 때까지의 구간을 한 칸으로 그린다 (64기호 동안)
-  const u = 3.8;
+  const u = 3.8, tt = t % 64;
   [64, 16, 4, 1].forEach((p, row) => {
-    const y = 8 + row * 20;
-    text(s, 0, y + 10, `${p}마다`, { class: 't-num' });
-    for (let t = 0; t < 64; t += p) {
-      el('rect', { x: 50 + t * u, y, width: Math.max(1.6, p * u - 1.6), height: 13, rx: 1.5, style: `fill:var(--strata);fill-opacity:${0.3 + row * 0.18}` }, s);
+    const y = 8 + row * 20, fresh = tt % p === 0;
+    text(s, 0, y + 10, `${p}마다`, { class: fresh ? 't-num t-ink' : 't-num' });
+    for (let c = 0; c < 64; c += p) {
+      const on = tt >= c && tt < c + p;
+      el('rect', { x: 50 + c * u, y, width: Math.max(1.6, p * u - 1.6), height: 13, rx: 1.5, style: `fill:var(--strata);fill-opacity:${on ? (fresh ? 1 : 0.55) : 0.14}` }, s);
     }
   });
+  // Lattice: 입력 칸에서 메시지가 세 번 퍼진다. 격자의 양끝은 이어져 있다.
   const l = $('#lattice-svg');
   l.innerHTML = '';
-  const cell = 17, ox = 92;
+  const cell = 17, ox = 92, k = t % 4;
+  const torus = (a) => Math.min(a, 4 - a);
   for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
-    el('rect', { x: ox + c * (cell + 4), y: 4 + r * (cell + 4), width: cell, height: cell, rx: 2, style: `fill:${r === 0 && c === 0 ? 'var(--lattice)' : 'none'};stroke:var(--lattice);stroke-width:1.2` }, l);
-  }
-  // 가운데 칸 하나가 상하좌우 이웃과 주고받는 모습
-  const cx = ox + 2 * (cell + 4) + cell / 2, cy = 4 + 2 * (cell + 4) + cell / 2;
-  el('circle', { cx, cy, r: 2.5, style: 'fill:var(--ink-2)' }, l);
-  for (const [dx, dy] of [[0, -1], [0, 1], [-1, 0], [1, 0]]) {
-    el('line', { x1: cx + dx * 4, y1: cy + dy * 4, x2: cx + dx * (cell + 1), y2: cy + dy * (cell + 1), style: 'stroke:var(--ink-2);stroke-width:1.2', 'marker-end': 'url(#arr)' }, l);
+    const reached = torus(r) + torus(c) <= k, never = torus(r) + torus(c) > 3;
+    el('rect', { x: ox + c * (cell + 4), y: 4 + r * (cell + 4), width: cell, height: cell, rx: 2, style: `fill:var(--lattice);fill-opacity:${reached ? (r === 0 && c === 0 ? 1 : 0.55) : 0};stroke:${never ? 'var(--bad)' : 'var(--lattice)'};stroke-width:${never ? 1.6 : 1.2}` }, l);
   }
   text(l, ox - 10, 16, '입력', { 'text-anchor': 'end', class: 't-num' });
-  text(l, ox + 96, 50, '× 3회 반복', { class: 't-num' });
+  text(l, ox + 94, 26, `주고받기 ${k}번`, { class: 't-num t-ink2' });
+  text(l, ox + 94, 58, '빨강: 세 번으론', { class: 't-num' });
+  text(l, ox + 94, 72, '못 닿는 칸', { class: 't-num' });
+}
+function setupSchematics() {
+  const btn = $('#sch-play'), range = $('#sch-t');
+  const stop = () => { clearInterval(sch.timer); sch.timer = null; btn.textContent = '▶ 재생'; btn.setAttribute('aria-pressed', 'false'); };
+  const start = () => {
+    sch.timer = setInterval(() => { sch.t = (sch.t + 1) % 64; drawSchematicsAt(sch.t); }, 450);
+    btn.textContent = '❚❚ 멈춤'; btn.setAttribute('aria-pressed', 'true');
+  };
+  btn.addEventListener('click', () => (sch.timer ? stop() : start()));
+  range.addEventListener('input', () => { stop(); sch.t = +range.value; drawSchematicsAt(sch.t); });
+  sch.touched = false;
+  btn.addEventListener('click', () => { sch.touched = true; }, { once: true });
+  range.addEventListener('input', () => { sch.touched = true; }, { once: true });
+  // 화면에 들어오면 저절로 움직인다 (움직임 줄이기 설정이면 멈춰 둔다)
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    new IntersectionObserver((es) => {
+      for (const e of es) {
+        if (e.isIntersecting && !sch.timer && !sch.touched) start();
+        else if (!e.isIntersecting && sch.timer && !sch.touched) stop();
+      }
+    }).observe($('#build'));
+  }
 }
 
 // ---------------------------------------------------------------- 2. 과제 표
@@ -369,11 +660,9 @@ function drawAccuracy() {
     }
   }
   const n = new Set(D.runs.filter(f).map((r) => r.seed)).size;
-  $('#acc-cap').innerHTML = `<b>${COND[cond].label}.</b> 난수 ${n}개. 작은 점이 난수 하나, 굵은 점이 평균, 가로 막대가 ±표준편차입니다. `
-    + (cond === 'D' ? '과제별 학습은 그 문제와 그 문제의 긴 변형만 시험했습니다. ' : '')
-    + (cond === 'E' && n === 1 ? '난수 하나뿐이라 편차가 없습니다. ' : '')
-    + (roster.length > MAIN.length ? 'Folio2 · Lattice2 는 개선판입니다(8절). ' : '')
-    + (metric === 'bits' ? '손실은 정답에 준 확률의 로그(비트)로, 0에 가까울수록 확신을 갖고 맞힌 것입니다.' : '');
+  $('#acc-cap').innerHTML = `작은 점이 난수 하나(${n}개), 큰 점이 평균이다.`
+    + (cond === 'D' ? ' 과제 하나씩 학습한 모델은 그 문제와 긴 변형만 시험했다.' : '')
+    + (metric === 'bits' ? ' 손실은 0에 가까울수록 확신을 갖고 맞힌 것이다.' : '');
 }
 
 // ---------------------------------------------------------------- 4. 학습 곡선
@@ -402,9 +691,9 @@ function drawCurves() {
   const gain = (v, t) => mean(vals(v, COND.E.f, t)) - mean(vals(v, COND.A.f, t));
   const big = MAIN.map((v) => [v, mean(D.tasks.filter((x) => x.train && x.core).map((x) => gain(v, x.key)))]).sort((a, b) => b[1] - a[1]);
   const nE = new Set(D.runs.filter(COND.E.f).map((r) => r.seed)).size;
-  $('#curve-cap').innerHTML = `시험 정확도로 본 800 → 3000걸음 평균 상승(난수 ${nE}개 평균, 학습 과제 6개): `
+  $('#curve-cap').innerHTML = `800 → 3000걸음 평균 상승(시험 정확도, 난수 ${nE}개): `
     + big.map(([v, g]) => `${MODELS[v].name} <b>${g >= 0 ? '+' : '−'}${Math.abs(g * 100).toFixed(1)}%p</b>`).join(' · ')
-    + '. 가장 많이 오른 모델이 800걸음 표에서 가장 손해를 본 모델입니다.';
+    + '. 곡선이 끝에서 평평한 건 학습률이 0으로 줄기 때문이라, 다 배웠다는 뜻은 아니다.';
 }
 
 // ---------------------------------------------------------------- 5. 관계 사슬 단계 수
@@ -416,9 +705,9 @@ function drawHops() {
   const box = $('#hop-charts');
   box.innerHTML = '';
   const conds = [
-    ['공동 학습 · 800걸음', COND.A.f, '난수 3개 평균'],
+    ['함께 학습 · 800걸음', COND.A.f, '난수 3개 평균'],
     ['관계 사슬만 · 400걸음', (r) => COND.D.f(r) && r.tasks[0] === 'chain', '난수 3개 평균'],
-    ['공동 학습 · 3000걸음', COND.E.f, `난수 ${new Set(D.runs.filter(COND.E.f).map((r) => r.seed)).size}개 평균`],
+    ['함께 학습 · 3000걸음', COND.E.f, `난수 ${new Set(D.runs.filter(COND.E.f).map((r) => r.seed)).size}개 평균`],
   ];
   for (const [title, f, sub] of conds) {
     const series = MAIN.map((v) => ({
@@ -431,9 +720,9 @@ function drawHops() {
     });
   }
   const e = (v, t) => mean(vals(v, COND.E.f, t));
-  $('#hop-cap').innerHTML = `3000걸음에서 4단계(학습보다 1단계 김) 정확도: `
+  $('#hop-cap').innerHTML = `3000걸음, 학습보다 한 단계 긴 4단계: `
     + MAIN.map((v) => `${MODELS[v].name} <b>${pct(e(v, 'chain_hop4'))}</b>`).join(' · ')
-    + '. 3단계와 4단계가 거의 같으면, 배운 방법이 한 단계 더 긴 사슬에도 그대로 통한다는 뜻입니다.';
+    + '. 5단계 문제는 짧은 사슬이 하나뿐이라 찍기가 쉽다.';
 }
 
 // ---------------------------------------------------------------- 6. 키-값 지연 사다리
@@ -452,7 +741,7 @@ function drawDelay() {
   if (!have.length) { sec.hidden = true; return; }
   sec.hidden = false;
   if (!have.includes(delayTrain)) delayTrain = have[0];
-  picker($('#delay-picker'), '학습 채점', have.map((t) => [t, t === 'kvd' ? '숨긴 키 질의만 (F)' : '모든 질의 (G)']), delayTrain,
+  picker($('#delay-picker'), '학습 채점', have.map((t) => [t, t === 'kvd' ? '숨긴 키만 채점' : '모든 질의 채점']), delayTrain,
     (k) => { delayTrain = k; drawDelay(); });
   const F = D.runs.filter((r) => r.delay && r.tasks[0] === delayTrain);
   const key = $('#delay-key');
@@ -463,7 +752,7 @@ function drawDelay() {
     if (rs.length) combos.push({ v, c, rs });
   }
   keyRow(key, roster.filter((v) => combos.some((x) => x.v === v)).map((k) => [k, 'line']));
-  refKey(key, [['line', '청크 256 (기울기가 에피소드 전체에 닿음)'], ['thin', '청크 64'], ['dash', '최근 저장값 규칙']]);
+  refKey(key, [['line', '청크 256'], ['thin', '청크 64'], ['dash', '최근 저장값 규칙']]);
   const series = combos.map(({ v, c, rs }) => ({
     key: v, thin: c === 64, points: delayCurve(rs).map(([i, m]) => [i, m]),
     label: c === 256 || v === 'transformer' ? `${MODELS[v].name} ${c}` : null, tipLabel: `${MODELS[v].name} · 청크 ${c} (난수 ${rs.length})`,
@@ -473,13 +762,13 @@ function drawDelay() {
   lineChart(box, {
     series, xDomain: [-0.3, BUCKETS.length - 0.7], xTicks: BUCKETS.map((_, i) => i), xFmt: (i) => BUCKETS[i], height: 280,
     refs: [{ v: mean(base), cls: 'ref-rule' }, { v: 0.125, cls: 'grid' }],
-    vlines: [{ x: 1.5, label: '64기호: 창 · 청크 64 경계' }, { x: 3.5, label: '학습 최대 지연' }],
+    vlines: [{ x: 1.5, label: '64기호' }, { x: 3.5, label: '학습 최대 지연' }],
   });
   const at = (v, c, b) => { const cc = combos.find((x) => x.v === v && x.c === c); if (!cc) return '–'; const p = delayCurve(cc.rs).find((q) => BUCKETS[q[0]] === b); return p ? pct(p[1]) : '–'; };
-  $('#delay-cap').innerHTML = `지연 128–256기호(학습 범위 안, 청크 64 밖): `
-    + combos.map(({ v, c }) => `${MODELS[v].name} ${c} <b>${at(v, c, '128-256')}</b>`).join(' · ')
-    + `. 지연 256–512기호(학습보다 김): ` + combos.map(({ v, c }) => `${MODELS[v].name} ${c} <b>${at(v, c, '256-512')}</b>`).join(' · ')
-    + '. 우연 12.5%. 시험은 두 학습 방식 모두 숨긴 키 질의만 채점합니다. 256기호까지는 학습과 같은 분포의 시험(길이 256), 그 뒤는 길이 1024 시험입니다. 2000걸음 · 난수 3개 평균.';
+  const head = delayTrain === 'kvd'
+    ? `청크 256이면 창 밖도 맞힌다. 256–512기호에서 GRU는 <b>${at('gru', 64, '256-512')} → ${at('gru', 256, '256-512')}</b>, Folio는 <b>${at('folio', 64, '256-512')} → ${at('folio', 256, '256-512')}</b>로 올랐다. Transformer(창 64)는 숨긴 키만 채점하면 창 안도 잘 못 배운다.`
+    : `방해 구간까지 채점하니 Transformer는 창 안(32–64기호)이 <b>${at('transformer', 64, '32-64')}</b>까지 올랐다. GRU와 Folio는 최근 키만 좇게 되어 같은 구간이 <b>${at('gru', 256, '32-64')}</b>, <b>${at('folio', 256, '32-64')}</b>로 떨어졌다.`;
+  $('#delay-cap').innerHTML = `${head} 시험은 어느 쪽이든 숨긴 키만 묻는다. 2000걸음, 난수 3개 평균. 우연은 12.5%.`;
 }
 
 // ---------------------------------------------------------------- 7. 새 과제 묶음 (계획 H): 난이도 손잡이별 곡선
@@ -505,7 +794,7 @@ function drawSuite() {
   sec.hidden = false;
   const roster = SUITE_ROSTER.filter((v) => H.some((r) => r.variant === v));
   keyRow($('#suite-key'), roster.map((k) => [k, 'line']));
-  refKey($('#suite-key'), [['dash', '단순 규칙'], ['thin', 'Strata 모든 층 매번 갱신 (느린 주기만)']]);
+  refKey($('#suite-key'), [['dash', '단순 규칙'], ['thin', 'Strata 층 없앤 대조군 (느린 주기만)']]);
   const box = $('#suite-charts');
   box.innerHTML = '';
   for (const [fk, fam] of Object.entries(FAMILIES)) {
@@ -535,12 +824,7 @@ function drawSuite() {
     const rows = roster.map((v) => ({ key: v, label: nameOf(v), values: vals(v, isSuite, t.key) }));
     dotRows(panel(box2, t.name, `${t.skill}${t.train ? '' : ' · 시험만'}`), { rows, domain: [0, 1], refs: refsFor(t.key) });
   }
-  const hard = { cyc: 7, copy: 48, paren: 7 };
-  const at = (v, fk) => { const p = knobCurve(H.filter((r) => r.variant === v), FAMILIES[fk]).find((q) => q[0] === hard[fk]); return p ? pct(p[1]) : '–'; };
-  $('#suite-cap').innerHTML = `가장 어려운 칸. 7걸음: ` + roster.map((v) => `${MODELS[v].name} <b>${at(v, 'cyc')}</b>`).join(' · ')
-    + `. 원문 48기호: ` + roster.map((v) => `${MODELS[v].name} <b>${at(v, 'copy')}</b>`).join(' · ')
-    + `. 깊이 7: ` + roster.map((v) => `${MODELS[v].name} <b>${at(v, 'paren')}</b>`).join(' · ')
-    + `. 공동 학습 · 3000걸음 · 난수 ${new Set(H.map((r) => r.seed)).size}개 평균. 세로선 왼쪽이 학습 범위, 오른쪽이 학습보다 어려운 시험입니다. 가는 가로선은 우연 수준입니다.`;
+  $('#suite-cap').innerHTML = `함께 학습 · 3000걸음 · 난수 ${new Set(H.map((r) => r.seed)).size}개 평균. 가는 가로선이 우연 수준이다. 그래프에 마우스를 올리면 값이 나온다.`;
 }
 
 // ---------------------------------------------------------------- 8. 개선판: 원래 → 개선
@@ -593,9 +877,9 @@ function drawImproved() {
     dumbbells(panel(box, `${MODELS[v1].name} → ${MODELS[v2].name}`, '빈 원 = 원래 · 찬 원 = 개선판 · 정확도 %'), { rows, color: colorOf(v2) });
     const ok = rows.filter((r) => !Number.isNaN(r.a) && !Number.isNaN(r.b));
     const up = ok.filter((r) => r.b - r.a > 0.02).length, down = ok.filter((r) => r.a - r.b > 0.02).length;
-    caps.push(`${MODELS[v2].name}: 비교 ${ok.length}개 중 <b>${up}개 오름</b> · ${down}개 내림(±2%p 넘는 것) · 평균 ${(mean(ok.map((r) => r.b - r.a)) * 100).toFixed(1)}%p`);
+    caps.push(`${MODELS[v2].name}는 ${ok.length}개 비교에서 <b>${up}개 오르고 ${down}개 내렸다</b>(2%p 넘게 바뀐 것만, 평균 ${(mean(ok.map((r) => r.b - r.a)) * 100).toFixed(1)}%p)`);
   }
-  $('#v2-cap').innerHTML = caps.join('. ') + '. 위 6줄 + 관계 사슬 4단계는 공동 학습 3000걸음, 지연 사다리는 청크 256 · 2000걸음, 나머지는 새 과제 묶음. 모두 난수 3개 평균.';
+  $('#v2-cap').innerHTML = caps.join('. ') + '. 난수 3개 평균. 그래도 둘 다 GRU 아래다.';
 }
 
 // ---------------------------------------------------------------- 9. 대조군
@@ -610,16 +894,16 @@ function drawAblations() {
     const rows = vs.map((v) => ({ key: v, label: v === base ? '원래' : MODELS[v].name, values: vals(v, COND.A.f, ablTask) }));
     const bm = mean(rows[0].values);
     const refs = [{ v: bm, label: '원래', cls: 'ref' }, ...refsFor(ablTask).filter((r) => r.cls !== 'ref')];
-    dotRows(panel(box, MODELS[base].name, '공동 학습 · 지속 기억 · 800걸음'), { rows, domain: [0, 1], refs });
+    dotRows(panel(box, MODELS[base].name, '800걸음'), { rows, domain: [0, 1], refs });
     for (const r of rows.slice(1)) caps.push(`${nameOf(r.key)} ${p1(bm)} → <b>${p1(mean(r.values))}</b>`);
   }
-  $('#abl-cap').innerHTML = `<b>${TASK[ablTask].name}</b>: ` + caps.join(' · ') + ' (%, 난수 3개 평균).';
+  $('#abl-cap').innerHTML = `<b>${TASK[ablTask].name}</b>: ` + caps.join(' · ') + ' (%, 난수 3개 평균). 다중 주기 대조군은 파라미터가 같고 연산이 더 많다.';
 }
 
 // ---------------------------------------------------------------- 7. 비용
 function drawCosts() {
   const M = D.measure;
-  if (!M) { $('#cost-cap').textContent = '자원 측정 결과가 없습니다 (py main.py 가 측정합니다).'; return; }
+  if (!M) { $('#cost-cap').textContent = '자원 측정 결과가 없다 (py main.py가 잰다).'; return; }
   const rows = M.rows.slice().sort((a, b) => Object.keys(MODELS).indexOf(a.variant) - Object.keys(MODELS).indexOf(b.variant));
   const box = $('#cost-chart');
   box.innerHTML = '<div class="multiples" id="cost-multi"></div>';
@@ -637,18 +921,19 @@ function drawCosts() {
     rows.forEach((r, i) => {
       const cy = top + i * rowH + rowH / 2, v = getter(r), c = colorOf(r.variant), ring = !!MODELS[r.variant].base;
       text(svg, left - 10, cy + 4, ring ? `  ${MODELS[r.variant].name}` : nameOf(r.variant), { 'text-anchor': 'end', class: ring ? 't-ink2' : 't-ink' });
-      el('line', { x1: x(ticks[0]), x2: x(v), y1: cy, y2: cy, style: `stroke:${c};stroke-width:2;stroke-opacity:0.35` }, svg);
-      el('circle', { cx: x(v), cy, r: 5, style: ring ? `fill:var(--page);stroke:${c};stroke-width:2` : `fill:${c};stroke:var(--page);stroke-width:2` }, svg);
-      text(svg, x(v) + 9, cy + 4, fmt(v), { class: 't-num t-ink2' });
+      const mk = MODELS[r.variant].base || r.variant, g = el('g', { 'data-m': mk }, svg);
+      el('line', { x1: x(ticks[0]), x2: x(v), y1: cy, y2: cy, style: `stroke:${c};stroke-width:2;stroke-opacity:0.35` }, g);
+      el('circle', { cx: x(v), cy, r: 5, style: ring ? `fill:var(--page);stroke:${c};stroke-width:2` : `fill:${c};stroke:var(--page);stroke-width:2` }, g);
+      text(g, x(v) + 9, cy + 4, fmt(v), { class: 't-num t-ink2' });
     });
   };
-  logRows(panel(multi, '학습 한 걸음', '밀리초 · 로그 눈금 · 짧을수록 좋음'), (r) => r.train_sec_per_step * 1000,
+  logRows(panel(multi, '학습 한 걸음', '짧을수록 좋다'), (r) => r.train_sec_per_step * 1000,
     (v) => (v >= 1000 ? `${+(v / 1000).toFixed(1)}초` : `${Math.round(v)}ms`), [1, 10, 100, 1000], 3000);
-  logRows(panel(multi, '학습 피크 메모리', 'GPU · 로그 눈금'), (r) => r.train_peak_bytes / 2 ** 20,
+  logRows(panel(multi, '학습 피크 메모리', 'GPU'), (r) => r.train_peak_bytes / 2 ** 20,
     (v) => (v >= 1000 ? `${+(v / 1024).toFixed(1)}GiB` : `${Math.round(v)}MiB`), [10, 100, 1000], 3000);
   const tf = rows.find((r) => r.variant === 'transformer');
   const ratios = CANDS.map((v) => rows.find((r) => r.variant === v)).filter(Boolean).map((r) => r.train_sec_per_step / tf.train_sec_per_step);
-  $('#cost-cap').innerHTML = `측정 ${M.measured_at}. 후보 세 개의 학습 한 걸음은 Transformer 의 <b>${Math.min(...ratios).toFixed(0)}–${Math.max(...ratios).toFixed(0)}배</b>입니다. 빈 원은 대조군입니다.`;
+  $('#cost-cap').innerHTML = `후보 세 개의 학습 한 걸음은 Transformer의 <b>${Math.min(...ratios).toFixed(0)}–${Math.max(...ratios).toFixed(0)}배</b>다. 빈 원은 대조군이다. 가로축은 로그 눈금이다.`;
   const head = '<thead><tr><th class="l">모델</th><th>파라미터</th><th>학습 ms/걸음</th><th>학습 기호/초</th><th>학습 피크 메모리</th><th>지연 GPU<span class="sub">평균 / 90%</span></th><th>지연 CPU<span class="sub">평균 / 90%</span></th><th>들고 다니는 상태<span class="sub">기록 1개</span></th></tr></thead>';
   $('#cost-table').innerHTML = head + '<tbody>' + rows.map((r) => `<tr>
     <td class="l">${MODELS[r.variant].base ? `<span class="dim">${MODELS[MODELS[r.variant].base].name}</span> ${MODELS[r.variant].name}` : `<b>${nameOf(r.variant)}</b>`}</td>
@@ -662,7 +947,7 @@ function drawCosts() {
 // ---------------------------------------------------------------- 8. 검증
 function drawChecks() {
   const C = D.checks;
-  if (!C) { $('#check-cap').textContent = '검증 결과가 없습니다 (py main.py 가 검증합니다).'; return; }
+  if (!C) { $('#check-cap').textContent = '검증 결과가 없다 (py main.py가 검사한다).'; return; }
   const checks = [...new Set(C.rows.filter((r) => r.variant).map((r) => r.check))];
   const variants = [...new Set(C.rows.filter((r) => r.variant).map((r) => r.variant))];
   const NAMES = { 'forward = step 누적': '한 번에 = 한 개씩', '인과성': '인과성', '상태 누출 없음': '누출 없음', '청크 분할 일치': '청크 분할', '유한 손실·gradient': '유한 손실·기울기', '작은 결정적 문제 학습': '작은 문제 학습' };
@@ -672,59 +957,17 @@ function drawChecks() {
     + '</tbody>';
   const gen = C.rows.find((r) => !r.variant);
   const failed = C.rows.filter((r) => !r.ok).length;
-  $('#check-cap').innerHTML = `검사 ${C.checked_at} · ${C.device} · ${C.dtype}. 전체 ${C.rows.length}개 중 실패 <b>${failed}</b>개. `
-    + `과제 생성기: ${gen ? (gen.ok ? '모든 질의의 답을 따로 다시 계산해 일치 확인' : '실패 — ' + gen.msg) : '–'}. 칸에 마우스를 올리면 잰 값이 보입니다.`;
-}
-
-// ---------------------------------------------------------------- 요약 (숫자는 자료에서 계산)
-function drawFindings() {
-  const A = COND.A.f, E = COND.E.f;
-  const m = (v, f, t) => mean(vals(v, f, t));
-  const trainTasks = D.tasks.filter((t) => t.train && t.core).map((t) => t.key);
-  const best = (f) => trainTasks.map((t) => [t, MAIN.slice().sort((a, b) => m(b, f, t) - m(a, f, t))[0]]);
-  const nE = new Set(D.runs.filter(E).map((r) => r.seed)).size;
-  const items = [];
-  items.push(`<b>800걸음 비교는 모두 덜 배운 상태였습니다.</b> 같은 조건으로 3000걸음까지 늘리자 Transformer 의 키-값 정확도가 ${pct(m('transformer', A, 'kv'))} → <b>${pct(m('transformer', E, 'kv'))}</b>로 뛰었습니다(난수 ${nE}개 평균). `
-    + (new Set(best(E).map(([, v]) => v)).size === 1 ? `3000걸음에서는 학습 과제 ${trainTasks.length}개 모두 ${MODELS[best(E)[0][1]].name} 가 1위입니다.`
-      : '3000걸음에서 문제별 1위: ' + best(E).map(([t, v]) => `${TASK[t].name} ${MODELS[v].name}`).join(' · ') + '.'));
-  items.push(`<b>순환형이 앞선 것은 학습보다 긴 관계 사슬입니다.</b> 3000걸음에서 한 단계 긴 4단계 사슬: GRU ${pct(m('gru', E, 'chain_hop4'))}, <span class="m-folio">Folio</span> ${pct(m('folio', E, 'chain_hop4'))}, <span class="m-strata">Strata</span> ${pct(m('strata', E, 'chain_hop4'))}, Transformer ${pct(m('transformer', E, 'chain_hop4'))} (끝 개체 찍기 50%).`);
-  const avg = (v) => mean(trainTasks.map((t) => m(v, E, t)));
-  items.push(`<b>세 후보 중 GRU 를 넘은 것은 없습니다.</b> 3000걸음 공동 학습, 학습 과제 6개 평균: Transformer ${pct(avg('transformer'))} · GRU ${pct(avg('gru'))} · <span class="m-folio">Folio</span> ${pct(avg('folio'))} · <span class="m-strata">Strata</span> ${pct(avg('strata'))} · <span class="m-lattice">Lattice</span> ${pct(avg('lattice'))}.`);
-  const have = IMPROVED.filter((v) => D.runs.some((r) => r.variant === v));
-  if (have.length) {
-    const gain = (v2) => { const ok = improvedRows(MODELS[v2].v1, v2).filter((r) => !Number.isNaN(r.a) && !Number.isNaN(r.b)); return mean(ok.map((r) => r.b - r.a)); };
-    items.push(`<b>고친 것 중 효과가 분명한 것은 Lattice2 하나입니다.</b> 입력을 모든 칸에 넣고 메시지를 정규화하자 난수에 따라 무너지던 학습이 안정됐습니다. 관계 사슬 ${pct(m('lattice', E, 'chain'))} ± ${pct(sd(vals('lattice', E, 'chain')))} → <b>${pct(m('lattice2', E, 'chain'))}</b> ± ${pct(sd(vals('lattice2', E, 'chain')))}, 비교 전체 평균 ${(gain('lattice2') * 100).toFixed(1)}%p. Folio2 의 쓰기 세기 · 내용 주소는 평균 ${(gain('folio2') * 100).toFixed(1)}%p 로 차이가 없었습니다. 그래도 Lattice2 는 GRU 아래입니다.`);
-  }
-  const H = D.runs.filter(isSuite);
-  if (H.length) {
-    const kn = (v, t, k) => mean(H.filter((r) => r.variant === v).map((r) => (r.knobs[t] && r.knobs[t][k] ? r.knobs[t][k].accuracy : NaN)).filter((q) => !Number.isNaN(q)));
-    const roster = SUITE_ROSTER.filter((v) => H.some((r) => r.variant === v));
-    const cycBest = Math.max(...roster.map((v) => m(v, isSuite, 'cyc')));
-    items.push(`<b>새 과제에서는 각자 잘하는 것이 갈렸습니다.</b> 창 안의 느린 주기(P 64, 오프셋이 바뀌는 자리)는 Transformer 가 ${pct(kn('transformer', 'slowp', '64'))}, GRU · Folio · Lattice 는 ${pct(Math.max(...['gru', 'folio', 'lattice'].map((v) => kn(v, 'slowp', '64'))))} 이하입니다. 베끼기(원문 4기호)는 GRU ${pct(kn('gru', 'copy', '4'))} · <span class="m-folio">Folio</span> ${pct(kn('folio', 'copy', '4'))}, Transformer ${pct(kn('transformer', 'copy', '4'))}. 끝 개체가 없는 순환 사슬은 모든 모델이 우연(12.5%) 수준입니다(최고 ${pct(cycBest)}).`);
-    items.push(`<b>Strata 의 '층마다 다른 속도'는 약한 신호만 보였습니다.</b> 느린 주기 P 64 의 바뀌는 자리에서 <span class="m-strata">Strata</span> ${pct(kn('strata', 'slowp', '64'))}, 모든 층을 매번 갱신한 대조군 ${pct(kn('strata_sameperiod', 'slowp', '64'))}. 다른 순환형보다 높지만 풀었다고 할 수준은 아닙니다. 대신 베끼기에서는 대조군보다 낮습니다(원문 4기호 ${pct(kn('strata', 'copy', '4'))} 대 ${pct(kn('strata_sameperiod', 'copy', '4'))}).`);
-  }
-  const F = D.runs.filter((r) => r.delay && r.tasks[0] === 'kvd');
-  const fd = (v, c, i) => mean(F.filter((r) => r.variant === v && r.chunk === c).map((r) => bucketAcc(r.delay, i)));
-  if (F.length) {
-    items.push(`<b>64기호 밖 기억을 막은 것은 구조가 아니라 학습 방식이었습니다.</b> 지연 사다리에서 기울기를 에피소드 전체에 흘리자(청크 256), 학습보다 긴 지연 256–512기호에서 GRU ${pct(fd('gru', 64, 4))} → <b>${pct(fd('gru', 256, 4))}</b>, <span class="m-folio">Folio</span> ${pct(fd('folio', 64, 4))} → <b>${pct(fd('folio', 256, 4))}</b>. <span class="m-strata">Strata</span> ${pct(fd('strata', 256, 4))} · Folio2 ${pct(fd('folio2', 256, 4))} 도 GRU 와 비슷해, 주소 기억 구조의 이점은 여기서도 보이지 않았습니다.`);
-  }
-  const G = D.runs.filter((r) => r.delay && r.tasks[0] === 'kvd_all');
-  const gd = (v, c, i) => mean(G.filter((r) => r.variant === v && r.chunk === c).map((r) => bucketAcc(r.delay, i)));
-  if (G.length && F.length) {
-    items.push(`<b>모델마다 맞는 학습 신호가 다릅니다.</b> 방해 구간 질의까지 채점하자 Transformer(창 64)는 창 안 32–64기호에서 ${pct(fd('transformer', 64, 1))} → <b>${pct(gd('transformer', 64, 1))}</b>로 올랐습니다. 같은 채점에서 GRU 는 ${pct(fd('gru', 256, 1))} → ${pct(gd('gru', 256, 1))}, <span class="m-folio">Folio</span> 는 ${pct(fd('folio', 256, 1))} → ${pct(gd('folio', 256, 1))}로 떨어졌습니다(청크 256). 최근 키만 좇게 된 것입니다.`);
-  }
-  if (D.measure) {
-    const r = (v) => D.measure.rows.find((x) => x.variant === v);
-    const ratios = CANDS.map((v) => r(v).train_sec_per_step / r('transformer').train_sec_per_step);
-    items.push(`<b>비용:</b> 한 모델씩 보통 방식으로 재면 후보의 학습 한 걸음은 Transformer 의 ${Math.min(...ratios).toFixed(0)}–${Math.max(...ratios).toFixed(0)}배 걸립니다. 난수 3개를 묶어 한 번에 계산하고 CUDA graph 로 재생하는 학습기로 실험 전체를 다시 돌릴 수 있게 됐지만, 구조 자체의 비용은 그대로입니다.`);
-  }
-  $('#findings').innerHTML = items.map((s) => `<li>${s}</li>`).join('');
+  $('#check-tiles').innerHTML = `<div class="tile"><span class="big">${C.rows.length - failed} / ${C.rows.length}</span><span class="what">검사 통과</span><span class="sub">64비트 정밀도로 모델별 같은 검사</span></div>
+    <div class="tile"><span class="big">${variants.length}개</span><span class="what">모델과 대조군</span><span class="sub">한 번에 넣든 나눠 넣든 같은 답이 나오는지, 미래 기호가 새지 않는지 등</span></div>`;
+  $('#check-cap').innerHTML = `${C.checked_at} · ${C.device} · ${C.dtype}. 과제 생성기: ${gen ? (gen.ok ? '모든 질의의 답을 따로 다시 계산해 일치 확인' : '실패 — ' + gen.msg) : '–'}. 칸에 마우스를 올리면 잰 값이 보인다.`;
 }
 
 // ---------------------------------------------------------------- 전체
 function drawAll() {
-  drawSchematics();
-  drawFindings();
+  drawChips();
+  drawTiles();
+  drawBoard();
+  drawSchematicsAt(sch.t);
   drawTasks();
   drawAccuracy();
   drawCurves();
@@ -763,7 +1006,7 @@ async function main() {
     D = await res.json();
     if (D.error) throw new Error(D.error);
   } catch (err) {
-    st.textContent = `결과를 불러오지 못했습니다: ${err.message}.` + (window.RESULTS_URL ? '' : ' py main.py 로 서버를 띄웠는지 확인하세요.');
+    st.textContent = `결과를 못 불러왔다: ${err.message}.` + (window.RESULTS_URL ? '' : ' py main.py로 서버를 띄웠는지 확인해 보자.');
     st.className = 'error';
     return;
   }
@@ -775,14 +1018,13 @@ async function main() {
     const s = $(`#s-${v}`);
     if (s && mr) s.textContent = bytes(mr.state_bytes_batch1);
   }
-  const nTrain = D.tasks.filter((t) => t.train && (t.core || t.suite)).length;
-  $('#by-tasks').textContent = `학습 ${nTrain} · 시험만 ${D.tasks.filter((t) => !t.train).length}`;
-  const planned = Object.values(D.plan).reduce((s, g) => s + g.total, 0), done = Object.values(D.plan).reduce((s, g) => s + g.done, 0);
-  $('#by-runs').textContent = `${done}/${planned}개`;
   st.remove();
   $('#foot').innerHTML = `자료 생성 ${D.generated_at} · 실행 ${D.runs.length}개 · 계획 ` + Object.entries(D.plan).map(([g, p]) => `${g} ${p.done}/${p.total}`).join(' · ')
-    + (D.measure ? ` · 자원 측정 ${D.measure.measured_at}` : '') + ' · 모든 수치는 results/candidates 의 실행 결과에서 화면이 직접 계산합니다.';
+    + (D.measure ? ` · 자원 측정 ${D.measure.measured_at}` : '') + '. 숫자는 전부 실행 결과 파일에서 화면이 바로 계산한다.';
   drawAll();
+  if (D.samples) drawPlay(); else $('#play').hidden = true;
+  setupSchematics();
+  $('#suite-more').addEventListener('toggle', drawSuite);
   let w = innerWidth;
   addEventListener('resize', () => { if (Math.abs(innerWidth - w) > 30) { w = innerWidth; drawAll(); } });
 }

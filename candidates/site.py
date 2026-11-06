@@ -127,4 +127,4 @@ def payload() -> dict:
     return {"generated_at": time.strftime("%Y-%m-%d %H:%M"), "main": MAIN, "ablations": ABLATIONS, "improved": IMPROVED,
             "delay_baseline": delay_base, "knob_baseline": knob_base,
             "tasks": tasks, "models": models, "runs": runs, "plan": plan_status(),
-            "measure": read("measure.json"), "checks": read("checks.json")}
+            "measure": read("measure.json"), "checks": read("checks.json"), "samples": read("samples.json")}

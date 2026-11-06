@@ -34,6 +34,7 @@ py compare_candidates.py report                # results/candidates/report.md, s
 | `candidates/site.py` | 화면용 자료 묶기 + 과제별 단순 규칙 기준선 |
 | `candidates/report.py` | 표 · 요약 생성 |
 | `compare_candidates.py` | 세부 조절용 명령줄 실행기 |
+| `candidates/samples.py` | '직접 풀기' 화면용: 실제 시험 문제와 저장된 모델의 실제 답 → `samples.json` (`model.pt` 필요) |
 | `export_site.py` · `docs/` | 실험 노트를 정적 사이트로 내보낸 것 (GitHub Pages) |
 | `results/candidates/` | 로그 · 실행별 결과(`runs/*/result.json`, 가중치 `model.pt` 는 로컬에만) · `measure.json` · `checks.json` · `report.md` |
 

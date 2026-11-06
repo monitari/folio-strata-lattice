@@ -24,7 +24,7 @@ _lock = threading.Lock()
 
 def _stamp():
     """결과 파일들의 최종 수정 시각 묶음. 바뀌었을 때만 다시 만든다."""
-    files = list((OUT / "runs").glob("*/*.json")) + [OUT / n for n in ("measure.json", "checks.json")]
+    files = list((OUT / "runs").glob("*/*.json")) + [OUT / n for n in ("measure.json", "checks.json", "samples.json")]
     return tuple(sorted((str(p), p.stat().st_mtime) for p in files if p.exists()))
 
 
